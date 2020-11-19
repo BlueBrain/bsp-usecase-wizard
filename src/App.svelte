@@ -1,11 +1,41 @@
+
 <script lang="ts">
-	export let name: string;
+	import { onMount } from 'svelte';
+	import { userInfo } from './stores';
+	
+	import { init, getUserInfo } from './helpers/auth';
+	import CopyToken from './components/CopyToken.svelte';
+	
+	export let loadingAuth: boolean;
+	
+	let username = '';
+
+	onMount(() => {
+		getUserInfo().then((user) => {
+			if (!user) {
+				init();
+			} else {
+				userInfo.set(user);
+				username = user.profile.name;
+				loadingAuth = false;
+			}
+		});
+	});
 </script>
 
+
+
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	{#if loadingAuth}
+		<h1>loading...</h1>
+	{:else}
+		<h1>Welcome {username}!</h1>
+		<CopyToken></CopyToken>
+	{/if}
+
 </main>
+
+
 
 <style>
 	main {
