@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Button, {Label} from '@smui/button';
-	import { userInfo } from '../stores';
+	import { userInfo } from '@/stores';
 
 	let userInfoStored;
 	

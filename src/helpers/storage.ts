@@ -1,5 +1,5 @@
 
-import { storage } from '../constants';
+import { storage } from '@/constants';
 
 function saveUrl(url: string) {
   sessionStorage.setItem(storage.SAVED_URL, url);

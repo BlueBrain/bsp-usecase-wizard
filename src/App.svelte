@@ -1,10 +1,10 @@
 
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { userInfo } from './stores';
+	import { userInfo } from '@/stores';
 	
-	import { init, getUserInfo } from './helpers/auth';
-	import CopyToken from './components/CopyToken.svelte';
+	import { init, getUserInfo } from '@helpers/auth';
+	import CopyToken from '@components/CopyToken.svelte';
 	
 	export let loadingAuth: boolean;
 	

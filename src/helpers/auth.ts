@@ -1,6 +1,6 @@
 
 import Oidc from 'oidc-client';
-import { saveUrl, getSavedUrl } from './storage';
+import { saveUrl, getSavedUrl } from '@helpers/storage';
 
 function createAuthConfig() {
   const redirect = window.location.origin

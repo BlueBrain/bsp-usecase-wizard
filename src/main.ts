@@ -1,6 +1,6 @@
 
-import App from './App.svelte';
-import { authCallback } from './helpers/auth';
+import App from '@/App.svelte';
+import { authCallback } from '@helpers/auth';
 
 let app;
 
