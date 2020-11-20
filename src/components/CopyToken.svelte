@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button, {Label} from '@smui/button';
 	import { userInfo } from '@/stores';
+	import { findCollabIdByName } from '@helpers/drive';
 
 	let userInfoStored;
 	
@@ -20,6 +21,7 @@
 	function copyToken() {
 		copyToClipboard(userInfoStored.access_token);
 	}
+	findCollabIdByName('Antonel transition to E-Brayns');
 </script>
 
 

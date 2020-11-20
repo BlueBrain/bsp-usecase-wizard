@@ -16,7 +16,7 @@
 				init();
 			} else {
 				userInfo.set(user);
-				username = user.profile.name;
+				username = user?.profile?.name;
 				loadingAuth = false;
 			}
 		});
