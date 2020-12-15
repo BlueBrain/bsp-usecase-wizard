@@ -33,3 +33,11 @@ export interface CollabDirectory {
   permission: String;
   type: String;
 }
+
+export interface UploadFromUrl {
+  fileUrl: string;
+  collabId: string;
+  parentFolder: string;
+  placeholder?: string;
+  newText?: string;
+}

@@ -1,8 +1,11 @@
 
-import axios, { AxiosResponse, AxiosPromise, AxiosError } from 'axios';
+import axios from 'axios';
 import { userInfo } from '@/store';
 import { drive } from '@/constants';
-import type { CollabItems, Collab, CollabDirectory } from '@/types/interfaces';
+import type {
+  CollabItems, Collab, CollabDirectory,
+  UploadFromUrl,
+} from '@/types/interfaces';
 
 const { DRIVE_API_URL } = drive;
 
@@ -83,24 +86,34 @@ async function getFileContent(fileUrl: string) : Promise<Blob> {
 
 export async function getFileContentAndReplace(
   fileUrl: string, placeholder: string, newText: string
-) : Promise<string> {
+) : Promise<Blob> {
   const fileContent: Blob = await getFileContent(fileUrl);
+  const originalType = fileContent.type;
+  
+  let textContent: string = await fileContent.text();
 
-  // if (fileContent.includes(placeholder)) {
-  //   return fileContent.replace(placeholder, newText);
-  // }
+  if (textContent.includes(placeholder)) {
+    textContent = textContent.replace(placeholder, newText);
+  }
 
-  // return fileContent;
-  return 'sss';
+  return new Blob([textContent], {type: originalType});
 }
 
-interface UploadFromUrl {
-  fileUrl: string; collabId: string; parentFolder: string;
-}
+
 export async function uploadFromUrl(uploadObj : UploadFromUrl) {
+  let fetchFileFn = () => {
+    if (uploadObj.placeholder && uploadObj.newText) {
+      return getFileContentAndReplace(
+        uploadObj.fileUrl,
+        uploadObj.placeholder,
+        uploadObj.newText
+      );
+    }
+    return getFileContent(uploadObj.fileUrl);
+  };
   const [uploadLink, fileContent] = await Promise.all([
     getUploadLink(uploadObj.collabId),
-    getFileContent(uploadObj.fileUrl),
+    fetchFileFn(),
     createFolder(uploadObj.collabId, uploadObj.parentFolder),
   ]);
   const fileNmae = decodeURIComponent(uploadObj.fileUrl.split('/').pop());

@@ -26,12 +26,22 @@
   async function init() {
     const collabId = await findCollabIdByName('My Library');
     const parentFolder = '/foo2';
-    const FILE_TO_UPLOAD = 'https://raw.githubusercontent.com/antonelepfl/usecases/dev/production_notebooks/morphology/Morphology%20Analysis.ipynb';
-    await uploadFromUrl({
-      fileUrl: FILE_TO_UPLOAD,
-      collabId,
-      parentFolder,
-    });
+    const promises = [
+      uploadFromUrl({
+        fileUrl: 'https://raw.githubusercontent.com/antonelepfl/usecases/dev/production_notebooks/circuitbuilding/Cell%20Placement%20Hippocampus.ipynb',
+        collabId,
+        parentFolder,
+      }),
+      uploadFromUrl({
+        fileUrl: 'https://raw.githubusercontent.com/antonelepfl/usecases/dev/production_notebooks/morphology/Morphology%20Analysis.ipynb',
+        collabId,
+        parentFolder,
+        placeholder: 'REPLACE_MORPHOLOGY_FILE_HERE',
+        newText: '--------------',
+      }),
+    ]
+    await Promise.all(promises);
+    console.debug('creation finished');
   }
   init();
 </script>
