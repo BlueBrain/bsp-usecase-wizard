@@ -5,6 +5,8 @@
   import { findCollabIdByName, uploadFromUrl } from '@helpers/drive';
 
   let userInfoStored: Oidc.User;
+  export let labLink = '';
+  export let processing = false;
   
   userInfo.subscribe((newUser: Oidc.User) => {
     userInfoStored = newUser;
@@ -23,9 +25,10 @@
     copyToClipboard(userInfoStored.access_token);
   }
 
-  async function init() {
+  async function createFiles() {
+    processing = true;
+    const parentFolder = '/example_drive';
     const collabId = await findCollabIdByName('My Library');
-    const parentFolder = '/foo2';
     const promises = [
       uploadFromUrl({
         fileUrl: 'https://raw.githubusercontent.com/antonelepfl/usecases/dev/production_notebooks/circuitbuilding/Cell%20Placement%20Hippocampus.ipynb',
@@ -41,8 +44,9 @@
       }),
     ]
     await Promise.all(promises);
+    labLink = `https://lab.ebrains.eu/user/GENERIC_USER/lab/tree/drive/My%20Libraries/My%20Library${parentFolder}/Morphology%20Analysis.ipynb`;
+    processing = false;
   }
-  init();
 </script>
 
 
@@ -52,5 +56,30 @@
   color={'secondary'}
   variant='raised'
 >
-  <Label>Token</Label>
+  <Label>Copy Token</Label>
 </Button>
+
+
+<Button
+  on:click={createFiles}
+  disabled={processing}
+  color={'secondary'}
+  variant='raised'
+>
+  <Label>Create files</Label>
+</Button>
+
+{#if processing}
+  <span>processing...</span>
+{/if}
+
+{#if labLink}
+  <a href="{labLink}" target="_blank">
+    <Button
+      color={'primary'}
+      variant='raised'
+    >
+      <Label>Open Jupyter Lab</Label>
+    </Button>
+  </a>
+{/if}
