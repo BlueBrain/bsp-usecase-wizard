@@ -3,19 +3,21 @@ import Oidc from 'oidc-client';
 import { saveUrl, getSavedUrl } from '@helpers/storage';
 
 function createAuthConfig() {
-  const redirect = window.location.origin
-    // + process.env.BASE_URL
-    + (window.location.pathname === '/' ? '' : window.location.pathname)
-    + '/#login';
-
   const oidcConfig = {
     authority: 'https://iam.ebrains.eu/auth/realms/hbp',
     client_id: 'ebrains-wizard',
     scope: 'email profile openid collab.drive',
-    redirect_uri: redirect,
+    
+    redirect_uri: window.location.origin + '/callback.html',
+    post_logout_redirect_uri: window.location.origin + '/index.html',
+    silent_redirect_uri: window.location.origin + '/silent-renew.html',
+
+    userStore: new Oidc.WebStorageStateStore({ store: window.localStorage }),
     response_type: 'id_token token',
     automaticSilentRenew: true,
     loadUserInfo: true,
+    accessTokenExpiringNotificationTime: 10,
+    filterProtocolClaims: true,
   };
   return oidcConfig;
 }
@@ -23,6 +25,13 @@ function createAuthConfig() {
 async function login(authMgr: Oidc.UserManager): Promise<any> {
   saveUrl(window.location.href);
   return authMgr.signinRedirect();
+}
+
+async function loginSilent() {
+  const authMgr = createAuthManager();
+  await authMgr.signinSilent().then((user) => {
+    console.debug('user refreshed', user);
+  });
 }
 
 function createAuthManager() {
@@ -58,4 +67,5 @@ export {
   init,
   authCallback,
   getUserInfo,
+  loginSilent,
 };

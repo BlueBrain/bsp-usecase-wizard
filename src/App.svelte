@@ -2,9 +2,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { userInfo } from '@/stores';
-	
 	import { init, getUserInfo } from '@helpers/auth';
-	import CopyToken from '@components/CopyToken.svelte';
+	import CopyToken from './components/CopyToken.svelte';
 	
 	export let loadingAuth: boolean;
 	
@@ -12,7 +11,7 @@
 
 	onMount(() => {
 		getUserInfo().then((user) => {
-			if (!user) {
+			if (!user || user.expired) {
 				init();
 			} else {
 				userInfo.set(user);

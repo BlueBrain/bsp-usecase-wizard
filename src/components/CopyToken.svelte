@@ -1,9 +1,10 @@
+
 <script lang="ts">
 	import Button, {Label} from '@smui/button';
-	import { userInfo } from '@/stores';
+	import { userInfo } from '@/store';
 	import { findCollabIdByName } from '@helpers/drive';
 
-	let userInfoStored;
+	let userInfoStored: Oidc.User;
 	
 	userInfo.subscribe((newUser: Oidc.User) => {
 		userInfoStored = newUser;
