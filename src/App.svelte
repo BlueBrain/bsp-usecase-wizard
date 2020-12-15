@@ -1,7 +1,7 @@
 
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { userInfo } from '@/stores';
+	import { userInfo } from '@/store';	
 	import { init, getUserInfo } from '@helpers/auth';
 	import CopyToken from './components/CopyToken.svelte';
 	

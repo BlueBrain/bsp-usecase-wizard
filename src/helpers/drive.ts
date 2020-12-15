@@ -1,6 +1,6 @@
 
 import axios, { AxiosResponse, AxiosPromise, AxiosError } from 'axios';
-import { userInfo } from '@/stores';
+import { userInfo } from '@/store';
 import { drive } from '@/constants';
 
 const { DRIVE_API_URL } = drive;
