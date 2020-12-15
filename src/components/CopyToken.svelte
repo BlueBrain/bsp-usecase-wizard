@@ -41,7 +41,6 @@
       }),
     ]
     await Promise.all(promises);
-    console.debug('creation finished');
   }
   init();
 </script>

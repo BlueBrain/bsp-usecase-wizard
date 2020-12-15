@@ -49,23 +49,19 @@ async function createFolder(collabId: string, folderName: string) {
   }
 
   const existingFolders = await findItems(collabId, true);
-  if (existingFolders.includes(folderName.replace(/\//g, ''))) {
-    console.debug('folder alerady exists');
-    return;
-  }
+  if (existingFolders.includes(folderName.replace(/\//g, ''))) return;
 
   const params = { 'p': folderName };
   // it is not a json payload but application/x-www-form-urlencoded
   const data = "operation=mkdir";
   const endpoint = `${DRIVE_API_URL}/repos/${collabId}/dir/`;
 
-  await axiosInstance({
+  return axiosInstance({
     method: 'post',
     url: endpoint,
     params,
     data,
   });
-  console.debug('folder created');
 }
 
 async function getUploadLink(collabId: string) : Promise<string> {
@@ -89,13 +85,10 @@ export async function getFileContentAndReplace(
 ) : Promise<Blob> {
   const fileContent: Blob = await getFileContent(fileUrl);
   const originalType = fileContent.type;
-  
   let textContent: string = await fileContent.text();
-
   if (textContent.includes(placeholder)) {
     textContent = textContent.replace(placeholder, newText);
   }
-
   return new Blob([textContent], {type: originalType});
 }
 
@@ -125,9 +118,7 @@ export async function uploadFromUrl(uploadObj : UploadFromUrl) {
   formData.append('replace', '1'),
   formData.append('ret-json', '1'),
   formData.append('parent_dir', uploadObj.parentFolder);
-
-  await axios.post(uploadLink, formData);
-  console.debug('file uploaded');
+  return axios.post(uploadLink, formData);
 }
 
 export default {};

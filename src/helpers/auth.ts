@@ -29,9 +29,7 @@ async function login(authMgr: Oidc.UserManager): Promise<any> {
 
 async function loginSilent() {
   const authMgr = createAuthManager();
-  await authMgr.signinSilent().then((user) => {
-    console.debug('user refreshed', user);
-  });
+  await authMgr.signinSilent();
 }
 
 function createAuthManager() {

@@ -5,33 +5,33 @@ export interface CollabItems {
 }
 
 export interface Collab {
-  encrypted: Boolean;
-  head_commit_id: String;
-  id: String;
-  modifier_contact_email: String;
-  modifier_email: String;
-  modifier_name: String;
-  mtime: BigInteger;
-  mtime_relative: String;
-  name: String;
-  owner: String;
-  owner_contact_email: String;
-  owner_name: String;
-  permission: String;
-  root: String;
-  size: BigInteger;
-  size_formatted: String;
-  type: String;
-  version: BigInteger;
-  virtual: Boolean;
+  encrypted: boolean;
+  head_commit_id: string;
+  id: string;
+  modifier_contact_email: string;
+  modifier_email: string;
+  modifier_name: string;
+  mtime: number;
+  mtime_relative: string;
+  name: string;
+  owner: string;
+  owner_contact_email: string;
+  owner_name: string;
+  permission: string;
+  root: string;
+  size: number;
+  size_formatted: string;
+  type: string;
+  version: number;
+  virtual: boolean;
 }
 
 export interface CollabDirectory {
-  id: String;
-  mtime: BigInteger;
-  name: String;
-  permission: String;
-  type: String;
+  id: string;
+  mtime: number;
+  name: string;
+  permission: string;
+  type: string;
 }
 
 export interface UploadFromUrl {
