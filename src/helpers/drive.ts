@@ -10,15 +10,28 @@ import type {
 const { DRIVE_API_URL } = drive;
 
 const axiosInstance = axios.create();
+let user = {} as Oidc.User;
 
 userInfo.subscribe((newUser: Oidc.User) => {
   axiosInstance.defaults.headers.Authorization = `Bearer ${newUser?.access_token}`;
+  user = newUser;
 });
 
-export async function findCollabIdByName(collabName: string): Promise<string> {
+function getAllCollabs(): Promise<Array<Collab>> {
   const endpoint = `${DRIVE_API_URL}/repos/`;
-  const response = await axiosInstance.get(endpoint);
-  const collabs = response.data;
+  return axiosInstance.get(endpoint).then(r => r.data);
+}
+
+export async function findMyCollabs(): Promise<Array<Collab>> {
+  const collabs = await getAllCollabs();
+  const foundCollab = collabs.filter(
+    (collab: Collab) => collab.modifier_name === user.profile.preferred_username,
+  );
+  return foundCollab;
+}
+
+export async function findCollabIdByName(collabName: string): Promise<string> {
+  const collabs = await getAllCollabs();
   const foundCollab = collabs.find((collab: Collab) => collab.name === collabName);
   return foundCollab?.id;
 }
@@ -72,7 +85,7 @@ async function getUploadLink(collabId: string) : Promise<string> {
   return uploadLink;
 }
 
-async function getFileContent(fileUrl: string) : Promise<Blob> {
+export async function getFileContent(fileUrl: string) : Promise<Blob> {
   return axios({
     method: 'get',
     url: fileUrl,

@@ -15,6 +15,7 @@
     "@rollup/plugin-node-resolve": "^8.0.0",
     "@rollup/plugin-typescript": "^6.0.0",
     "@smui/button": "^1.0.0",
+    "@smui/list": "^1.0.0",
     "@tsconfig/svelte": "^1.0.0",
     "@types/jest": "^26.0.15",
     "axios": "^0.21.0",
