@@ -36,8 +36,18 @@ export interface CollabDirectory {
 
 export interface UploadFromUrl {
   fileUrl: string;
+  fileName?: string;
   collabId: string;
   parentFolder: string;
   placeholder?: string;
   newText?: string;
+}
+
+export interface CollabSelectionDataObj {
+  loading: boolean;
+  collabs: Array<Collab>;
+  filteredCollabs: Array<Collab>;
+  collabSelectedName: string;
+  searchText: string;
+  parentFolder: string;
 }

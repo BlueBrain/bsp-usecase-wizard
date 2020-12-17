@@ -10,11 +10,9 @@ import type {
 const { DRIVE_API_URL } = drive;
 
 const axiosInstance = axios.create();
-let user = {} as Oidc.User;
 
 userInfo.subscribe((newUser: Oidc.User) => {
   axiosInstance.defaults.headers.Authorization = `Bearer ${newUser?.access_token}`;
-  user = newUser;
 });
 
 function getAllCollabs(): Promise<Array<Collab>> {
@@ -25,7 +23,7 @@ function getAllCollabs(): Promise<Array<Collab>> {
 export async function findMyCollabs(): Promise<Array<Collab>> {
   const collabs = await getAllCollabs();
   const foundCollab = collabs.filter(
-    (collab: Collab) => collab.modifier_name === user.profile.preferred_username,
+    (collab: Collab) => collab.permission === 'rw',
   );
   return foundCollab;
 }
@@ -122,16 +120,16 @@ export async function uploadFromUrl(uploadObj : UploadFromUrl) {
     fetchFileFn(),
     createFolder(uploadObj.collabId, uploadObj.parentFolder),
   ]);
-  const fileNmae = decodeURIComponent(uploadObj.fileUrl.split('/').pop());
+  const fileName = uploadObj.fileName || decodeURIComponent(uploadObj.fileUrl.split('/').pop());
   const formData = new FormData();
-  formData.append('file', fileContent, fileNmae);
+  formData.append('file', fileContent, fileName);
   formData.append('filename', 'test2.txt');
   formData.append('file_name', 'test2.txt');
   formData.append('name', 'test2.txt');
   formData.append('replace', '1'),
   formData.append('ret-json', '1'),
   formData.append('parent_dir', uploadObj.parentFolder);
-  return axios.post(uploadLink, formData);
+  return axiosInstance.post(uploadLink, formData);
 }
 
 export default {};
