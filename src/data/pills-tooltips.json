@@ -1,0 +1,54 @@
+{
+  "experience": {
+    "all": {
+      "name": "Everybody",
+      "tooltip": "Easily accessible use case"
+    },
+    "power": {
+      "name": "Power users",
+      "tooltip": "Advanced use case"
+    },
+    "experts": {
+      "name": "Experts",
+      "tooltip": "Use case for contributors and tools experts"
+    },
+    "code": {
+      "name": "Developers",
+      "tooltip": "Use case for tools developers"
+    }
+  },
+  "maturity": {
+    "beta": {
+      "name": "Beta",
+      "tooltip": "A service of this maturity level has reached a certain robustness and may be used by early adopters."
+    },
+    "experimental": {
+      "name": "Experimental",
+      "tooltip": "A service of this maturity level is under heavy development and recommended only for specialists’ use or use for co-design partners."
+    }
+  },
+  "access": {
+    "hpc": {
+      "name": "HPC",
+      "tooltip": "Requires high-performance computing resources access"
+    },
+    "byor": {
+      "name": "BYOR",
+      "tooltip": "(Bring Your Own Resources) Services of this type allow you to delegate the execution to resources provided by the user. This is subject to technical compatibility."
+    }
+  },
+  "demo": {
+    "model": {
+      "name": "WIP Circuit",
+      "tooltip": "Warning: model is work in progress"
+    }
+  },
+  "uc-type": {
+    "webapp": {
+      "tooltip": "This use case was implemented using a Web Application"
+    },
+    "ipynb": {
+      "tooltip": "This use case was implemented using Jupyter Notebook"
+    }
+  }
+}

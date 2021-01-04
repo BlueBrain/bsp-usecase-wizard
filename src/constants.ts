@@ -5,4 +5,7 @@ export const storage = {
 
 export const drive = {
   DRIVE_API_URL: 'https://drive.ebrains.eu/api2'
-};
+};export const nbgitpuller = {
+  BASE: 'https://lab.ebrains.eu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fantonelepfl%2Fusecases&branch=dev',
+  URL_PATH_BASE: '&urlpath=lab%2Ftree%2Fusecases%2F',
+}

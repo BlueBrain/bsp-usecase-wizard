@@ -4,6 +4,7 @@
   import { userInfo } from '@/store';	
   import { init, getUserInfo } from '@helpers/auth';
   import CopyToken from './components/CopyToken.svelte';
+  import UsecasesMain from './components/UsecasesMain.svelte';
   
   export let loadingAuth: boolean;
   
@@ -32,22 +33,22 @@
     <CopyToken></CopyToken>
   {/if}
 
+  <UsecasesMain />
 </main>
 
 
 
 <style>
   main {
-    text-align: center;
     padding: 1em;
-    max-width: 240px;
     margin: 0 auto;
   }
 
-  h1 {
+  main h1 {
+    text-align: center;
     color: #ff3e00;
     text-transform: uppercase;
-    font-size: 4em;
+    font-size: 2em;
     font-weight: 100;
   }
 
