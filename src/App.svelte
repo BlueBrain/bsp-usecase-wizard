@@ -6,7 +6,7 @@
   import CopyToken from './components/CopyToken.svelte';
   import UsecasesMain from './components/UsecasesMain.svelte';
   
-  export let loadingAuth: boolean;
+  let loadingAuth = true;
   
   let username = '';
 
