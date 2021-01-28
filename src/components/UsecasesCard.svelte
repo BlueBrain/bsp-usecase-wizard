@@ -10,7 +10,6 @@
   const dispatch = createEventDispatcher();
 
   function ucClick(usecaseItem: UsecaseItem) {
-    console.log('ucClick');
     dispatch('clicked', { usecaseItem });
   }
 </script>

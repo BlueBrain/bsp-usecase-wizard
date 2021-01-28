@@ -2,17 +2,26 @@
 <script lang="ts">
   import type { UsecaseFileInterface, UsecaseItem } from '@/types/usecases';
   import usecases from '@/data/usecases-info.json';
-  import { nbgitpuller } from '@/constants';
+  
   import UsecasesCard from './UsecasesCard.svelte';
+  import { authorized, usecaseSelected } from '@/store';
+  import {
+    saveUsecaseAndLogin,
+    openPuller,
+  } from '@/helpers/utils';
 
   function ucClick(event: any) {
     const uc: UsecaseItem = event.detail.usecaseItem;
     if (uc.path) {
-      console.log('nbgitpuller', nbgitpuller);
-      const pullerLink = `${nbgitpuller.BASE}${nbgitpuller.URL_PATH_BASE}${uc.path}`;
-      console.log('pullerLink', pullerLink);
-      console.log(uc.path);
-      window.open(pullerLink, '_blank');
+      usecaseSelected.set(uc);
+      
+      if (!$authorized) {
+        console.warn('user not registered');
+        saveUsecaseAndLogin(uc);
+        return;
+      }
+
+      openPuller(uc);
     } else if (uc.url) {
       window.open(uc.url, '_blank');
     } else {
@@ -25,6 +34,7 @@
   }
 
   export const usecasesCategories: Array<UsecaseFileInterface> = usecases;
+
 </script>
 
 

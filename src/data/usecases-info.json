@@ -35,7 +35,7 @@
         "description": "Fitting synaptic events using data and model in NeuroInformatics Platform",
         "experience": ["power"],
         "access": ["hpc"],
-        "disabled": true,
+        "disabled": false,
         "type": "ipynb",
         "contributors": [
           {"name": "Carmen Alina Lupascu", "email": "carmen.lupascu@pa.ibf.cnr.it"},
@@ -45,29 +45,9 @@
         "picture": {
           "src": "https://raw.githubusercontent.com/antonelepfl/usecases/dev/src/assets/images/bestfit.png"
         },
-        "next": "ta_form",
         "dataprotected": true,
         "path": "production_notebooks/traceanalysis/Synaptic events fitting.ipynb",
-        "tutorial": "https://object.cscs.ch/v1/AUTH_c0a333ecf7c045809321ce9d9ecdfdea/web-resources-bsp/bsp-video-tutorials/SynapticEventsFitting/index.html",
-        "files": [
-          {
-            "entryname": "Synaptic events fitting",
-            "appid": 175,
-            "contenttype": "x-ipynb+json",
-            "extension": ".ipynb",
-            "file": "36598267-ea4b-411f-8fd0-5789707f6767",
-            "initial": true,
-            "file_prod": "https://api.github.com/repos/antonelepfl/usecases/contents/production_notebooks/traceanalysis/Synaptic%20events%20fitting.ipynb?ref=master"
-          },
-          {
-            "entryname": "Synaptic events fitting with analysis",
-            "appid": 175,
-            "contenttype": "x-ipynb+json",
-            "extension": ".ipynb",
-            "file": "139286a4-83c1-44bb-ba56-360422367a9a",
-            "file_prod": "https://api.github.com/repos/antonelepfl/usecases/contents/production_notebooks/traceanalysis/Synaptic%20events%20fitting%20with%20analysis.ipynb?ref=master"
-          }
-        ]
+        "tutorial": "https://object.cscs.ch/v1/AUTH_c0a333ecf7c045809321ce9d9ecdfdea/web-resources-bsp/bsp-video-tutorials/SynapticEventsFitting/index.html"
       },
       {
         "title": "Synaptic events fitting with user model",
