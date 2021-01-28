@@ -4,7 +4,7 @@ import { userInfo } from '@/store';
 import { drive } from '@/constants';
 import type {
   CollabItems, Collab, CollabDirectory,
-  UploadFromUrl,
+  UploadFromUrl, UploadContent, UploadString,
 } from '@/types/interfaces';
 
 const { DRIVE_API_URL } = drive;
@@ -115,22 +115,54 @@ export async function uploadFromUrl(uploadObj : UploadFromUrl) {
     }
     return getFileContent(uploadObj.fileUrl);
   };
-  const [uploadLink, fileContent] = await Promise.all([
+  const [uploadLink, fileContent, _] = await Promise.all([
     getUploadLink(uploadObj.collabId),
     fetchFileFn(),
     createFolder(uploadObj.collabId, uploadObj.parentFolder),
   ]);
   const fileName = uploadObj.fileName || decodeURIComponent(uploadObj.fileUrl.split('/').pop());
+
+  return uploadContent({
+    parentFolder: uploadObj.parentFolder,
+    uploadLink,
+    fileContent,
+    fileName,
+  });
+}
+
+export async function uploadContent(obj: UploadContent) {
   const formData = new FormData();
-  formData.append('file', fileContent, fileName);
+  formData.append('file', obj.fileContent, obj.fileName);
   formData.append('filename', 'test2.txt');
   formData.append('file_name', 'test2.txt');
   formData.append('name', 'test2.txt');
   formData.append('replace', '1'),
   formData.append('ret-json', '1'),
-  formData.append('parent_dir', uploadObj.parentFolder);
-  return axiosInstance.post(uploadLink, formData);
+  formData.append('parent_dir', obj.parentFolder);
+  return axiosInstance.post(obj.uploadLink, formData);
+}
+
+export async function uploadString(uploadObj: UploadString) {
+  const [uploadLink, _] = await Promise.all([
+    getUploadLink(uploadObj.collabId),
+    createFolder(uploadObj.collabId, uploadObj.parentFolder),
+  ]);
+
+  return uploadContent({
+    uploadLink,
+    parentFolder: uploadObj.parentFolder,
+    fileName: uploadObj.fileName,
+    fileContent: new Blob([uploadObj.text], {type: 'text/plain'}),
+  });
+}
+
+export async function search(query: string) {
+  // not supported yet
+  const endpoint = `${DRIVE_API_URL}/search/`;
+  const params = {
+    q: 'antonel',
+  }
+  return axiosInstance.get(endpoint, { params }).then(r => r.data);
 }
 
 export default {};
-

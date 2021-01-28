@@ -43,6 +43,20 @@ export interface UploadFromUrl {
   newText?: string;
 }
 
+export interface UploadContent {
+  uploadLink: string;
+  parentFolder: string;
+  fileContent: Blob;
+  fileName: string;
+}
+
+export interface UploadString {
+  collabId: string;
+  fileName: string;
+  text: string;
+  parentFolder: string;
+}
+
 export interface CollabSelectionDataObj {
   loading: boolean;
   collabs: Array<Collab>;

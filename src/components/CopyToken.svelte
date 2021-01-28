@@ -8,7 +8,7 @@
   import { userInfo } from '@/store';
   import {
     findCollabIdByName, uploadFromUrl,
-    findMyCollabs,
+    findMyCollabs, uploadString,
   } from '@helpers/drive';
   import type { Collab as CollabInterface, CollabSelectionDataObj } from '@/types/interfaces';
 
@@ -46,40 +46,33 @@
     const parentFolder = myCollabs.parentFolder;
     const collabId = await findCollabIdByName(myCollabs.collabSelectedName);
     const promises = [
-      uploadFromUrl({
-        fileUrl: 'https://raw.githubusercontent.com/antonelepfl/usecases/dev/production_notebooks/circuitbuilding/Cell%20Placement%20Hippocampus.ipynb',
+      uploadString({
+        fileName: 'testUploadString.txt',
+        text: 'hahah',
         collabId,
         parentFolder,
-      }),
-      uploadFromUrl({
-        fileUrl: 'https://raw.githubusercontent.com/antonelepfl/usecases/dev/production_notebooks/morphology/Morphology%20Analysis.ipynb',
-        collabId,
-        parentFolder,
-        placeholder: 'REPLACE_MORPHOLOGY_FILE_HERE',
-        newText: '--------------',
-      }),
-      uploadFromUrl({
-        fileUrl: 'https://raw.githubusercontent.com/antonelepfl/usecases/dev/production_notebooks/morphology/Morphology%20Analysis.ipynb',
-        collabId,
-        parentFolder,
-        fileName: 'original-Morphology Analysis.ipynb',
       }),
     ]
     await Promise.all(promises);
     
     let destinationPath = '';
-    let destinationFileName = 'Morphology Analysis.ipynb'; 
+    // let destinationFileName = 'Morphology Analysis.ipynb'; 
+    let destinationFileName = 'testUploadString.txt'; 
     if (myCollabs.collabSelectedName === 'My Library') {
       destinationPath = `My Libraries/My Library/${parentFolder}/${destinationFileName}`;
     } else {
       destinationPath = `Shared with groups/${myCollabs.collabSelectedName}/${parentFolder}/${destinationFileName}`;
     }
+    // redirect without puller
     labLink = `https://lab.ebrains.eu/user/GENERIC_USER/lab/workspaces/auto-q/tree/drive/${destinationPath}`;
+    // puller jupyter lab at / (no targetPath)
+    // labLink = 'https://lab.ebrains.eu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fantonelepfl%2Fusecases&urlpath=lab%2Ftree%2Fusecases%2Fproduction_notebooks%2Fmorphology%2FMorphology+Analysis.ipynb&branch=dev';
     console.log(labLink);
+    // processing = false;
     setTimeout(() => {
       // give time to drive to sync with jupyter lab
       processing = false;
-    }, 3000);
+    }, 40000);
   }
 
   async function showMyCollabs() {
@@ -100,7 +93,6 @@
       myCollabs.filteredCollabs = myCollabs.collabs;
       return;
     }
-
     const filteredCollabs =  myCollabs.collabs.filter(
       (collab: CollabInterface) => collab.name.includes(searchParam)
     );
