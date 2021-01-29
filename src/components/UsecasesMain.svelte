@@ -7,7 +7,7 @@
   import { authorized, usecaseSelected } from '@/store';
   import {
     saveUsecaseAndLogin,
-    openPuller,
+    goNextPage,
   } from '@/helpers/utils';
 
   function ucClick(event: any) {
@@ -21,7 +21,8 @@
         return;
       }
 
-      openPuller(uc);
+      goNextPage();
+
     } else if (uc.url) {
       window.open(uc.url, '_blank');
     } else {

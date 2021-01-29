@@ -1,5 +1,6 @@
 
-import { userInfo, authorized } from '@/store';	
+import { get } from 'svelte/store';
+import { userInfo, authorized, currentPage } from '@/store';	
 import { init, getUserInfo } from '@helpers/auth';
 import type { UsecaseItem } from '@/types/usecases';
 import {
@@ -8,7 +9,8 @@ import {
   startingLoginProcess,
   returningFromLogin,
 } from '@/helpers/storage';
-import { nbgitpuller } from '@/constants';
+import {  } from '@/store';
+import { nbgitpuller, pagesOrder } from '@/constants';
 
 
 export function saveUsecaseAndLogin(uc: UsecaseItem) {
@@ -45,5 +47,13 @@ export function openPuller(uc: UsecaseItem) {
 function clickSavedUsecase() {
   const savedUc = getSavedUsecase();
   if (!savedUc) return;
-  openPuller(savedUc);
+  goNextPage();
+}
+
+export function goNextPage() {
+  const currentPageName = get(currentPage);
+  const pageIndex = pagesOrder.indexOf(currentPageName);
+  if (pageIndex < (pagesOrder.length - 1)) {
+    currentPage.set(pagesOrder[pageIndex + 1]);
+  }
 }
