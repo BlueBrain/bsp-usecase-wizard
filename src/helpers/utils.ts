@@ -1,6 +1,6 @@
 
 import { get } from 'svelte/store';
-import { userInfo, authorized, currentPage } from '@/store';	
+import { userInfo, authorized, currentPage, usecaseSelected } from '@/store';	
 import { init, getUserInfo } from '@helpers/auth';
 import type { UsecaseItem } from '@/types/usecases';
 import {
@@ -39,7 +39,8 @@ export function justCheckIfAuthenticated() {
   });
 }
 
-export function openPuller(uc: UsecaseItem) {
+export function openPuller() {
+  const uc = get(usecaseSelected);
   const pullerLink = `${nbgitpuller.BASE}${nbgitpuller.URL_PATH_BASE}${uc.path}`;
   window.open(pullerLink, '_blank');
 }

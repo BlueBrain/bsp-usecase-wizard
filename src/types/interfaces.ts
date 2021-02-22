@@ -60,7 +60,7 @@ export interface UploadString {
 export interface CollabSelectionDataObj {
   loading: boolean;
   collabs: Array<Collab>;
-  filteredCollabs: Array<Collab>;
+  filteredCollabsNames: Array<string>;
   collabSelectedName: string;
   searchText: string;
   parentFolder: string;
