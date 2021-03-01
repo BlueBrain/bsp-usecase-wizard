@@ -20,6 +20,7 @@ export interface UsecaseItem {
   tutorial?: string;
   path?: string;
   url?: string;
+  model?: boolean;
 }
 
 export interface UsecaseFileInterface {

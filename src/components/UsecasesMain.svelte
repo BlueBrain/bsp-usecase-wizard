@@ -5,29 +5,19 @@
   
   import UsecasesCard from './UsecasesCard.svelte';
   import { authorized, usecaseSelected } from '@/store';
-  import {
-    saveUsecaseAndLogin,
-    goNextPage,
-  } from '@/helpers/utils';
+  import { saveUsecaseAndLogin } from '@helpers/utils';
+  import { goNextPage } from '@helpers/pages';
 
   function ucClick(event: any) {
     const uc: UsecaseItem = event.detail.usecaseItem;
-    if (uc.path) {
-      usecaseSelected.set(uc);
-      
-      if (!$authorized) {
-        console.warn('user not registered');
-        saveUsecaseAndLogin(uc);
-        return;
-      }
-
-      goNextPage();
-
-    } else if (uc.url) {
-      window.open(uc.url, '_blank');
-    } else {
-      console.warn('usecase does not have url nor path');
+    usecaseSelected.set(uc);
+    
+    if (!$authorized) {
+      console.warn('user not registered');
+      saveUsecaseAndLogin(uc);
+      return;
     }
+    goNextPage();
   }
 
   function categoryIsNotEmpty(usecases: Array<UsecaseItem>) {

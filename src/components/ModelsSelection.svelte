@@ -7,12 +7,11 @@
   import { userInfo, modelsSelected } from '@/store';
   import type { Model } from '@/types/models';
   import { saveModels, getModels } from '@helpers/storage';
-
   import { getHippocampusModels } from '@helpers/models';
+  import { goNextPage } from '@helpers/pages';
+
   import ModelsCard from './ModelsCard.svelte';
   import ModelShowSelectedToggle from './ModelShowSelectedToggle.svelte';
-
-  const limitModelsToShow = 10;
   
   let modelsLoading = false;
   let fetchedModels: Array<Model> = [];
@@ -34,7 +33,6 @@
     let models: Array<Model> = [];
 
     const modelsCached = getModels();
-    console.log('modelsCached', modelsCached);
     if (modelsCached && !force) {
       models = modelsCached;
     } else {
@@ -64,10 +62,6 @@
 
   function forceFetchModels() {
     load(true);
-  }
-
-  function goNextPage() {
-    console.log('goNextPage');
   }
 </script>
 
