@@ -1,0 +1,52 @@
+
+<script lang="ts">
+  import { modelsSelected } from '@/store';
+  let showModelsSelected: boolean = true;
+</script>
+
+
+
+<div class="container">
+  <div
+    class="
+      models-selected-container
+      {showModelsSelected ? 'expand' : 'collapse'}
+      {$modelsSelected.length ? 'visible' : 'hide-toggle'}
+    "
+  >
+    <div class="accordion" on:click={() => showModelsSelected = !showModelsSelected}>
+      <div>{ showModelsSelected ? 'Hide' : 'Show' } Models Selected</div>
+    </div>
+    {#each $modelsSelected as modelItem}
+    <p>{ modelItem.name }</p>
+    {/each}
+  </div>
+</div>
+
+
+
+<style>
+  .models-selected-container {
+    margin: 10px 0;
+    cursor: pointer;
+  }
+  .models-selected-container .accordion {
+    background-image: linear-gradient(#e2eeff, #afcffb, #e2eeff);
+    text-align: center;
+    font-size: 30px;
+    border-radius: 5px;
+  }
+  .models-selected-container.expand {
+    max-height: 400px;
+    transition: max-height 0.3s ease-out;
+  }
+  .models-selected-container.collapse {
+    max-height: 35px;
+    transition: max-height 0.3s ease-out;
+    height:auto;
+    overflow: hidden;
+  }
+  .models-selected-container.hide-toggle {
+    display: none;
+  }
+</style>

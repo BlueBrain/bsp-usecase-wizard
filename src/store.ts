@@ -1,5 +1,7 @@
+
 import { writable } from 'svelte/store';
 import type { UsecaseItem } from '@/types/usecases';
+import type { Model } from '@/types/models';
 import { pages } from '@/constants';
 
 
@@ -14,3 +16,5 @@ type Pages = typeof pages.USECASE_SELECTION
   | typeof pages.MODEL_SELECTION;
 const initialPage: Pages = pages.USECASE_SELECTION;
 export const currentPage = writable(initialPage)
+
+export const modelsSelected = writable([] as Array<Model>);

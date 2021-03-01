@@ -5,6 +5,7 @@
   import { fade } from 'svelte/transition';
   import UsecasesMain from './components/UsecasesMain.svelte';
   import CollabSelection from './components/CollabSelection.svelte';
+  import ModelsSelection from './components/ModelsSelection.svelte';
   import { currentPage } from '@/store';
   import { pages } from '@/constants';
 
@@ -30,6 +31,7 @@
 
   {#if $currentPage === pages.MODEL_SELECTION}
     <div transition:fade>
+      <ModelsSelection />
     </div>
   {/if}
 

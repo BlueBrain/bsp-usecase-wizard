@@ -749,7 +749,7 @@
           {"name": "Liesbeth Vanherpe"}
         ],
         "experience": ["power"],
-        "disabled": true,
+        "disabled": false,
         "type": "ipynb",
         "picture": {
           "src": "https://raw.githubusercontent.com/antonelepfl/usecases/dev/src/assets/images/morphology.png"
@@ -766,7 +766,9 @@
             "file": "26169d21-23a0-4a6a-86f3-b16eedbb3732",
             "file_prod": "https://api.github.com/repos/antonelepfl/usecases/contents/production_notebooks/morphology/Morphology%20Analysis.ipynb?ref=master"
           }
-        ]
+        ],
+        "model": true,
+        "path": "production_notebooks/morphology/Morphology Analysis.ipynb"
       },
       {
         "title": "Morphology visualization",

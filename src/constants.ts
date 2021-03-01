@@ -3,6 +3,7 @@ export const storageKeys = {
   SAVED_URL: 'urlParam',
   SELECTED_USECASE: 'selectedUsecase',
   RETURN_LOGIN: 'returnFromLogin',
+  MODELS_LIST: 'modelsList',
 };
 
 export const drive = {
@@ -21,8 +22,7 @@ export const pages = {
   MODEL_SELECTION: 'modelSelection',
 };
 
-export const pagesOrder = [
-  pages.USECASE_SELECTION,
-  pages.COLLAB_SELECTION,
-  pages.MODEL_SELECTION,
-];
+export const modelCatalog = {
+  URL: 'https://validation-v2.brainsimulation.eu/models/',
+  HIPPOCAMPUS_QUERY: '?brain_region=hippocampus&organization=HBP-SP6&model_scope=single%20cell&species=Rattus%20norvegicus&collab_id=12027&size=1000000',
+};
