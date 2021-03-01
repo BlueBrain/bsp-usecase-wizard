@@ -53,6 +53,7 @@
 <style>
   .card-container {
     margin-bottom: 15px;
+    cursor: pointer;
   }
   
   .columns-container {

@@ -1,6 +1,5 @@
 
 <script lang="ts">
-  import { onMount } from 'svelte';
   import type { UsecaseItem } from '@/types/usecases';
   import pillsTooltips from '@/data/pills-tooltips.json';
   
@@ -19,7 +18,6 @@
     const pillInfo = getInfo(type, value);
     return pillInfo.tooltip;
   }
-  
 </script>
 
 

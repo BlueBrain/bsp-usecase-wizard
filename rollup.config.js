@@ -1,3 +1,4 @@
+
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
@@ -47,7 +48,7 @@ export default {
 			// we'll extract any component CSS out into
 			// a separate file - better for performance
 			css: css => {
-				css.write('bundle.css');
+				css.write('bundle2.css');
 			},
 			preprocess: sveltePreprocess(),
 		}),
@@ -63,7 +64,7 @@ export default {
 		}),
 		commonjs(),
 		postcss({
-			extract: true,
+			extract: false,
 			minimize: true,
 			use: [
 				['sass', {
@@ -93,6 +94,6 @@ export default {
 		production && terser()
 	],
 	watch: {
-		clearScreen: false
+		clearScreen: false,
 	}
 };

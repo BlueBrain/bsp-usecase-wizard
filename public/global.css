@@ -34,7 +34,6 @@ input, button, select, textarea {
 	font-size: inherit;
 	-webkit-padding: 0.4em 0;
 	padding: 0.4em;
-	margin: 0 0 0.5em 0;
 	box-sizing: border-box;
 	border: 1px solid #ccc;
 	border-radius: 2px;
@@ -60,4 +59,21 @@ button:not(:disabled):active {
 
 button:focus {
 	border-color: #666;
+}
+
+
+.custom-search.shaped-outlined input.mdc-text-field__input {
+	padding: 16px 20px;
+}
+
+.custom-search.shaped-outlined .mdc-notched-outline .mdc-notched-outline__leading {
+	border-radius: 28px 0 0 28px;
+	width: 28px;
+}
+.custom-search.shaped-outlined .mdc-notched-outline .mdc-notched-outline__trailing {
+	border-radius: 0 28px 28px 0;
+}
+
+.page-header-title {
+	text-align: center;
 }

@@ -37,6 +37,7 @@ export function goNextPage() {
       }
       console.warn('usecase does not have any next page');
       break;
+
     default:
       break;
   }

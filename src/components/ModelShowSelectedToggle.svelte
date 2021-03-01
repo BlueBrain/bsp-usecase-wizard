@@ -29,9 +29,11 @@
   .models-selected-container {
     margin: 10px 0;
     cursor: pointer;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 15px;
   }
   .models-selected-container .accordion {
-    background-image: linear-gradient(#e2eeff, #afcffb, #e2eeff);
     text-align: center;
     font-size: 30px;
     border-radius: 5px;

@@ -3,7 +3,7 @@
   import Button from '@smui/button';
   import List, {Item, Text} from '@smui/list';
   import Textfield from '@smui/textfield';
-  import {Label, Icon} from '@smui/common';
+  import {Label} from '@smui/common';
 
   import { userInfo } from '@/store';
   import { findCollabIdByName, findMyCollabs, uploadString } from '@helpers/drive';
@@ -89,7 +89,9 @@
 </script>
 
 
+
 <section class="container">
+  <h2 class="page-header-title">Please select the destination Collab</h2>
   <div class="collab-list">
     <!-- Select Collab -->
     {#if collabsLoading}
@@ -97,15 +99,39 @@
     {/if}
     
     {#if !collabsLoading && collabs.length}
-      <div class="search-box">
-        <h3 class="search-label">Search Collab</h3>
-        <Textfield
-          class="shaped-outlined"
-          variant="outlined"
-          label="Collab Name"
-          bind:value={searchText}
-          on:change={filterCollab}
-        />
+      <div class="top-bar">
+        <div class="search-box">
+          <div class="search-label">Search Collab</div>
+          <Textfield
+            class="shaped-outlined custom-search"
+            variant="outlined"
+            label="Collab Name"
+            bind:value={searchText}
+            on:change={filterCollab}
+          />
+        </div>
+
+        <div class="processing-container">
+          <Button
+            on:click={createFiles}
+            disabled={processing || !collabSelectedName}
+            color="secondary"
+            variant="unelevated"
+          >
+            <Label>{processing ? 'Processing' : 'Use Collab'}</Label>
+          </Button>
+    
+          {#if !processing && labLink}
+            <a href="{labLink}" target="_blank">
+              <Button
+                color="primary"
+                variant="unelevated"
+              >
+                <Label>Open Jupyter Lab</Label>
+              </Button>
+            </a>
+          {/if}
+        </div>
       </div>
 
       <div>
@@ -119,65 +145,31 @@
       </div>
     {/if}
   </div>
-
-  <div class="processing-container">
-    <!-- Copy files in collab -->
-    {#if collabSelectedName && !labLink}
-
-      <Button
-        on:click={createFiles}
-        disabled={processing}
-        color={'secondary'}
-        variant='raised'
-      >
-        <Label>Use Collab</Label>
-      </Button>
-
-      {#if processing}
-        <span>Processing...</span>
-      {/if}
-
-      {#if !processing && labLink}
-        <a href="{labLink}" target="_blank">
-          <Button
-            color={'primary'}
-            variant='raised'
-          >
-            <Label>Open Jupyter Lab</Label>
-          </Button>
-        </a>
-      {/if}
-    {/if}
-  </div>
 </section>
 
 
+
 <style>
-  .collab-list, .processing-container {
+  .container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .processing-container {
     max-width: 50%;
     margin: 20px auto;
   }
-
-  .collab-list .search-box {
+  .search-box {
     display: flex;
     align-items: center;
+    flex-grow: 1;
   }
-  .collab-list .search-box .search-label {
-    margin-right: 10px;
+  .search-box .search-label {
+    margin: 0 15px;
     display: inline-block;
+    font-size: 20px;
   }
-
-  * :global(.shaped-outlined .mdc-text-field__input) {
-    padding-top: 20px;
-    padding-right: 16px;
-    padding-bottom: 6px;
-    padding-left: 16px;
-  }
-  * :global(.shaped-outlined .mdc-notched-outline .mdc-notched-outline__leading) {
-    border-radius: 28px 0 0 28px;
-    width: 28px;
-  }
-  * :global(.shaped-outlined .mdc-notched-outline .mdc-notched-outline__trailing) {
-    border-radius: 0 28px 28px 0;
+  .top-bar {
+    display: flex;
+    align-items: center;
   }
 </style>

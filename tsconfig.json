@@ -6,6 +6,7 @@
  
   "compilerOptions": {
     "noImplicitAny": true,
+    "resolveJsonModule": true,
     "baseUrl": "src",
     "paths": {
       "@helpers/*": [ "helpers/*" ],

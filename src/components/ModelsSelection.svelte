@@ -68,6 +68,8 @@
 
 
 <section class="container">
+  <h2 class="page-header-title">Please select the model(s)</h2>
+
   {#if modelsLoading}
     <span>Fetching latest models from Model Catalog ...</span>
   {/if}
@@ -89,7 +91,11 @@
       </div>
 
       <div class="force-fetch">
-        <Button on:click={forceFetchModels} variant="raised">
+        <Button
+          on:click={forceFetchModels}
+          color="secondary"
+          variant="unelevated"
+        >
           <Icon class="material-icons">refresh</Icon>
           <Label>Refresh</Label>
         </Button>
@@ -98,7 +104,8 @@
       <div class="continue-button">
         <Button
           on:click={goNextPage}
-          variant="raised"
+          color="primary"
+          variant="unelevated"
           disabled={ !$modelsSelected.length }
         >
           <Icon class="material-icons">arrow_forward_ios</Icon>
@@ -137,6 +144,14 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: white;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
   }
   .force-fetch, .continue-button {
     margin: 0 10px;

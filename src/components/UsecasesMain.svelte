@@ -31,6 +31,8 @@
 
 
 <div class="usecase-list-item">
+  <h2 class="page-header-title">Please select a Use Case</h2>
+
   {#each usecasesCategories as category}
     {#if categoryIsNotEmpty(category.usecases)}
       <div class="category">{ category.title }</div>
