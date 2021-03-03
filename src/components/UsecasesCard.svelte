@@ -6,11 +6,12 @@
   import { createEventDispatcher } from 'svelte';
   
   export let usecases: Array<UsecaseItem>;
+  export let category: string;
   
   const dispatch = createEventDispatcher();
 
   function ucClick(usecaseItem: UsecaseItem) {
-    dispatch('clicked', { usecaseItem });
+    dispatch('clicked', { usecaseItem, category });
   }
 </script>
 

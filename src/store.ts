@@ -7,6 +7,8 @@ import { pages } from '@/constants';
 
 export const usecaseSelected = writable({} as UsecaseItem);
 
+export const usecaseCategorySelected = writable('');
+
 export const authorized = writable(false);
 
 export const userInfo = writable({} as Oidc.User);

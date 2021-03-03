@@ -4,13 +4,18 @@
   import usecases from '@/data/usecases-info.json';
   
   import UsecasesCard from './UsecasesCard.svelte';
-  import { authorized, usecaseSelected } from '@/store';
+  import {
+    authorized,
+    usecaseSelected,
+    usecaseCategorySelected,
+  } from '@/store';
   import { saveUsecaseAndLogin } from '@helpers/utils';
   import { goNextPage } from '@helpers/pages';
 
   function ucClick(event: any) {
     const uc: UsecaseItem = event.detail.usecaseItem;
     usecaseSelected.set(uc);
+    usecaseCategorySelected.set(event.detail.category);
     
     if (!$authorized) {
       console.warn('user not registered');
@@ -38,6 +43,7 @@
       <div class="category">{ category.title }</div>
       <UsecasesCard
         usecases={ category.usecases }
+        category={ category.id }
         on:clicked={ ucClick }
       />
     {/if}
