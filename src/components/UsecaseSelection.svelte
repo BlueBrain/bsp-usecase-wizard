@@ -1,6 +1,7 @@
 
 <script lang="ts">
   import UsecaseCard from './UsecaseCard.svelte';
+  import Accordion from './Accordion.svelte';
 
   import usecases from '@/data/usecases-info.json';
   import type { UsecaseFileInterface, UsecaseItem } from '@/types/usecases';
@@ -26,32 +27,27 @@
   }
 
   export const usecasesCategories: Array<UsecaseFileInterface> = usecases;
-
 </script>
 
 
 
 <div class="usecase-list-item">
-  <h2 class="page-header-title">Please select a Use Case</h2>
-
   {#each usecasesCategories as category}
     {#if categoryIsNotEmpty(category.usecases)}
-      <div class="category">{ category.title }</div>
-      <UsecaseCard
-        usecases={ category.usecases }
-        category={ category.id }
-        on:clicked={ ucClick }
-      />
+      <div class="accordion">
+        <Accordion>
+          <div slot="header">
+            <span>{ category.title }</span>
+          </div>
+          <div slot="content">
+            <UsecaseCard
+              usecases={ category.usecases }
+              category={ category.id }
+              on:clicked={ ucClick }
+            />
+          </div>
+        </Accordion>
+      </div>
     {/if}
   {/each} <!-- end category -->
 </div>
-
-
-
-<style>
-  .category {
-    font-size: 3em;
-    display: inline-block;
-    padding: 20px;
-  }
-</style>
