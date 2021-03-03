@@ -1,9 +1,11 @@
 
 <script lang="ts">
   import Paper from '@smui/paper';
-  import UsecasesPills from './UsecasesPills.svelte'
-  import type { UsecaseItem } from '@/types/usecases';
   import { createEventDispatcher } from 'svelte';
+
+  import UsecasePills from './UsecasePills.svelte'
+
+  import type { UsecaseItem } from '@/types/usecases';
   
   export let usecases: Array<UsecaseItem>;
   export let category: string;
@@ -41,7 +43,7 @@
                 </div>
               {/if}
             </div>
-            <UsecasesPills {usecaseItem} />
+            <UsecasePills {usecaseItem} />
           </div> <!-- columns-container -->
         </Paper>
       </div> <!-- end card -->

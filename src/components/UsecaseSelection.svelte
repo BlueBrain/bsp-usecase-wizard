@@ -1,16 +1,12 @@
 
 <script lang="ts">
-  import type { UsecaseFileInterface, UsecaseItem } from '@/types/usecases';
+  import UsecaseCard from './UsecaseCard.svelte';
+
   import usecases from '@/data/usecases-info.json';
-  
-  import UsecasesCard from './UsecasesCard.svelte';
-  import {
-    authorized,
-    usecaseSelected,
-    usecaseCategorySelected,
-  } from '@/store';
-  import { saveUsecaseAndLogin } from '@helpers/utils';
-  import { goNextPage } from '@helpers/pages';
+  import type { UsecaseFileInterface, UsecaseItem } from '@/types/usecases';
+  import { authorized, usecaseSelected, usecaseCategorySelected } from '@/store';
+  import { saveUsecaseAndLogin } from '@/helpers/utils';
+  import { goNextPage } from '@/helpers/pages';
 
   function ucClick(event: any) {
     const uc: UsecaseItem = event.detail.usecaseItem;
@@ -41,7 +37,7 @@
   {#each usecasesCategories as category}
     {#if categoryIsNotEmpty(category.usecases)}
       <div class="category">{ category.title }</div>
-      <UsecasesCard
+      <UsecaseCard
         usecases={ category.usecases }
         category={ category.id }
         on:clicked={ ucClick }

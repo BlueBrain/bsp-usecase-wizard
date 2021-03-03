@@ -2,16 +2,17 @@
 <script lang="ts">
   import Button, {Label, Icon} from '@smui/button';
   import Textfield from '@smui/textfield';
-
   import { onMount } from 'svelte';
+
+  import ModelCard from './ModelCard.svelte';
+  import ModelShowSelectedToggle from './ModelShowSelectedToggle.svelte';
+
   import { userInfo, modelsSelected } from '@/store';
   import type { Model } from '@/types/models';
-  import { saveModels, getModels } from '@helpers/storage';
-  import { getHippocampusModels } from '@helpers/models';
-  import { goNextPage } from '@helpers/pages';
+  import { saveModels, getModels } from '@/helpers/storage';
+  import { getHippocampusModels } from '@/helpers/models';
+  import { goNextPage } from '@/helpers/pages';
 
-  import ModelsCard from './ModelsCard.svelte';
-  import ModelShowSelectedToggle from './ModelShowSelectedToggle.svelte';
   
   let modelsLoading = false;
   let fetchedModels: Array<Model> = [];
@@ -118,7 +119,7 @@
 
     <div>
       {#each filteredModels as modelItem}
-        <ModelsCard modelItem={modelItem} />
+        <ModelCard modelItem={modelItem} />
       {/each}
     </div>
   {/if}

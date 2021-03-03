@@ -3,6 +3,7 @@
   import Paper from '@smui/paper';
 
   import ModelBreadcrumb from './ModelBreadcrumb.svelte'
+
   import type { Model } from '@/types/models';
   import { modelsSelected } from '@/store';
   

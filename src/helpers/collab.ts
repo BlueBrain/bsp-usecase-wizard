@@ -6,7 +6,7 @@ import { get } from 'svelte/store';
 import type { Model, ModelsJson, ModelsJsonInfo } from '@/types/models';
 import {
   findCollabIdByName, getFileFromCollab, uploadString, createFolder,
-} from '@helpers/drive';
+} from '@/helpers/drive';
 import { drive } from '@/constants';
 
 export async function fileCreationProcess(collabSelectedName: string) {

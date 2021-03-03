@@ -1,6 +1,6 @@
 
 import Oidc from 'oidc-client';
-import { saveUrl, getSavedUrl } from '@helpers/storage';
+import { saveUrl, getSavedUrl } from '@/helpers/storage';
 
 function createAuthConfig() {
   const oidcConfig = {

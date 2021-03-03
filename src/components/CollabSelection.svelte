@@ -6,11 +6,11 @@
   import {Label} from '@smui/common';
 
   import { userInfo } from '@/store';
-  import { findMyCollabs } from '@helpers/drive';
-  import { openPuller } from '@helpers/utils';
-  import { fileCreationProcess } from '@helpers/collab';
+  import { findMyCollabs } from '@/helpers/drive';
+  import { openPuller } from '@/helpers/utils';
+  import { fileCreationProcess } from '@/helpers/collab';
   import type { Collab as CollabInterface } from '@/types/interfaces';
-  import { saveLastUsedCollab, getLastUsedCollab } from '@helpers/storage';
+  import { saveLastUsedCollab, getLastUsedCollab } from '@/helpers/storage';
 
   const limitCollabsToShow = 10;
   let labLink = '';

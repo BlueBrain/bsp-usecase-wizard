@@ -1,8 +1,8 @@
 
 import { get } from 'svelte/store';
 import { userInfo, authorized, usecaseSelected } from '@/store';	
-import { init, getUserInfo } from '@helpers/auth';
-import { goNextPage } from '@helpers/pages';
+import { init, getUserInfo } from '@/helpers/auth';
+import { goNextPage } from '@/helpers/pages';
 import type { UsecaseItem } from '@/types/usecases';
 import {
   saveUsecaseSelected,

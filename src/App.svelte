@@ -3,9 +3,9 @@
   import { onMount } from 'svelte';
   import { justCheckIfAuthenticated } from '@/helpers/utils';
   import { fade } from 'svelte/transition';
-  import UsecasesMain from './components/UsecasesMain.svelte';
+  import UsecaseSelection from './components/UsecaseSelection.svelte';
   import CollabSelection from './components/CollabSelection.svelte';
-  import ModelsSelection from './components/ModelsSelection.svelte';
+  import ModelSelection from './components/ModelSelection.svelte';
   import { currentPage } from '@/store';
   import { pages } from '@/constants';
 
@@ -19,7 +19,7 @@
 <main>
   {#if $currentPage === pages.USECASE_SELECTION}
     <div transition:fade>
-      <UsecasesMain />
+      <UsecaseSelection />
     </div>
   {/if}
 
@@ -31,7 +31,7 @@
 
   {#if $currentPage === pages.MODEL_SELECTION}
     <div transition:fade>
-      <ModelsSelection />
+      <ModelSelection />
     </div>
   {/if}
 </main>

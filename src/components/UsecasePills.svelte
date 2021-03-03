@@ -1,7 +1,7 @@
 
 <script lang="ts">
-  import type { UsecaseItem } from '@/types/usecases';
   import pillsTooltips from '@/data/pills-tooltips.json';
+  import type { UsecaseItem } from '@/types/usecases';
   
   export let usecaseItem: UsecaseItem;
 

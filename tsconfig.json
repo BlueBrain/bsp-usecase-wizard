@@ -9,8 +9,6 @@
     "resolveJsonModule": true,
     "baseUrl": "src",
     "paths": {
-      "@helpers/*": [ "helpers/*" ],
-      "@components/*": [ "components/*" ],
       "@/*": [ "./*" ]
     }
   }
