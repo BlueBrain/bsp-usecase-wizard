@@ -4,6 +4,7 @@ export const storageKeys = {
   SELECTED_USECASE: 'selectedUsecase',
   RETURN_LOGIN: 'returnFromLogin',
   MODELS_LIST: 'modelsList',
+  SELECTED_COLLAB: 'selectedCollab',
 };
 
 export const drive = {

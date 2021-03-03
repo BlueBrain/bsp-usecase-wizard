@@ -10,6 +10,7 @@
   import { openPuller } from '@helpers/utils';
   import { fileCreationProcess } from '@helpers/collab';
   import type { Collab as CollabInterface } from '@/types/interfaces';
+  import { saveLastUsedCollab, getLastUsedCollab } from '@helpers/storage';
 
   const limitCollabsToShow = 10;
   let labLink = '';
@@ -19,14 +20,17 @@
   let collabs: Array<CollabInterface> = []; // full collabs
   let filteredCollabsNames: Array<string> = [];
   let searchText = '';
+  let lastUsedCollabName = '';
   
   userInfo.subscribe((newUser: Oidc.User) => {
     if (!newUser?.access_token) return;
     showMyCollabs();
+    lastUsedCollabName = getLastUsedCollab();
   });
 
   async function createFiles() {
     processing = true;
+    saveLastUsedCollab(collabSelectedName);
     await fileCreationProcess(collabSelectedName);
 
     openPuller();
@@ -122,6 +126,14 @@
             </a>
           {/if}
         </div>
+      </div>
+
+      <div class="last-used-collab">
+        {#if lastUsedCollabName}
+          <Item on:click={collabSelected(lastUsedCollabName)}>
+            <Text><strong>Last used: </strong>{lastUsedCollabName}</Text>
+          </Item>
+        {/if}
       </div>
 
       <div>

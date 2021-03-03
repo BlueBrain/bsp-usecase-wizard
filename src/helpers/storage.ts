@@ -37,4 +37,11 @@ export function getModels(): Array<Model> | null {
   return JSON.parse(value);
 }
 
+export function saveLastUsedCollab(collabName: string) {
+  localStorage.setItem(storageKeys.SELECTED_COLLAB, collabName);
+}
+export function getLastUsedCollab(): string | null {
+  return localStorage.getItem(storageKeys.SELECTED_COLLAB);
+}
+
 export default {};
