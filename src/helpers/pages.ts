@@ -77,5 +77,7 @@ export function goBackPage() {
 window.addEventListener('popstate', goBackPage, false);
 
 function addHistory(name: string) {
-  history.pushState(null, name, null);
+  history.pushState({scrollTop: document.body.scrollTop}, name, '');
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
