@@ -8,7 +8,9 @@ export const storageKeys = {
 
 export const drive = {
   DRIVE_API_URL: 'https://drive.ebrains.eu/api2',
-  DEFAULT_FOLDER_NAME: 'CLS-NEURON-UC',
+  DEFAULT_UC_FOLDER_NAME: 'CLS-NEURON-UC',
+  DEFAULT_MODEL_FOLDER_NAME: 'CLS-NEURON-MODELS',
+  DEFAULT_MODEL_FILE_NAME: 'models.json',
 };
 
 export const nbgitpuller = {

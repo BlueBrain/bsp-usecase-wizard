@@ -50,3 +50,14 @@ export interface InstancesEntity {
   morphology_id?: string | null;
   script_id: string;
 }
+
+export interface ModelsJsonInfo {
+  id: string;
+  date: string;
+  name: string;
+}
+
+export interface ModelsJson {
+  // category index
+  [index:string] : Array<ModelsJsonInfo>;
+}

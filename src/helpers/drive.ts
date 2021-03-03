@@ -54,7 +54,7 @@ export async function findItemsByCollabId(collabId: string): Promise<CollabItems
   return { files, folders };
 }
     
-async function createFolder(collabId: string, folderName: string) {
+export async function createFolder(collabId: string, folderName: string) {
   if (!folderName.startsWith('/')) {
     folderName = `/${folderName}`;
   }
@@ -152,7 +152,10 @@ export async function uploadString(uploadObj: UploadString) {
     uploadLink,
     parentFolder: uploadObj.parentFolder,
     fileName: uploadObj.fileName,
-    fileContent: new Blob([uploadObj.text], {type: 'text/plain'}),
+    fileContent: new Blob(
+      [ uploadObj.stringContent ],
+      { type: uploadObj.type || 'text/plain' },
+    ),
   });
 }
 
@@ -163,6 +166,21 @@ export async function search(query: string) {
     q: 'antonel',
   }
   return axiosInstance.get(endpoint, { params }).then(r => r.data);
+}
+
+export async function getFileFromCollab(collabId: string, filePath: string) {
+  // make sure it starts with /
+  const params = { 'p': filePath.startsWith('/') ? filePath : `/${filePath}` };
+  const endpoint = `${DRIVE_API_URL}/repos/${collabId}/file/`;
+  try {
+    const response = await axiosInstance.get(endpoint, { params });
+    const downloadUrl: string = response.data;
+    const fileContentBlob = await getFileContent(downloadUrl);
+    const textContent = await fileContentBlob.text();
+    return textContent;
+  } catch {
+    return null;
+  }
 }
 
 export default {};

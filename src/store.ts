@@ -20,3 +20,5 @@ const initialPage: Pages = pages.USECASE_SELECTION;
 export const currentPage = writable(initialPage)
 
 export const modelsSelected = writable([] as Array<Model>);
+
+export const collabIdSelected = writable('');

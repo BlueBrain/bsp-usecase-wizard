@@ -53,8 +53,9 @@ export interface UploadContent {
 export interface UploadString {
   collabId: string;
   fileName: string;
-  text: string;
+  stringContent: string;
   parentFolder: string;
+  type?: string;
 }
 
 export interface CollabSelectionDataObj {

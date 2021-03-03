@@ -6,10 +6,10 @@
   import {Label} from '@smui/common';
 
   import { userInfo } from '@/store';
-  import { findCollabIdByName, findMyCollabs, uploadString } from '@helpers/drive';
+  import { findMyCollabs } from '@helpers/drive';
   import { openPuller } from '@helpers/utils';
+  import { fileCreationProcess } from '@helpers/collab';
   import type { Collab as CollabInterface } from '@/types/interfaces';
-  import { drive } from '@/constants';
 
   const limitCollabsToShow = 10;
   let labLink = '';
@@ -19,7 +19,6 @@
   let collabs: Array<CollabInterface> = []; // full collabs
   let filteredCollabsNames: Array<string> = [];
   let searchText = '';
-  const parentFolder = drive.DEFAULT_FOLDER_NAME;
   
   userInfo.subscribe((newUser: Oidc.User) => {
     if (!newUser?.access_token) return;
@@ -28,17 +27,8 @@
 
   async function createFiles() {
     processing = true;
-    const collabId = await findCollabIdByName(collabSelectedName);
-    const promises = [
-      uploadString({
-        fileName: 'test_file.txt',
-        text: 'This is a test of the content',
-        collabId,
-        parentFolder,
-      }),
-    ]
-    await Promise.all(promises);
-    
+    await fileCreationProcess(collabSelectedName);
+
     openPuller();
 
     processing = false;
