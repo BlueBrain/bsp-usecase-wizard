@@ -11,7 +11,7 @@
   import type { Model } from '@/types/models';
   import { saveModels, getModels } from '@/helpers/storage';
   import { getHippocampusModels } from '@/helpers/models';
-  import { goNextPage } from '@/helpers/pages';
+  import { goNextPage, goBackPage } from '@/helpers/pages';
 
   
   let modelsLoading = false;

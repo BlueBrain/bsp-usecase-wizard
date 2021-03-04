@@ -1,6 +1,6 @@
 
 <script lang="ts">
-  import Button from '@smui/button';
+  import Button, {Icon} from '@smui/button';
   import List, {Item, Text} from '@smui/list';
   import Textfield from '@smui/textfield';
   import {Label} from '@smui/common';
@@ -9,6 +9,7 @@
   import { findMyCollabs } from '@/helpers/drive';
   import { openPuller } from '@/helpers/utils';
   import { fileCreationProcess } from '@/helpers/collab';
+  import { goBackPage } from '@/helpers/pages';
   import type { Collab as CollabInterface } from '@/types/interfaces';
   import { saveLastUsedCollab, getLastUsedCollab } from '@/helpers/storage';
 
@@ -90,7 +91,7 @@
     </div>
     <h2 class="page-header-title">Please select the destination Collab</h2>
   </div>
-  <div class="content">
+  <div class="collab-list">
     <!-- Select Collab -->
     {#if collabsLoading}
       <span>Loading...</span>
