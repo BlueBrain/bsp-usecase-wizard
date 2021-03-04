@@ -6,7 +6,7 @@
 
 
 
-<div class="container">
+<div class="model-breadcrumb-container">
   <ul class="arrows">
     {#each ['species', 'brain_region', 'cell_type', 'name'] as part}
       <li>{ modelItem[part] }</li>
@@ -32,7 +32,7 @@
     content: "";
   }
   .arrows li {
-    margin: 0 10px;
+    padding: 5px;
     pointer-events: none;
     text-decoration: none;
     color: black;

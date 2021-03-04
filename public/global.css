@@ -74,6 +74,18 @@ button:focus {
 	border-radius: 0 28px 28px 0;
 }
 
-.page-header-title {
+
+.custom-section-header {
+	display: flex;
+}
+.custom-section-header .go-back-btn {
+	align-self: center;
+	cursor: pointer;
+}
+.custom-section-header .go-back-btn i {
+	font-size: 30px;
+}
+.custom-section-header .page-header-title {
+	flex-grow: 1;
 	text-align: center;
 }

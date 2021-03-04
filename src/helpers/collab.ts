@@ -28,6 +28,7 @@ function getModelInfo(modelItem: Model): ModelsJsonInfo {
     id: modelItem.id,
     date: (new Date()).toLocaleDateString(),
     name: modelItem.name,
+    uri: modelItem.uri,
   };
 }
 

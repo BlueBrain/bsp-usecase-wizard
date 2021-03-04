@@ -68,8 +68,13 @@
 
 
 
-<section class="container">
-  <h2 class="page-header-title">Please select the model(s)</h2>
+<section class="model-section-container">
+  <div class="custom-section-header">
+    <div class="go-back-btn">
+      <Icon class="material-icons" on:click={goBackPage}>keyboard_backspace</Icon>
+    </div>
+    <h2 class="page-header-title">Please select the model(s)</h2>
+  </div>
 
   {#if modelsLoading}
     <span>Fetching latest models from Model Catalog ...</span>
@@ -78,7 +83,7 @@
   {#if !modelsLoading && fetchedModels.length}
     <div class="top-bar">
       <div class="search-box">
-        <div class="search-label">Search Model</div>
+        <div class="search-label">Search</div>
         <Textfield
           class="shaped-outlined custom-search"
           variant="outlined"
@@ -94,7 +99,7 @@
       <div class="force-fetch">
         <Button
           on:click={forceFetchModels}
-          color="secondary"
+          color="primary"
           variant="unelevated"
         >
           <Icon class="material-icons">refresh</Icon>
@@ -105,7 +110,7 @@
       <div class="continue-button">
         <Button
           on:click={goNextPage}
-          color="primary"
+          color="secondary"
           variant="unelevated"
           disabled={ !$modelsSelected.length }
         >
@@ -115,13 +120,13 @@
       </div>
     </div>
 
-    <ModelShowSelectedToggle />
-
-    <div>
+    <div class="models-container">
       {#each filteredModels as modelItem}
         <ModelCard modelItem={modelItem} />
       {/each}
     </div>
+
+    <ModelShowSelectedToggle />
   {/if}
 </section>
 
@@ -144,17 +149,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
-
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    background-color: white;
-    border: 1px solid;
-    border-radius: 5px;
     padding: 10px;
   }
   .force-fetch, .continue-button {
     margin: 0 10px;
+  }
+  .models-container {
+    max-height: 70vh;
+    overflow: scroll;
+    padding: 10px;
   }
 </style>

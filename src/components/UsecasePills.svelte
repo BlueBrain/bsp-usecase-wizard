@@ -56,10 +56,9 @@
 
 <style>
   .pills {
-    margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
-    align-content: baseline;
+    align-content: center;
     justify-content: flex-end;
   }
   .pills div {

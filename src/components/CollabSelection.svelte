@@ -13,7 +13,6 @@
   import { saveLastUsedCollab, getLastUsedCollab } from '@/helpers/storage';
 
   const limitCollabsToShow = 10;
-  let labLink = '';
   let processing = false;
   let collabsLoading = false;
   let collabSelectedName = '';
@@ -84,9 +83,14 @@
 
 
 
-<section class="container">
-  <h2 class="page-header-title">Please select the destination Collab</h2>
-  <div class="collab-list">
+<section class="collab-section-container">
+  <div class="custom-section-header">
+    <div class="go-back-btn">
+      <Icon class="material-icons" on:click={goBackPage}>keyboard_backspace</Icon>
+    </div>
+    <h2 class="page-header-title">Please select the destination Collab</h2>
+  </div>
+  <div class="content">
     <!-- Select Collab -->
     {#if collabsLoading}
       <span>Loading...</span>
@@ -95,7 +99,7 @@
     {#if !collabsLoading && collabs.length}
       <div class="top-bar">
         <div class="search-box">
-          <div class="search-label">Search Collab</div>
+          <div class="search-label">Search</div>
           <Textfield
             class="shaped-outlined custom-search"
             variant="outlined"
@@ -114,17 +118,6 @@
           >
             <Label>{processing ? 'Processing' : 'Use Collab'}</Label>
           </Button>
-    
-          {#if !processing && labLink}
-            <a href="{labLink}" target="_blank">
-              <Button
-                color="primary"
-                variant="unelevated"
-              >
-                <Label>Open Jupyter Lab</Label>
-              </Button>
-            </a>
-          {/if}
         </div>
       </div>
 
@@ -136,15 +129,13 @@
         {/if}
       </div>
 
-      <div>
-        <List class="list-item">
-          {#each filteredCollabsNames as collabName}
-            <Item on:click={collabSelected(collabName)}>
-              <Text>{collabName}</Text>
-            </Item>
-          {/each}
-        </List>
-      </div>
+      <List>
+        {#each filteredCollabsNames as collabName}
+          <Item on:click={collabSelected(collabName)}>
+            <Text>{collabName}</Text>
+          </Item>
+        {/each}
+      </List>    
     {/if}
   </div>
 </section>
@@ -152,10 +143,6 @@
 
 
 <style>
-  .container {
-    max-width: 500px;
-    margin: 0 auto;
-  }
   .processing-container {
     max-width: 50%;
     margin: 20px auto;
@@ -173,5 +160,9 @@
   .top-bar {
     display: flex;
     align-items: center;
+  }
+  .collab-list {
+    max-width: 650px;
+    margin: 0 auto;
   }
 </style>

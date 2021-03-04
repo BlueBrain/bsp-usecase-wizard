@@ -34,20 +34,21 @@
 <div class="usecase-list-item">
   {#each usecasesCategories as category}
     {#if categoryIsNotEmpty(category.usecases)}
-      <div class="accordion">
-        <Accordion>
-          <div slot="header">
-            <span>{ category.title }</span>
-          </div>
-          <div slot="content">
-            <UsecaseCard
-              usecases={ category.usecases }
-              category={ category.id }
-              on:clicked={ ucClick }
-            />
-          </div>
-        </Accordion>
-      </div>
+
+      <Accordion>
+        <div slot="header">
+          <span>{ category.title }</span>
+        </div>
+
+        <div slot="content">
+          <UsecaseCard
+            usecases={ category.usecases }
+            category={ category.id }
+            on:clicked={ ucClick }
+          />
+        </div>
+      </Accordion>
+
     {/if}
   {/each} <!-- end category -->
 </div>

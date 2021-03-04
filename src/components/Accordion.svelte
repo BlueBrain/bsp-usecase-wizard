@@ -5,7 +5,7 @@
 
 
 
-<div class="container">
+<div class="accordion-container">
   <div class="tab">
     <label
       class="tab-label { isExpanded ? 'expanded' : '' }"
@@ -17,6 +17,7 @@
     <div class="tab-content { isExpanded ? 'expanded' : '' }">
       <slot name="content"></slot>
     </div>
+    <slot></slot>
   </div>
 </div>
 
@@ -25,12 +26,6 @@
 <style type="text/scss">
   $midnight: #2c3e50;
   $clouds: #ecf0f1;
-
-  body {
-    color: $midnight;
-    background: $clouds;
-    padding: 0 1em 1em;
-  }
 
   .tab {
     width: 100%;
@@ -61,17 +56,6 @@
       color: $midnight;
       background: white;
       transition: all .35s;
-    }
-    &-close {
-      display: flex;
-      justify-content: flex-end;
-      padding: 1em;
-      font-size: 0.75em;
-      background: $midnight;
-      cursor: pointer;
-      &:hover {
-        background: darken($midnight, 10%);
-      }
     }
     
     .tab-content.expanded {

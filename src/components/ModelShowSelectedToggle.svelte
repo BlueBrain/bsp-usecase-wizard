@@ -10,11 +10,11 @@
   <div
     class="
       models-selected-container
-      {showModelsSelected ? 'expand' : 'collapse'}
+      {showModelsSelected ? 'expanded' : 'collapsed'}
       {$modelsSelected.length ? 'visible' : 'hide-toggle'}
     "
   >
-    <div class="accordion" on:click={() => showModelsSelected = !showModelsSelected}>
+    <div class="models-accordion" on:click={() => showModelsSelected = !showModelsSelected}>
       <div>{ showModelsSelected ? 'Hide' : 'Show' } Models Selected</div>
     </div>
     {#each $modelsSelected as modelItem}
@@ -33,16 +33,16 @@
     border-radius: 5px;
     padding: 15px;
   }
-  .models-selected-container .accordion {
+  .models-selected-container .models-accordion {
     text-align: center;
     font-size: 30px;
     border-radius: 5px;
   }
-  .models-selected-container.expand {
+  .models-selected-container.expanded {
     max-height: 400px;
     transition: max-height 0.3s ease-out;
   }
-  .models-selected-container.collapse {
+  .models-selected-container.collapsed {
     max-height: 35px;
     transition: max-height 0.3s ease-out;
     height:auto;

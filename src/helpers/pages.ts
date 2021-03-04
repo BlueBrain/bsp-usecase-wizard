@@ -10,12 +10,10 @@ export function goNextPage() {
     case pages.USECASE_SELECTION:
       if (uc.model) {
         currentPage.set(pages.MODEL_SELECTION);
-        addHistory(pages.MODEL_SELECTION);
         return;
       }
       if (uc.path) {
         currentPage.set(pages.COLLAB_SELECTION);
-        addHistory(pages.COLLAB_SELECTION);
         return;
       }
       if (uc.url) {
@@ -28,7 +26,6 @@ export function goNextPage() {
     case pages.MODEL_SELECTION:
       if (uc.path) {
         currentPage.set(pages.COLLAB_SELECTION);
-        addHistory(pages.COLLAB_SELECTION);
         return;
       }
       if (uc.url) {
@@ -49,12 +46,10 @@ export function goBackPage() {
     case pages.COLLAB_SELECTION:
       if (uc.model) {
         currentPage.set(pages.MODEL_SELECTION);
-        addHistory(pages.MODEL_SELECTION);
         return;
       }
       if (uc.path) {
         currentPage.set(pages.USECASE_SELECTION);
-        addHistory(pages.USECASE_SELECTION);
         return;
       }
       console.warn('usecase does not have any previous page');
@@ -63,7 +58,6 @@ export function goBackPage() {
     case pages.MODEL_SELECTION:
       if (uc.path) {
         currentPage.set(pages.USECASE_SELECTION);
-        addHistory(pages.USECASE_SELECTION);
         return;
       }
       console.warn('usecase does not have any previous page');
@@ -72,12 +66,4 @@ export function goBackPage() {
     default:
       break;
   }
-}
-
-window.addEventListener('popstate', goBackPage, false);
-
-function addHistory(name: string) {
-  history.pushState({scrollTop: document.body.scrollTop}, name, '');
-  document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }

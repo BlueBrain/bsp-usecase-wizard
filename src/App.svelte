@@ -40,8 +40,8 @@
 
 <style>
   main {
-    padding: 1em;
     margin: 0 auto;
+    min-height: 60vh;
   }
 
   @media (min-width: 640px) {

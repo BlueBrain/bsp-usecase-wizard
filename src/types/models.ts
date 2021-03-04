@@ -55,6 +55,7 @@ export interface ModelsJsonInfo {
   id: string;
   date: string;
   name: string;
+  uri: string;
 }
 
 export interface ModelsJson {
