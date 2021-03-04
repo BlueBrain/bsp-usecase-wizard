@@ -2,15 +2,19 @@
 import Oidc from 'oidc-client';
 import { saveUrl, getSavedUrl } from '@/helpers/storage';
 
+// comes from rollup.config.js
+declare var processEnvs: any
+
 function createAuthConfig() {
+  const redirectBase = `${window.location.origin}/${processEnvs.baseUrl}`;
   const oidcConfig = {
     authority: 'https://iam.ebrains.eu/auth/realms/hbp',
     client_id: 'ebrains-wizard',
     scope: 'email profile openid collab.drive',
     
-    redirect_uri: window.location.origin + '/callback.html',
-    post_logout_redirect_uri: window.location.origin + '/index.html',
-    silent_redirect_uri: window.location.origin + '/silent-renew.html',
+    redirect_uri: `${redirectBase}/callback.html`,
+    post_logout_redirect_uri: `${redirectBase}/index.html`,
+    silent_redirect_uri: `${redirectBase}/silent-renew.html`,
 
     userStore: new Oidc.WebStorageStateStore({ store: window.localStorage }),
     response_type: 'id_token token',

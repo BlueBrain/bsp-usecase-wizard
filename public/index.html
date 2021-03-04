@@ -5,19 +5,19 @@
 		<meta name='viewport' content='width=device-width,initial-scale=1'>
 
 		<title>Ebrains Wizard</title>
+		<!-- variables will be replaced and put it in the build folder -->
 
-		<link rel='icon' type='image/png' href='/favicon.ico'>
-		<link rel='stylesheet' href='/global.css'>
-		<link rel='stylesheet' href='/build/style_bundle.css'>
+		<link rel='icon' type='image/png' href='{{BASE_URL}}/favicon.ico'>
+		<link rel='stylesheet' href='{{BASE_URL}}/global.css'>
+		<link rel='stylesheet' href='{{BASE_URL}}/style_bundle.css'>
 
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
-		<script defer src='/build/bundle.js'></script>
-		
-		<div id="onlineUsecasesAppContainer"></div>
-		
+		<script defer src='{{BASE_URL}}/bundle.js'></script>
 	</head>
 
-	<body></body>
+	<body>
+		<div id="onlineUsecasesAppContainer"></div>
+	</body>
 </html>

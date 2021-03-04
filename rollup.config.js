@@ -8,9 +8,15 @@ import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import postcss from 'rollup-plugin-postcss';
 import json from "@rollup/plugin-json";
+import replace from '@rollup/plugin-replace';
+import copy from 'rollup-plugin-copy'
 
 
 const production = !process.env.ROLLUP_WATCH;
+
+const baseUrl = process.env.BASE_URL || '';
+
+console.log('BASE_URL:', baseUrl);
 
 function serve() {
 	let server;
@@ -80,6 +86,26 @@ export default {
 			inlineSources: !production
 		}),
 		json(),
+		replace({
+			processEnvs: JSON.stringify({
+				baseUrl,
+			}),
+		}),
+		copy({
+			targets: [
+				{
+					src: 'public/*.html',
+					dest: 'public/build',
+					transform: (contents) => {
+						return contents.toString().replace(/{{BASE_URL}}/g, baseUrl);
+					},
+				},
+				{
+					src: ['public/favicon.ico', 'public/global.css'],
+					dest: 'public/build',
+				},
+			],
+		}),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
