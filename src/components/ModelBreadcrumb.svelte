@@ -1,6 +1,7 @@
 
 <script lang="ts">
   import type { Model } from '@/types/models';
+  import { model } from '@/constants';
   export let modelItem: Model;
 </script>
 
@@ -8,8 +9,8 @@
 
 <div class="model-breadcrumb-container">
   <ul class="arrows">
-    {#each ['species', 'brain_region', 'cell_type', 'name'] as part}
-      <li>{ modelItem[part] }</li>
+    {#each model.BREADCRUMB_PROPERTIES as prop}
+      <li>{ modelItem[prop] }</li>
     {/each}
   </ul>
 </div>

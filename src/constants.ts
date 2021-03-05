@@ -29,3 +29,7 @@ export const modelCatalog = {
   URL: 'https://validation-v2.brainsimulation.eu/models/',
   HIPPOCAMPUS_QUERY: '?brain_region=hippocampus&organization=HBP-SP6&model_scope=single%20cell&species=Rattus%20norvegicus&collab_id=12027&size=1000000',
 };
+
+export const model = {
+  BREADCRUMB_PROPERTIES: ['species', 'brain_region', 'cell_type', 'name'],
+};

@@ -12,6 +12,7 @@
   import { saveModels, getModels } from '@/helpers/storage';
   import { getHippocampusModels } from '@/helpers/models';
   import { goNextPage, goBackPage } from '@/helpers/pages';
+  import { model as modelConstants } from '@/constants';
 
   
   let modelsLoading = false;
@@ -51,9 +52,19 @@
       setFilteredModels(fetchedModels);
       return;
     }
-    const filteredModels =  fetchedModels.filter((model: Model) =>
-      model.name.toLowerCase().includes(searchText.toLowerCase())
-    );
+    const filteredModels =  fetchedModels.filter((model: Model) => {
+      const nameFound = model.name.toLowerCase().includes(searchText.toLowerCase());
+      if (nameFound) return true;
+
+      const propsFound = modelConstants.BREADCRUMB_PROPERTIES.some(prop => {
+        if (!model[prop]) return false;
+        return model[prop].toLowerCase().includes(searchText.toLowerCase());
+      });
+
+      if (propsFound) return true;
+
+      return false;
+    });
     setFilteredModels(filteredModels);
   }
 
