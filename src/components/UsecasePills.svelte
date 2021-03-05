@@ -30,7 +30,7 @@
   {#if usecaseItem.maturity?.length}
     {#each usecaseItem.maturity as maturityItem}
       <div class="maturity">
-        <span alt={getTooltip("maturity", maturityItem)} title={getTooltip("maturity", maturityItem)}>
+        <span data-tooltip={getTooltip("maturity", maturityItem)} title={getTooltip("maturity", maturityItem)}>
           { getName("maturity",  maturityItem) }
         </span>
       </div>
@@ -39,7 +39,7 @@
   {#if usecaseItem.access?.length}
     {#each usecaseItem.access as accessItem}
       <div class="access">
-        <span alt={getTooltip("access", accessItem)} title={getTooltip("access", accessItem)}>
+        <span data-tooltip={getTooltip("access", accessItem)}>
           { getName("access",  accessItem) }
         </span>
       </div>
@@ -48,7 +48,7 @@
   {#if usecaseItem.experience?.length}
     {#each usecaseItem.experience as experienceItem}
       <div class="experience">
-        <span alt={getTooltip("experience", experienceItem)} title={getTooltip("experience", experienceItem)}>
+        <span data-tooltip={getTooltip("experience", experienceItem)}>
           { getName("experience", experienceItem) }
         </span>
       </div>
@@ -56,7 +56,7 @@
   {/if}
   {#if usecaseItem.implementation}
     <div class="implementation">
-      <span alt={getTooltip("implementation", usecaseItem.implementation)} title={getTooltip("implementation", usecaseItem.implementation)}>
+      <span data-tooltip={getTooltip("implementation", usecaseItem.implementation)}>
         <div
           class="uc-implementation"
           style="background-image: url({getImplementationIconUrl('implementation', usecaseItem.implementation)});"
