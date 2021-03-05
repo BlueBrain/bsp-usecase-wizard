@@ -33,3 +33,7 @@ export const modelCatalog = {
 export const model = {
   BREADCRUMB_PROPERTIES: ['species', 'brain_region', 'cell_type', 'name'],
 };
+
+export const usecases = {
+  INFO_FILE_URL: 'https://raw.githubusercontent.com/antonelepfl/ebrains-sim-cl-dev/usecases-data/usecases-info.json',
+};

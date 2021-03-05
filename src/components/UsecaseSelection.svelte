@@ -2,12 +2,15 @@
 <script lang="ts">
   import UsecaseCard from './UsecaseCard.svelte';
   import Accordion from './Accordion.svelte';
+  import { onMount } from 'svelte';
 
-  import usecases from '@/data/usecases-info.json';
   import type { UsecaseFileInterface, UsecaseItem } from '@/types/usecases';
   import { authorized, usecaseSelected, usecaseCategorySelected } from '@/store';
   import { saveUsecaseAndLogin } from '@/helpers/utils';
   import { goNextPage } from '@/helpers/pages';
+  import { usecases as usecasesConstants } from '@/constants';
+
+  let usecasesCategories: Array<UsecaseFileInterface> = [];
 
   function ucClick(event: any) {
     const uc: UsecaseItem = event.detail.usecaseItem;
@@ -26,7 +29,15 @@
     return usecases.some(ucInfo => !ucInfo.disabled);
   }
 
-  export const usecasesCategories: Array<UsecaseFileInterface> = usecases;
+  function fetchUsecasesInfoFile() {
+    fetch(usecasesConstants.INFO_FILE_URL)
+      .then(response => response.json())
+      .then(info => {
+        usecasesCategories = info;
+      });
+  }
+
+  onMount(fetchUsecasesInfoFile);
 </script>
 
 
