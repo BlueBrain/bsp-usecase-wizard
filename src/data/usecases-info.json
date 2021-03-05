@@ -9,7 +9,7 @@
         "description": "Extracts electrophysiological features; traces can be from NeuroInformatics Platform or uploaded",
         "experience": ["all"],
         "disabled": false,
-        "type": "webapp",
+        "implementation": "webapp",
         "contributors": [
           {"name": "Luca Leonardo Bologna", "email": "lucaleonardo.bologna@cnr.it"},
           {"name": "Roberto Smiriglia", "email": "roberto.smiriglia@pa.ibf.cnr.it"}
@@ -36,7 +36,7 @@
         "experience": ["power"],
         "access": ["hpc"],
         "disabled": false,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "contributors": [
           {"name": "Carmen Alina Lupascu", "email": "carmen.lupascu@pa.ibf.cnr.it"},
           {"name": "Roberto Smiriglia", "email": "roberto.smiriglia@pa.ibf.cnr.it"},
@@ -55,7 +55,7 @@
         "experience": ["experts"],
         "access": ["hpc"],
         "disabled": true,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "contributors": [
           {"name": "Carmen Alina Lupascu", "email": "carmen.lupascu@pa.ibf.cnr.it"},
           {"name": "Roberto Smiriglia", "email": "roberto.smiriglia@pa.ibf.cnr.it"},
@@ -93,7 +93,7 @@
         "experience": ["experts"],
         "access": ["hpc"],
         "disabled": true,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "contributors": [
           {"name": "Carmen Alina Lupascu", "email": "carmen.lupascu@pa.ibf.cnr.it"},
           {"name": "Roberto Smiriglia", "email": "roberto.smiriglia@pa.ibf.cnr.it"},
@@ -137,7 +137,7 @@
         "experience": ["all"],
         "access": ["hpc"],
         "disabled": false,
-        "type": "webapp",
+        "implementation": "webapp",
         "contributors": [
           {"name": "Luca Leonardo Bologna", "email": "lucaleonardo.bologna@cnr.it"}
         ],
@@ -161,7 +161,7 @@
         "experience": ["all"],
         "access": ["hpc", "byor"],
         "disabled": true,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "contributors": [
           {"name": "Carmen Alina Lupascu", "email": "carmen.lupascu@pa.ibf.cnr.it"},
           {"name": "Roberto Smiriglia", "email": "roberto.smiriglia@pa.ibf.cnr.it"},
@@ -205,7 +205,7 @@
         "experience": ["power"],
         "access": ["hpc"],
         "disabled": true,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "contributors": [
           {"name": "Carmen Alina Lupascu", "email": "carmen.lupascu@pa.ibf.cnr.it"},
           {"name": "Roberto Smiriglia", "email": "roberto.smiriglia@pa.ibf.cnr.it"},
@@ -249,7 +249,7 @@
         "experience": ["all"],
         "access": ["hpc"],
         "disabled": true,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "contributors": [
           {"name": "Stefano Masoli", "email": "stefano.masoli@unipv.it"},
           {"name": "Martina Rizzi", "email": "martinafrancesca.rizza@unipv.it"}
@@ -286,7 +286,7 @@
         "experience": ["all"],
         "access": ["hpc"],
         "disabled": true,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "contributors": [
           {"name": "Stefano Masoli", "email": "stefano.masoli@unipv.it"}
         ],
@@ -322,7 +322,7 @@
         "experience": ["all"],
         "access": ["hpc"],
         "disabled": true,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "contributors": [
           {"name": "Stefano Masoli", "email": "stefano.masoli@unipv.it"}
         ],
@@ -358,7 +358,7 @@
         "experience": ["power"],
         "access": ["hpc"],
         "disabled": true,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "contributors": [
           {"name": "Stefano Masoli", "email": "stefano.masoli@unipv.it"}
         ],
@@ -401,7 +401,7 @@
         "description": "Fit parameters of a striatal fast-spiking interneuron model to the experimental data. Optimization uses BluePyOpt as well as the realistic morphology, channel kinetics and extracted neurophysiological features. This version runs directly on the collaboratory and it is limited to small optimizations.",
         "experience": ["code"],
         "disabled": true,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "contributors": [
           {"name": "Alexander Kozlov", "email": "akozlov@kth.se"},
           {"name": "Yvonne Johansson", "email": "yvonne.johansson@ki.se"},
@@ -440,7 +440,7 @@
         "experience": ["all"],
         "access": ["byor"],
         "disabled": true,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "contributors": [
           {"name": "Carmen Alina Lupascu", "email": "carmen.lupascu@pa.ibf.cnr.it"}
         ],
@@ -521,7 +521,7 @@
         "experience": ["power"],
         "maturity": ["experimental"],
         "disabled": true,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "picture": {
           "src": "https://raw.githubusercontent.com/antonelepfl/usecases/dev/src/assets/images/cellprop1.png"
         },
@@ -622,7 +622,7 @@
         "maturity": ["experimental"],
         "access": ["hpc"],
         "disabled": true,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "picture": {
           "src": "https://raw.githubusercontent.com/antonelepfl/usecases/dev/src/assets/images/connectome.png"
         },
@@ -703,7 +703,7 @@
         "maturity": ["experimental"],
         "access": ["hpc"],
         "disabled": true,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "picture": {
           "src": "https://raw.githubusercontent.com/antonelepfl/usecases/dev/src/assets/images/reduction.png"
         },
@@ -750,7 +750,7 @@
         ],
         "experience": ["power"],
         "disabled": false,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "picture": {
           "src": "https://raw.githubusercontent.com/antonelepfl/usecases/dev/src/assets/images/morphology.png"
         },
@@ -778,7 +778,7 @@
         ],
         "experience": ["all"],
         "disabled": true,
-        "type": "webapp",
+        "implementation": "webapp",
         "picture": {
           "src": "https://raw.githubusercontent.com/antonelepfl/usecases/dev/src/assets/images/morphology_3d.png"
         },
@@ -800,7 +800,7 @@
         ],
         "experience": ["all"],
         "disabled": false,
-        "type": "webapp",
+        "implementation": "webapp",
         "picture": {
           "src": "https://raw.githubusercontent.com/antonelepfl/usecases/dev/src/assets/images/l5pc_release_responses-eps.jpg"
         },
@@ -829,7 +829,7 @@
         "description": "",
         "experience": ["all"],
         "disabled": false,
-        "type": "webapp",
+        "implementation": "webapp",
         "picture": {
           "src": "https://raw.githubusercontent.com/antonelepfl/testvue/master/imgtest/pair_recording.png"
         },
@@ -867,7 +867,7 @@
         "description": "",
         "experience": ["all"],
         "disabled": true,
-        "type": "webapp",
+        "implementation": "webapp",
         "contributors": [
           {"name": "Vafa Andalibi", "email": "vafandal@indiana.edu"},
           {"name": "Henri Hokkanen", "email": "henri.hokkanen@helsinki.fi"},
@@ -926,7 +926,7 @@
         "experience": ["all"],
         "isDemo": true,
         "disabled": false,
-        "type": "webapp",
+        "implementation": "webapp",
         "picture": {
           "src": "https://github.com/antonelepfl/usecases/raw/dev/src/assets/images/hippocampusConnections.png"
         },
@@ -998,7 +998,7 @@
         "experience": ["experts"],
         "maturity": ["beta"],
         "disabled": true,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "picture": {
           "src": "https://github.com/antonelepfl/usecases/raw/dev/src/assets/images/cerebellum.png"
         },
@@ -1055,7 +1055,7 @@
             "title": "Multicompartmental simulation of the cerebellum",
             "description": "This usecase models the cerebellum's anisotropic topology through the use of multicompartmental neuron models that are connected to eachother based on spatial intersection of the neurites.",
             "experience": ["all"],
-            "type": "ipynb",
+            "implementation": "ipynb",
             "disabled": true,
             "dataprotected": false,
             "next": "brainarea_circuits",
@@ -1083,7 +1083,7 @@
         "description": "This use-case shows a modeling effort of whole brain functionalities by leveraging on the existing cerebellar models. We model and simulate the forward and inverse controller functions of the cerebrocortical-cerebellar loops in a closed-loop setting, emulating error-based learning and action prediction.",
         "experience": ["experts"],
         "disabled": true,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "picture": {
           "src": "https://github.com/antonelepfl/usecases/raw/dev/src/assets/images/cerebro-cerebellar-loops.png"
         },
@@ -1135,7 +1135,7 @@
         "title": "Neocortex",
         "description": "",
         "experience": ["all"],
-        "type": "webapp",
+        "implementation": "webapp",
         "picture": {
           "src": "https://raw.githubusercontent.com/antonelepfl/usecases/dev/src/assets/images/placeholder.jpg"
         },
@@ -1205,7 +1205,7 @@
         "description": "Demonstrates the use of the validation framework",
         "experience": ["all"],
         "disabled": true,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "picture": {
           "src": "https://raw.githubusercontent.com/antonelepfl/usecases/dev/src/assets/images/vf_logo.png"
         },
@@ -1232,7 +1232,7 @@
         "description": "Validates single cell models of Hippocampus optimized via BluePyOpt",
         "experience": ["all"],
         "disabled": true,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "picture": {
           "src": "https://raw.githubusercontent.com/antonelepfl/usecases/dev/src/assets/images/vf_logo.png"
         },
@@ -1258,7 +1258,7 @@
         "description": "Validates single cell basal ganglia models optimized via BluePyOpt for various features offered by eFEL; models contain multiple hall of fame parameter sets",
         "experience": ["all"],
         "disabled": true,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "picture": {
           "src": "https://raw.githubusercontent.com/antonelepfl/usecases/dev/src/assets/images/vf_logo.png"
         },
@@ -1283,7 +1283,7 @@
         "description": "Validates models optimized via BluePyOpt for various features offered by eFEL",
         "experience": ["all"],
         "disabled": true,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "picture": {
           "src": "https://raw.githubusercontent.com/antonelepfl/usecases/dev/src/assets/images/vf_logo.png"
         },
@@ -1308,7 +1308,7 @@
         "description": "Validates single cell morphologies of MSN and FS cells",
         "experience": ["all"],
         "disabled": true,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "picture": {
           "src": "https://raw.githubusercontent.com/antonelepfl/usecases/dev/src/assets/images/vf_logo.png"
         },
@@ -1334,7 +1334,7 @@
         "description": "Validates population of single cell morphologies of FS cells",
         "experience": ["all"],
         "disabled": true,
-        "type": "ipynb",
+        "implementation": "ipynb",
         "picture": {
           "src": "https://raw.githubusercontent.com/antonelepfl/usecases/dev/src/assets/images/vf_logo.png"
         },

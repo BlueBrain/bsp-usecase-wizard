@@ -18,6 +18,10 @@
     const pillInfo = getInfo(type, value);
     return pillInfo.tooltip;
   }
+  function getImplementationIconUrl(type: string, value: string) {
+    const pillInfo = getInfo(type, value);
+    return pillInfo.icon;
+  }
 </script>
 
 
@@ -26,7 +30,7 @@
   {#if usecaseItem.maturity?.length}
     {#each usecaseItem.maturity as maturityItem}
       <div class="maturity">
-        <span title={getTooltip("maturity", maturityItem)}>
+        <span alt={getTooltip("maturity", maturityItem)} title={getTooltip("maturity", maturityItem)}>
           { getName("maturity",  maturityItem) }
         </span>
       </div>
@@ -35,7 +39,7 @@
   {#if usecaseItem.access?.length}
     {#each usecaseItem.access as accessItem}
       <div class="access">
-        <span title={getTooltip("access", accessItem)}>
+        <span alt={getTooltip("access", accessItem)} title={getTooltip("access", accessItem)}>
           { getName("access",  accessItem) }
         </span>
       </div>
@@ -44,11 +48,21 @@
   {#if usecaseItem.experience?.length}
     {#each usecaseItem.experience as experienceItem}
       <div class="experience">
-        <span title={getTooltip("experience", experienceItem)}>
+        <span alt={getTooltip("experience", experienceItem)} title={getTooltip("experience", experienceItem)}>
           { getName("experience", experienceItem) }
         </span>
       </div>
     {/each}
+  {/if}
+  {#if usecaseItem.implementation}
+    <div class="implementation">
+      <span alt={getTooltip("implementation", usecaseItem.implementation)} title={getTooltip("implementation", usecaseItem.implementation)}>
+        <div
+          class="uc-implementation"
+          style="background-image: url({getImplementationIconUrl('implementation', usecaseItem.implementation)});"
+        />
+      </span>
+    </div>
   {/if}
 </div>
 
@@ -61,12 +75,13 @@
     align-content: center;
     justify-content: flex-end;
   }
-  .pills div {
+  .pills > div {
     border-radius: 15px;
     padding: 10px;
-    display: inline;
     margin: 5px;
     cursor: help;
+    white-space: nowrap;
+    align-self: center;
   }
   .pills .maturity {
     background-color: #b7b7fa;
@@ -76,5 +91,11 @@
   }
   .pills .experience {
     background-color: #cfc;
+  }
+  .uc-implementation {
+    width: 50px;
+    height: 50px;
+    background-size: 100% 90%;
+    background-repeat: space;
   }
 </style>

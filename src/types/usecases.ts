@@ -11,7 +11,7 @@ export interface UsecaseItem {
   access: Array< "hpc" | "byor" >;
   maturity: Array< "experimental" | "beta" >; 
   disabled: boolean;
-  type: "webapp" | "ipynb";
+  implementation: "webapp" | "ipynb";
   contributors: Array<Contributors>;
   picture: {
     src: string;

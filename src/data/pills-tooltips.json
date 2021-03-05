@@ -43,11 +43,15 @@
       "tooltip": "Warning: model is work in progress"
     }
   },
-  "uc-type": {
+  "implementation": {
     "webapp": {
+      "name": "Web app",
+      "icon": "https://raw.githubusercontent.com/antonelepfl/usecases/dev/src/assets/images/web_uc.png",
       "tooltip": "This use case was implemented using a Web Application"
     },
     "ipynb": {
+      "name": "Notebook",
+      "icon": "https://raw.githubusercontent.com/antonelepfl/usecases/dev/src/assets/images/ipynb_uc.png",
       "tooltip": "This use case was implemented using Jupyter Notebook"
     }
   }
