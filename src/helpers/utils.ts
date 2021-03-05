@@ -42,7 +42,7 @@ export function justCheckIfAuthenticated() {
 
 export function openPuller() {
   const uc = get(usecaseSelected);
-  const pullerLink = `${nbgitpuller.BASE}${nbgitpuller.URL_PATH_BASE}${uc.path}`;
+  const pullerLink = `${nbgitpuller.BASE}${nbgitpuller.URL_PATH_BASE}${uc.notebookPath}`;
   window.open(pullerLink, '_blank');
 }
 

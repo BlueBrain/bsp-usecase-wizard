@@ -8,17 +8,15 @@ COPY public ./public
 COPY src ./src
 COPY theme ./theme
 COPY babel.config.js rollup.config.js tsconfig.json ./
-# COPY . .
-RUN npm run build
+ARG base_url=''
+RUN BASE_URL=$base_url npm run build
+
 
 FROM nginx:alpine
-
-# Create the directories we will need
-RUN mkdir -p /var/log/nginx
-RUN mkdir -p /var/www/html
+RUN mkdir -p /var/log/nginx /var/www/html
 COPY nginx.conf /etc/nginx/nginx.conf
 
-COPY --from=builder /frontend/public /var/www/html
+COPY --from=builder /frontend/public/build /var/www/html
 RUN chown nginx:nginx /var/www/html
 
 EXPOSE 8000

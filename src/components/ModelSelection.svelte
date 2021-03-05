@@ -57,7 +57,9 @@
       if (nameFound) return true;
 
       const propsFound = modelConstants.BREADCRUMB_PROPERTIES.some(prop => {
+        // @ts-ignore
         if (!model[prop]) return false;
+        // @ts-ignore
         return model[prop].toLowerCase().includes(searchText.toLowerCase());
       });
 

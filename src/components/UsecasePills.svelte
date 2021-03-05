@@ -7,6 +7,7 @@
 
   // TODO: improve this to call fewer times
   function getInfo(type: string, value: string) {
+    // @ts-ignore
     const objInfo = pillsTooltips[type][value];
     return objInfo;
   }

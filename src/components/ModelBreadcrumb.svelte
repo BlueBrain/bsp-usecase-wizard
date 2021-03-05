@@ -3,14 +3,19 @@
   import type { Model } from '@/types/models';
   import { model } from '@/constants';
   export let modelItem: Model;
+
+  function getProps() {
+    // @ts-ignore
+    return model.BREADCRUMB_PROPERTIES.map(prop => modelItem[prop])
+  }
 </script>
 
 
 
 <div class="model-breadcrumb-container">
   <ul class="arrows">
-    {#each model.BREADCRUMB_PROPERTIES as prop}
-      <li>{ modelItem[prop] }</li>
+    {#each getProps() as prop}
+      <li>{ prop }</li>
     {/each}
   </ul>
 </div>

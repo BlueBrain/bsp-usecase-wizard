@@ -8,28 +8,28 @@ export function goNextPage() {
   const uc: UsecaseItem = get(usecaseSelected);
   switch (get(currentPage)) {
     case pages.USECASE_SELECTION:
-      if (uc.model) {
+      if (uc.chooseModel) {
         currentPage.set(pages.MODEL_SELECTION);
         return;
       }
-      if (uc.path) {
+      if (uc.notebookPath) {
         currentPage.set(pages.COLLAB_SELECTION);
         return;
       }
-      if (uc.url) {
-        window.open(uc.url, '_blank');
+      if (uc.externalUrl) {
+        window.open(uc.externalUrl, '_blank');
         return;
       }
       console.warn('usecase does not have any next page');
       break;
   
     case pages.MODEL_SELECTION:
-      if (uc.path) {
+      if (uc.notebookPath) {
         currentPage.set(pages.COLLAB_SELECTION);
         return;
       }
-      if (uc.url) {
-        window.open(uc.url, '_blank');
+      if (uc.externalUrl) {
+        window.open(uc.externalUrl, '_blank');
         return;
       }
       console.warn('usecase does not have any next page');
@@ -44,11 +44,11 @@ export function goBackPage() {
   const uc: UsecaseItem = get(usecaseSelected);
   switch (get(currentPage)) {
     case pages.COLLAB_SELECTION:
-      if (uc.model) {
+      if (uc.chooseModel) {
         currentPage.set(pages.MODEL_SELECTION);
         return;
       }
-      if (uc.path) {
+      if (uc.notebookPath) {
         currentPage.set(pages.USECASE_SELECTION);
         return;
       }
@@ -56,7 +56,7 @@ export function goBackPage() {
       break;
   
     case pages.MODEL_SELECTION:
-      if (uc.path) {
+      if (uc.notebookPath) {
         currentPage.set(pages.USECASE_SELECTION);
         return;
       }

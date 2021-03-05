@@ -7,12 +7,12 @@
 
 <div class="accordion-container">
   <div class="tab">
-    <label
+    <div
       class="tab-label { isExpanded ? 'expanded' : '' }"
       on:click={ () => isExpanded = !isExpanded }
     >
       <slot name="header"></slot>
-    </label>
+    </div>
 
     <div class="tab-content { isExpanded ? 'expanded' : '' }">
       <slot name="content"></slot>
