@@ -9,12 +9,12 @@
   import type { UsecaseItem } from '@/types/usecases';
   
   export let usecases: Array<UsecaseItem>;
-  export let category: string;
+  export let categoryId: string;
   
   const dispatch = createEventDispatcher();
 
   function ucClick(usecaseItem: UsecaseItem) {
-    dispatch('clicked', { usecaseItem, category });
+    dispatch('clicked', { usecaseItem, categoryId });
   }
   
   function openTutorial(url: string) {

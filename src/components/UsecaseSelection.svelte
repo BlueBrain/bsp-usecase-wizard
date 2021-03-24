@@ -1,6 +1,7 @@
 
 <script lang="ts">
   import UsecaseCard from './UsecaseCard.svelte';
+  import UsecaseGroup from './UsecaseGroup.svelte';
   import Accordion from './Accordion.svelte';
   import { onMount } from 'svelte';
 
@@ -25,8 +26,15 @@
     goNextPage();
   }
 
-  function categoryIsNotEmpty(usecases: Array<UsecaseItem>) {
-    return usecases.some(ucInfo => !ucInfo.disabled);
+  function categoryIsNotEmpty(category: UsecaseFileInterface) {
+    if (!category.usecases.length) {
+      if (!category.groups.length) return false;
+
+      return category.groups.some(
+        group => group.items.some(ucInfo => !ucInfo.disabled)
+      );
+    }
+    return category.usecases.some(ucInfo => !ucInfo.disabled);
   }
 
   function fetchUsecasesInfoFile() {
@@ -44,7 +52,7 @@
 
 <div class="usecase-list-item">
   {#each usecasesCategories as category}
-    {#if categoryIsNotEmpty(category.usecases)}
+    {#if categoryIsNotEmpty(category)}
 
       <Accordion>
         <div slot="header">
@@ -54,9 +62,16 @@
         <div slot="content">
           <UsecaseCard
             usecases={ category.usecases }
-            category={ category.id }
+            categoryId={ category.id }
             on:clicked={ ucClick }
           />
+          {#if category.groups}
+            <UsecaseGroup
+              groups={ category.groups }
+              categoryId={ category.id }
+              on:clicked={ ucClick }
+            />
+          {/if}
         </div>
       </Accordion>
 
