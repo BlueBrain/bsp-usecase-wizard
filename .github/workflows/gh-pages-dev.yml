@@ -25,3 +25,7 @@ jobs:
           branch: gh-pages
           folder: public/build
           target-folder: dev
+
+      - name: Show deployment url
+        run: |
+          echo "Deployed at https://antonelepfl.github.io/ebrains-wizard/dev/"
