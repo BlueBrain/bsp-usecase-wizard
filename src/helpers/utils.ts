@@ -42,6 +42,8 @@ export function justCheckIfAuthenticated() {
 
 export function openPuller() {
   const uc = get(usecaseSelected);
+  // TODO: fix assigning type based on property
+  // @ts-ignore ts(2339)
   const pullerLink = `${nbgitpuller.BASE}${nbgitpuller.URL_PATH_BASE}${uc.notebookPath}`;
   window.open(pullerLink, '_blank');
 }

@@ -28,6 +28,7 @@ export interface UsecaseItemNotebook extends UsecaseItemBase {
 
 export interface UsecaseItemWebapp extends UsecaseItemBase {
   externalUrl: string; // url to the webapp
+  chooseModel?: boolean;
 }
 
 export type UsecaseItem = UsecaseItemNotebook | UsecaseItemWebapp;

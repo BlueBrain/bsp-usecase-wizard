@@ -53,7 +53,7 @@ function validateUsecasesInfo() {
 
   const someError = usecasesInfo.some(uc => {
     try {
-      UsecaseFileInterface.check(uc);
+      UsecaseFileInterface.strictCheck(uc);
     } catch(e) {
       console.error('Checking', uc.id);
       console.error(e.message);

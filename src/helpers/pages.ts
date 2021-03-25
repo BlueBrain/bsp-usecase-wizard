@@ -2,10 +2,13 @@
 import { get } from 'svelte/store';
 import { pages } from '@/constants';
 import { currentPage, usecaseSelected } from '@/store';
-import type { UsecaseItem } from '@/types/usecases';
+import type { UsecaseItem, UsecaseItemNotebook, UsecaseItemWebapp } from '@/types/usecases';
+
+// TODO: fix assigning type based on property
+// @ts-ignore ts(2339)
 
 export function goNextPage() {
-  const uc: UsecaseItem = get(usecaseSelected);
+  const uc: any = get(usecaseSelected);
   switch (get(currentPage)) {
     case pages.USECASE_SELECTION:
       if (uc.chooseModel) {
@@ -39,7 +42,7 @@ export function goNextPage() {
 }
 
 export function goBackPage() {
-  const uc: UsecaseItem = get(usecaseSelected);
+  const uc: any = get(usecaseSelected);
   switch (get(currentPage)) {
     case pages.COLLAB_SELECTION:
       if (uc.chooseModel) {
