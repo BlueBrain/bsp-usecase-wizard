@@ -20,7 +20,6 @@ export function goNextPage() {
         window.open(uc.externalUrl, '_blank');
         return;
       }
-      console.warn('usecase does not have any next page');
       break;
   
     case pages.MODEL_SELECTION:
@@ -32,7 +31,6 @@ export function goNextPage() {
         window.open(uc.externalUrl, '_blank');
         return;
       }
-      console.warn('usecase does not have any next page');
       break;
 
     default:
@@ -52,7 +50,6 @@ export function goBackPage() {
         currentPage.set(pages.USECASE_SELECTION);
         return;
       }
-      console.warn('usecase does not have any previous page');
       break;
   
     case pages.MODEL_SELECTION:
@@ -60,7 +57,6 @@ export function goBackPage() {
         currentPage.set(pages.USECASE_SELECTION);
         return;
       }
-      console.warn('usecase does not have any previous page');
       break;
 
     default:
