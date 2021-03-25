@@ -7,6 +7,10 @@ export const storageKeys = {
   SELECTED_COLLAB: 'selectedCollab',
 };
 
+export const iam = {
+  LOGIN_URL: 'https://iam.ebrains.eu/auth/realms/hbp',
+};
+
 export const drive = {
   DRIVE_API_URL: 'https://drive.ebrains.eu/api2',
   DEFAULT_UC_FOLDER_NAME: 'CLS-INTERACTIVE-UC',

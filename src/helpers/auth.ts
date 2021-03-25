@@ -1,6 +1,7 @@
 
 import Oidc from 'oidc-client';
 import { saveUrl, getSavedUrl } from '@/helpers/storage';
+import { iam } from '@/constants';
 
 // comes from rollup.config.js
 declare var processEnvs: any
@@ -8,7 +9,7 @@ declare var processEnvs: any
 function createAuthConfig() {
   const redirectBase = `${window.location.origin}/${processEnvs.baseUrl}`;
   const oidcConfig = {
-    authority: 'https://iam.ebrains.eu/auth/realms/hbp',
+    authority: iam.LOGIN_URL,
     client_id: 'ebrains-wizard',
     scope: 'email profile openid collab.drive',
     
