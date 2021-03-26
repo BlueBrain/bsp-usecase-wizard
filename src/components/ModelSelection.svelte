@@ -9,7 +9,6 @@
 
   import { userInfo, modelsSelected } from '@/store';
   import type { Model } from '@/types/models';
-  import { saveModels, getModels } from '@/helpers/storage';
   import { getHippocampusModels } from '@/helpers/models';
   import { goNextPage, goBackPage } from '@/helpers/pages';
   import { model as modelConstants } from '@/constants';
@@ -29,22 +28,11 @@
     load();
   });
 
-  async function load(force = false) {
+  async function load() {
     modelsLoading = true;
-    
-    let models: Array<Model> = [];
-
-    const modelsCached = getModels();
-    if (modelsCached && !force) {
-      models = modelsCached;
-    } else {
-      models = await getHippocampusModels();
-      saveModels(models);
-    }
-    
-    fetchedModels = models;
+    fetchedModels = await getHippocampusModels();
+    setFilteredModels(fetchedModels);
     modelsLoading = false;
-    setFilteredModels(models);
   }
 
   function filterModel() {
@@ -72,10 +60,6 @@
 
   function setFilteredModels(models: Array<Model>) {
     filteredModels = models;
-  }
-
-  function forceFetchModels() {
-    load(true);
   }
 </script>
 
@@ -107,17 +91,6 @@
         <div class="filtered-length">
           { filteredModels.length } / { fetchedModels.length }
         </div>
-      </div>
-
-      <div class="force-fetch">
-        <Button
-          on:click={forceFetchModels}
-          color="primary"
-          variant="unelevated"
-        >
-          <Icon class="material-icons">refresh</Icon>
-          <Label>Refresh</Label>
-        </Button>
       </div>
     
       <div class="continue-button">
@@ -163,9 +136,6 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-  }
-  .force-fetch, .continue-button {
-    margin: 0 10px;
   }
   .models-container {
     max-height: 70vh;

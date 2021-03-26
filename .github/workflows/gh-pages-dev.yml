@@ -18,6 +18,7 @@ jobs:
       - name: Install and Build Development
         run: |
           BASE_URL="/ebrains-wizard/dev" npm run build
+          cp public/service-worker.js public/build
 
       - name: Deploy Development
         uses: JamesIves/github-pages-deploy-action@4.0.0

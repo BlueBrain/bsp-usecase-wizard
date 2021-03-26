@@ -16,6 +16,7 @@ jobs:
         run: |
           npm install
           BASE_URL="/ebrains-wizard" npm run build
+          cp public/service-worker.js public/build
 
       - name: Deploy Production
         uses: JamesIves/github-pages-deploy-action@4.0.0
