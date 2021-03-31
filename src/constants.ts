@@ -19,8 +19,10 @@ export const drive = {
 };
 
 export const nbgitpuller = {
-  BASE: 'https://lab.ebrains.eu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fantonelepfl%2Fusecases&branch=dev',
-  URL_PATH_BASE: '&urlpath=lab%2Ftree%2Fusecases%2F',
+  BASE: 'https://lab.ebrains.eu/hub/user-redirect/git-pull?depth=0',
+  REPO_KEY: '&repo=',
+  URL_PATH_KEY: '&urlpath=lab/tree',
+  TARGET_PATH_KEY: '&targetPath=/opt/app-root/src',
 };
 
 export const pages = {

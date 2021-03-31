@@ -11,7 +11,7 @@ import {
   returningFromLogin,
 } from '@/helpers/storage';
 import {  } from '@/store';
-import { nbgitpuller } from '@/constants';
+import { nbgitpuller, drive } from '@/constants';
 
 
 export function saveUsecaseAndLogin(uc: UsecaseItem) {
@@ -40,11 +40,18 @@ export function justCheckIfAuthenticated() {
   });
 }
 
-export function openPuller() {
-  const uc = get(usecaseSelected);
+export function openPuller(collabName: string) {
   // TODO: fix assigning type based on property
-  // @ts-ignore ts(2339)
-  const pullerLink = `${nbgitpuller.BASE}${nbgitpuller.URL_PATH_BASE}${uc.notebookPath}`;
+  const uc = get(usecaseSelected);
+
+  // @ts-ignore
+  const repo = `${nbgitpuller.REPO_KEY}${uc.notebookRepoUrl}`;
+  const collabPath = collabName === 'My Library' ? 'drive/My Libraries/My Library' : `shared/${collabName}`;
+  const targetPath = `${nbgitpuller.TARGET_PATH_KEY}/${collabPath}/${drive.DEFAULT_UC_FOLDER_NAME}`;
+  // @ts-ignore
+  const urlPath = `${nbgitpuller.URL_PATH_KEY}/${collabPath}/${drive.DEFAULT_UC_FOLDER_NAME}/${uc.notebookPath}`;
+
+  const pullerLink = `${nbgitpuller.BASE}${repo}${targetPath}${urlPath}`;
   window.open(pullerLink, '_blank');
 }
 

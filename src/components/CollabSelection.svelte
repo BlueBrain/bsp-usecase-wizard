@@ -33,7 +33,7 @@
     saveLastUsedCollab(collabSelectedName);
     await fileCreationProcess(collabSelectedName);
 
-    openPuller();
+    openPuller(collabSelectedName);
 
     processing = false;
     collabSelectedName = '';
