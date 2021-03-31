@@ -1,0 +1,49 @@
+name: Build and Deploy to Github Pages
+
+on: [push]
+
+jobs:
+  prod:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+      - name: Run tests
+        run: |
+          npm install
+          npm run validate
+          npm run test
+      - name: Build Production
+        run: |
+          BASE_URL="/ebrains-wizard" npm run build
+          cp public/service-worker.js public/build
+      - name: Deploy Production
+        uses: JamesIves/github-pages-deploy-action@4.0.0
+        with:
+          branch: gh-pages
+          folder: public/build
+
+  dev:
+    runs-on: ubuntu-latest
+    if: always() # conditional expression so that it always runs after prod have completed, regardless of whether they were successful.
+    needs: prod
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+      - name: Run tests
+        run: |
+          npm install
+          npm run validate
+          npm run test
+      - name: Build Development
+        run: |
+          BASE_URL="/ebrains-wizard/dev" npm run build
+          cp public/service-worker.js public/build
+      - name: Deploy Development
+        uses: JamesIves/github-pages-deploy-action@4.0.0
+        with:
+          branch: gh-pages
+          folder: public/build
+          target-folder: dev
+
