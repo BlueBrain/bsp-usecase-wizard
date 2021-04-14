@@ -10,7 +10,7 @@ function createAuthConfig() {
   const redirectBase = `${window.location.origin}/${processEnvs.baseUrl}`;
   const oidcConfig = {
     authority: iam.LOGIN_URL,
-    client_id: 'ebrains-wizard',
+    client_id: 'ebrains-wizard-2',
     scope: 'email profile openid collab.drive',
     
     redirect_uri: `${redirectBase}/callback.html`,
