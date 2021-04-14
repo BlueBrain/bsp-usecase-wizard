@@ -16,7 +16,7 @@
   function ucClick(event: any) {
     const uc: UsecaseItem = event.detail.usecaseItem;
     usecaseSelected.set(uc);
-    usecaseCategorySelected.set(event.detail.category);
+    usecaseCategorySelected.set(event.detail.categoryId);
     
     if (!$authorized) {
       console.warn('user not registered');
