@@ -18,6 +18,7 @@
     "@rollup/plugin-typescript": "^6.0.0",
     "@smui/button": "^1.0.0",
     "@smui/list": "^1.0.0",
+    "@smui/snackbar": "^1.0.0",
     "@smui/textfield": "^1.0.0",
     "@tsconfig/svelte": "^1.0.0",
     "@types/jest": "^26.0.15",

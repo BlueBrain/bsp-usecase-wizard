@@ -12,6 +12,7 @@
   import { goBackPage } from '@/helpers/pages';
   import type { Collab as CollabInterface } from '@/types/interfaces';
   import { saveLastUsedCollab, getLastUsedCollab } from '@/helpers/storage';
+  import PullerSnackBar from './PullerSnackBar.svelte';
 
   const limitCollabsToShow = 10;
   let processing = false;
@@ -21,6 +22,8 @@
   let filteredCollabsNames: Array<string> = [];
   let searchText = '';
   let lastUsedCollabName = '';
+  let showSnackbar = false;
+  let pullerUrl = '';
   
   userInfo.subscribe((newUser: Oidc.User) => {
     if (!newUser?.access_token) return;
@@ -33,7 +36,8 @@
     saveLastUsedCollab(collabSelectedName);
     await fileCreationProcess(collabSelectedName);
 
-    openPuller(collabSelectedName);
+    pullerUrl = openPuller(collabSelectedName);
+    showSnackbar = true;
 
     processing = false;
     collabSelectedName = '';
@@ -139,6 +143,10 @@
       </List>    
     {/if}
   </div>
+  <PullerSnackBar
+    showSnackbar="{ showSnackbar }"
+    pullerUrl="{ pullerUrl }"
+  />
 </section>
 
 

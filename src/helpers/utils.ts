@@ -54,6 +54,7 @@ export function openPuller(collabName: string) {
   const pullerLink = `${nbgitpuller.BASE}${repo}${targetPath}${urlPath}`;
   console.debug('PullerLink:', pullerLink);
   window.open(pullerLink, '_blank');
+  return pullerLink;
 }
 
 function clickSavedUsecase() {
