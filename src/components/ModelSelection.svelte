@@ -74,7 +74,7 @@
   </div>
 
   {#if modelsLoading}
-    <span>Fetching latest models from Model Catalog ...</span>
+    <div class="centered">Fetching latest models from Model Catalog ...</div>
   {/if}
 
   {#if !modelsLoading && fetchedModels.length}
@@ -141,5 +141,8 @@
     max-height: 70vh;
     overflow: scroll;
     padding: 10px;
+  }
+  .centered {
+    text-align: center;
   }
 </style>

@@ -52,6 +52,7 @@ export function openPuller(collabName: string) {
   const urlPath = `${nbgitpuller.URL_PATH_KEY}/${collabPath}/${drive.DEFAULT_UC_FOLDER_NAME}/${uc.notebookPath}`;
 
   const pullerLink = `${nbgitpuller.BASE}${repo}${targetPath}${urlPath}`;
+  console.debug('PullerLink:', pullerLink);
   window.open(pullerLink, '_blank');
 }
 

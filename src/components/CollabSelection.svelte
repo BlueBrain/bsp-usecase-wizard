@@ -94,7 +94,7 @@
   <div class="collab-list">
     <!-- Select Collab -->
     {#if collabsLoading}
-      <span>Loading...</span>
+      <div class="centered">Fetching collabs...</div>
     {/if}
     
     {#if !collabsLoading && collabs.length}
@@ -165,5 +165,8 @@
   .collab-list {
     max-width: 650px;
     margin: 0 auto;
+  }
+  .centered {
+    text-align: center;
   }
 </style>
