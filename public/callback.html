@@ -15,7 +15,7 @@
       
       mgr.signinRedirectCallback().then(function (user) {
         console.debug('user fetched', user);
-        window.location.href = '{{BASE_URL}}/index.html';
+        window.location.href = '{{CALLBACK_URL}}';
       }).catch(function (err) {
         console.error(err);
       });

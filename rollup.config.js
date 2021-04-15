@@ -15,8 +15,10 @@ import copy from 'rollup-plugin-copy'
 const production = !process.env.ROLLUP_WATCH;
 
 const baseUrl = process.env.BASE_URL || '';
+const callbackUrl = process.env.CALLBACK_URL || `${baseUrl}/index.html`;
 
 console.log('BASE_URL:', baseUrl);
+console.log('CALLBACK_URL:', callbackUrl);
 
 function serve() {
 	let server;
@@ -94,12 +96,19 @@ export default {
 		copy({
 			targets: [
 				{
-					src: 'public/*.html',
+					src: 'public/index.html',
 					dest: 'public/build',
 					transform: (contents) => {
 						return contents.toString().replace(/{{BASE_URL}}/g, baseUrl);
 					},
 				},
+				{
+					src: 'public/callback.html',
+					dest: 'public/build',
+					transform: (contents) => {
+						return contents.toString().replace(/{{CALLBACK_URL}}/g, callbackUrl);
+					},
+				},				
 				{
 					src: ['public/favicon.ico', 'public/global.css'],
 					dest: 'public/build',
