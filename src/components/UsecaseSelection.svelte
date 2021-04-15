@@ -6,7 +6,7 @@
   import { onMount } from 'svelte';
 
   import type { UsecaseFileInterface, UsecaseItem } from '@/types/usecases';
-  import { authorized, usecaseSelected, usecaseCategorySelected } from '@/store';
+  import { authorized, usecaseSelected, usecaseCategorySelected, appVersion } from '@/store';
   import { saveUsecaseAndLogin } from '@/helpers/utils';
   import { goNextPage } from '@/helpers/pages';
   import { usecases as usecasesConstants } from '@/constants';
@@ -78,3 +78,19 @@
     {/if}
   {/each} <!-- end category -->
 </div>
+
+<div class="app-version">
+  v{$appVersion}
+</div>
+
+
+<style>
+  .app-version {    
+    background: #2c3e50;
+    color: white;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>

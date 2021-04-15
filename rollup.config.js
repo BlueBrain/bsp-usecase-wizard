@@ -16,9 +16,12 @@ const production = !process.env.ROLLUP_WATCH;
 
 const baseUrl = process.env.BASE_URL || '';
 const callbackUrl = process.env.CALLBACK_URL || `${baseUrl}/index.html`;
+const pjson = require('./package.json');
+const appVersion = pjson.version || '';
 
 console.log('BASE_URL:', baseUrl);
 console.log('CALLBACK_URL:', callbackUrl);
+console.log('VERSION', appVersion);
 
 function serve() {
 	let server;
@@ -91,6 +94,7 @@ export default {
 		replace({
 			processEnvs: JSON.stringify({
 				baseUrl,
+				appVersion,
 			}),
 		}),
 		copy({
@@ -108,7 +112,7 @@ export default {
 					transform: (contents) => {
 						return contents.toString().replace(/{{CALLBACK_URL}}/g, callbackUrl);
 					},
-				},				
+				},
 				{
 					src: ['public/favicon.ico', 'public/global.css'],
 					dest: 'public/build',

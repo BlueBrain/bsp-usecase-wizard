@@ -12,6 +12,7 @@
   onMount(() => {
     justCheckIfAuthenticated();
   });
+
 </script>
 
 

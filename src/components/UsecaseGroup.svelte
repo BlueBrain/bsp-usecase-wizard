@@ -19,7 +19,7 @@
 
 <div class="usecases-group-container">
   {#each groups as group}
-    <h2>{ group.title }</h2>
+    <div class="group-title">{ group.title }</div>
     <UsecaseCard
       usecases={ group.items }
       categoryId={ categoryId }
@@ -27,3 +27,12 @@
     />
   {/each} <!-- end group -->
 </div>
+
+
+
+<style>
+  .group-title {
+    padding: 15px 0;
+    font-size: 2em;
+  }
+</style>

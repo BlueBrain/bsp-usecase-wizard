@@ -1,5 +1,5 @@
 
-import { writable } from 'svelte/store';
+import { readable, writable } from 'svelte/store';
 import type { UsecaseItem } from '@/types/usecases';
 import type { Model } from '@/types/models';
 import { pages } from '@/constants';
@@ -22,3 +22,11 @@ export const currentPage = writable(initialPage)
 export const modelsSelected = writable([] as Array<Model>);
 
 export const collabIdSelected = writable('');
+
+// comes from rollup.config.js
+declare var processEnvs: any
+export const appVersion = readable(null, function start(set) {
+  console.log('version from store', processEnvs.appVersion);
+  set(processEnvs.appVersion);
+	return function stop() {};
+});
