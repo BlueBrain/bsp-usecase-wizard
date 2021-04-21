@@ -105,7 +105,7 @@
     vertical-align: top;
   }
   .description {
-    font-size: 1.2em;
+    font-size: 1em;
     padding-top: 10px;
   }
   .contributors-container {

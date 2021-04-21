@@ -28,7 +28,7 @@
     flex-wrap: wrap;
     list-style: none;
     padding: 0;
-    font-size: 2em;
+    font-size: 1.4em;
     margin: 0 0 20px 0;
   }
   .arrows li:before {

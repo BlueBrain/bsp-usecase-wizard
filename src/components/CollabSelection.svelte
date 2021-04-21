@@ -134,13 +134,15 @@
         {/if}
       </div>
 
-      <List>
-        {#each filteredCollabsNames as collabName}
-          <Item on:click={collabSelected(collabName)}>
-            <Text>{collabName}</Text>
-          </Item>
-        {/each}
-      </List>    
+      <div class="collab-list-scroll">
+        <List>
+          {#each filteredCollabsNames as collabName}
+            <Item on:click={collabSelected(collabName)}>
+              <Text>{collabName}</Text>
+            </Item>
+          {/each}
+        </List>
+      </div>
     {/if}
   </div>
   <PullerSnackBar
@@ -176,5 +178,9 @@
   }
   .centered {
     text-align: center;
+  }
+  .collab-list-scroll {
+    max-height: 70vh;
+    overflow: scroll;
   }
 </style>
