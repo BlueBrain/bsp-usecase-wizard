@@ -5,13 +5,13 @@
   import Accordion from './Accordion.svelte';
   import { onMount } from 'svelte';
 
-  import type { UsecaseFileInterface, UsecaseItem } from '@/types/usecases';
+  import type { UsecasesFileInterface, UsecaseItem, UsecaseCategory } from '@/types/usecases';
   import { authorized, usecaseSelected, usecaseCategorySelected, appVersion } from '@/store';
   import { saveUsecaseAndLogin } from '@/helpers/utils';
   import { goNextPage } from '@/helpers/pages';
   import { usecases as usecasesConstants } from '@/constants';
 
-  let usecasesCategories: Array<UsecaseFileInterface> = [];
+  let usecasesCategories: UsecasesFileInterface = [];
 
   function ucClick(event: any) {
     const uc: UsecaseItem = event.detail.usecaseItem;
@@ -26,7 +26,7 @@
     goNextPage();
   }
 
-  function categoryIsNotEmpty(category: UsecaseFileInterface) {
+  function categoryIsNotEmpty(category: UsecaseCategory) {
     if (!category.usecases.length) {
       if (!category.groups.length) return false;
 

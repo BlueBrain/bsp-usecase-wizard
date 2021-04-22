@@ -2,7 +2,7 @@
 import { get } from 'svelte/store';
 import { pages } from '@/constants';
 import { currentPage, usecaseSelected } from '@/store';
-import type { UsecaseItem, UsecaseItemNotebook, UsecaseItemWebapp } from '@/types/usecases';
+import type { UsecaseItem } from '@/types/usecases';
 
 // TODO: fix assigning type based on property
 // @ts-ignore ts(2339)

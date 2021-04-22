@@ -1,11 +1,11 @@
 {
   "name": "svelte-app",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "build": "sh usecases-schema-to-ts.sh && rollup -c",
+    "dev": "sh usecases-schema-to-ts.sh && rollup -c -w",
     "start": "sirv public/build -p 5005",
-    "validate": "svelte-check",
+    "validate": "sh usecases-schema-to-ts.sh && svelte-check",
     "test": "jest"
   },
   "devDependencies": {
@@ -40,8 +40,7 @@
     "typescript": "^3.9.3"
   },
   "dependencies": {
-    "sirv-cli": "^1.0.0",
-    "ts-interface-checker": "^0.2.1"
+    "sirv-cli": "^1.0.0"
   },
   "jest": {
     "moduleNameMapper": {

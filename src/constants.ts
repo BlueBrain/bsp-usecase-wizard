@@ -41,5 +41,6 @@ export const model = {
 };
 
 export const usecases = {
-  INFO_FILE_URL: 'https://raw.githubusercontent.com/antonelepfl/ebrains-sim-cl-dev/usecases-data/usecases-info.json',
+  INFO_FILE_URL: 'https://raw.githubusercontent.com/eb-cls-jn/Usecases_Info/main/usecases-info.json',
+  JSON_SCHEMA_URL: 'https://raw.githubusercontent.com/eb-cls-jn/Usecases_Info/main/usecases-info.schema.json',
 };
