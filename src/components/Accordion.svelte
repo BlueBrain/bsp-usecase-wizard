@@ -59,7 +59,7 @@
     }
     
     .tab-content.expanded {
-      max-height: 100vh;
+      max-height: 500vh;
       padding: 1em;
     }
 
