@@ -1,4 +1,9 @@
 #!/bin/sh
+
+# this file is executed to fetch the latest information about the schema.
+# If it changes under the https://github.com/ebrains-cls-interactive/Usecases_Info repo
+# running this script will allow the typescript to adapt to the new rules.
+
 set -e
 echo "Fetching schema...."
 URL=$(cat src/constants.ts | grep JSON_SCHEMA_URL | grep -o "http.*\.json")

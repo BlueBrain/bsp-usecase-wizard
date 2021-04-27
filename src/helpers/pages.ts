@@ -8,7 +8,7 @@ import type { UsecaseItem } from '@/types/usecases';
 // @ts-ignore ts(2339)
 
 export function goNextPage() {
-  const uc: any = get(usecaseSelected);
+  const uc: UsecaseItem = get(usecaseSelected);
   switch (get(currentPage)) {
     case pages.USECASE_SELECTION:
       if (uc.chooseModel) {
@@ -42,7 +42,7 @@ export function goNextPage() {
 }
 
 export function goBackPage() {
-  const uc: any = get(usecaseSelected);
+  const uc: UsecaseItem = get(usecaseSelected);
   switch (get(currentPage)) {
     case pages.COLLAB_SELECTION:
       if (uc.chooseModel) {

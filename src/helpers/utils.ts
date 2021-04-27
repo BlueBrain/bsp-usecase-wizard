@@ -1,6 +1,11 @@
 
 import { get } from 'svelte/store';
-import { userInfo, authorized, usecaseSelected } from '@/store';	
+import {
+  userInfo,
+  authorized,
+  usecaseSelected,
+  usecaseCategorySelected,
+} from '@/store';	
 import { init, getUserInfo } from '@/helpers/auth';
 import { goNextPage } from '@/helpers/pages';
 import type { UsecaseItem } from '@/types/usecases';
@@ -9,14 +14,17 @@ import {
   getSavedUsecase,
   startingLoginProcess,
   returningFromLogin,
+  saveCategorySelected,
+  getSavedCategory,
 } from '@/helpers/storage';
 import {  } from '@/store';
 import { nbgitpuller, drive } from '@/constants';
 
 
-export function saveUsecaseAndLogin(uc: UsecaseItem) {
+export function saveUsecaseAndLogin() {
   startingLoginProcess(true);
-  saveUsecaseSelected(uc);
+  saveUsecaseSelected(get(usecaseSelected));
+  saveCategorySelected(get(usecaseCategorySelected));
   getUserInfo().then((user) => {
     if (!user || user.expired) {
       init();
@@ -70,7 +78,9 @@ export function openPuller(collabName: string) {
 
 function clickSavedUsecase() {
   const savedUc = getSavedUsecase();
+  const savedCategory = getSavedCategory();
   if (!savedUc) return;
   usecaseSelected.set(savedUc);
+  usecaseCategorySelected.set(savedCategory);
   goNextPage();
 }

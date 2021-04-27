@@ -5,6 +5,7 @@ export const storageKeys = {
   RETURN_LOGIN: 'returnFromLogin',
   MODELS_LIST: 'modelsList',
   SELECTED_COLLAB: 'selectedCollab',
+  SELECTED_CATEGORY: 'selectedCategory',
 };
 
 export const iam = {

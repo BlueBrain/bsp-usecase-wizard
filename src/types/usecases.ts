@@ -15,6 +15,7 @@ export interface UsecaseCategory {
   groups?: UsecaseGroup[];
 }
 export interface UsecaseItem {
+  id: string;
   title: string;
   description: string;
   experience: ["all" | "power" | "experts" | "code"] | null;

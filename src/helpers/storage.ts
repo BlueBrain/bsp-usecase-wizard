@@ -35,4 +35,11 @@ export function getLastUsedCollab(): string | null {
   return localStorage.getItem(storageKeys.SELECTED_COLLAB);
 }
 
+export function saveCategorySelected(category: string) {
+  sessionStorage.setItem(storageKeys.SELECTED_CATEGORY, category);
+}
+export function getSavedCategory(): string | null {
+  return sessionStorage.getItem(storageKeys.SELECTED_CATEGORY);
+}
+
 export default {};

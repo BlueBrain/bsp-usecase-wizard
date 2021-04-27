@@ -2,7 +2,8 @@
 <script lang="ts">
   import Button, {Label, Icon} from '@smui/button';
   import Textfield from '@smui/textfield';
-  import { onMount } from 'svelte';
+  import CircularProgress from '@smui/circular-progress';
+  import { onMount, onDestroy } from 'svelte';
 
   import ModelCard from './ModelCard.svelte';
   import ModelShowSelectedToggle from './ModelShowSelectedToggle.svelte';
@@ -23,7 +24,7 @@
     load();
   });
 
-  userInfo.subscribe((newUser: Oidc.User) => {
+  const unsubscribeUser = userInfo.subscribe((newUser: Oidc.User) => {
     if (!newUser?.access_token) return;
     load();
   });
@@ -31,6 +32,7 @@
   async function load() {
     modelsLoading = true;
     fetchedModels = await getHippocampusModels();
+    modelsSelected.set([]);
     setFilteredModels(fetchedModels);
     modelsLoading = false;
   }
@@ -61,6 +63,8 @@
   function setFilteredModels(models: Array<Model>) {
     filteredModels = models;
   }
+
+	onDestroy(unsubscribeUser);
 </script>
 
 
@@ -74,7 +78,10 @@
   </div>
 
   {#if modelsLoading}
-    <div class="centered">Fetching latest models from Model Catalog ...</div>
+    <div class="centered">
+      <div>Fetching latest models from Model Catalog...</div>
+      <CircularProgress class="custom-loading-spin" indeterminate />
+    </div>
   {/if}
 
   {#if !modelsLoading && fetchedModels.length}
@@ -143,6 +150,9 @@
     padding: 10px;
   }
   .centered {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: space-between;
   }
 </style>

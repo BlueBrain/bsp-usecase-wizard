@@ -20,7 +20,7 @@
     
     if (!$authorized) {
       console.warn('user not registered');
-      saveUsecaseAndLogin(uc);
+      saveUsecaseAndLogin();
       return;
     }
     goNextPage();

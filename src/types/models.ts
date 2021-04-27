@@ -58,7 +58,12 @@ export interface ModelsJsonInfo {
   uri: string;
 }
 
+interface ModelJsonUcArray {
+  // use case index
+  [index:string] : Array<ModelsJsonInfo>;
+}
+
 export interface ModelsJson {
   // category index
-  [index:string] : Array<ModelsJsonInfo>;
+  [index:string] : ModelJsonUcArray;
 }

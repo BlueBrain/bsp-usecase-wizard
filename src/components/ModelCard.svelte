@@ -1,6 +1,7 @@
 
 <script lang="ts">
   import Paper from '@smui/paper';
+  import { onDestroy } from 'svelte';
 
   import ModelBreadcrumb from './ModelBreadcrumb.svelte'
 
@@ -10,7 +11,7 @@
   export let modelItem: Model;
   let modelIsSelected: boolean = false;
 
-  modelsSelected.subscribe(() => {
+  const unsubscribeModels = modelsSelected.subscribe(() => {
     modelIsSelected = $modelsSelected.some(
       model => model.name.includes(modelItem.name)
     )
@@ -33,6 +34,8 @@
   function sanitize(rawHtml: string) {
     return rawHtml.replaceAll('\\_', '_');
   }
+
+  onDestroy(unsubscribeModels);
 </script>
 
 

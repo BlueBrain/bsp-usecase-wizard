@@ -151,3 +151,8 @@ button:focus {
   visibility: hidden;
   opacity: 0;
 }
+
+.custom-loading-spin {
+	height: 32px;
+	width: 32px;
+}
