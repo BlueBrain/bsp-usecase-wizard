@@ -3,6 +3,7 @@ import { get } from 'svelte/store';
 import { pages } from '@/constants';
 import { currentPage, usecaseSelected } from '@/store';
 import type { UsecaseItem } from '@/types/usecases';
+import { sendStatistics } from '@/helpers/statistics';
 
 // TODO: fix assigning type based on property
 // @ts-ignore ts(2339)
@@ -20,6 +21,7 @@ export function goNextPage() {
         return;
       }
       if (uc.externalUrl) {
+        sendStatistics();
         window.open(uc.externalUrl, '_blank');
         return;
       }
@@ -31,6 +33,7 @@ export function goNextPage() {
         return;
       }
       if (uc.externalUrl) {
+        sendStatistics();
         window.open(uc.externalUrl, '_blank');
         return;
       }

@@ -4,6 +4,7 @@ import { get } from 'svelte/store';
 import type { Model } from '@/types/models';
 import { findCollabIdByName, createFolder } from '@/helpers/drive';
 import { updateOrCreateModelsJson } from '@/helpers/models';
+import { sendStatistics } from '@/helpers/statistics';
 import { drive } from '@/constants';
 
 export async function fileCreationProcess(collabSelectedName: string) {
@@ -18,4 +19,5 @@ export async function fileCreationProcess(collabSelectedName: string) {
   }
   // create folder where the nbgitpuller will put the git repo
   await createFolder(collabId, drive.DEFAULT_UC_FOLDER_NAME);
+  sendStatistics();
 }

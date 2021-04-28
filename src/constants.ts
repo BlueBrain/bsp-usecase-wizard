@@ -44,4 +44,5 @@ export const model = {
 export const usecases = {
   INFO_FILE_URL: 'https://raw.githubusercontent.com/eb-cls-jn/Usecases_Info/main/usecases-info.json',
   JSON_SCHEMA_URL: 'https://raw.githubusercontent.com/eb-cls-jn/Usecases_Info/main/usecases-info.schema.json',
+  STATISTIC_URL: 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSeLKkgcY1yDb9gHjmFY-Ys8YH65wVhubdGfXUgudrRVIDtlqQ/formResponse',
 };
