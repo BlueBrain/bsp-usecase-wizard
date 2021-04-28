@@ -1,12 +1,14 @@
 
 import { get } from 'svelte/store';
 import { pages } from '@/constants';
-import { currentPage, usecaseSelected } from '@/store';
+import {
+  currentPage,
+  usecaseSelected,
+  modelsSelected,
+  modelsSelectedLimit,
+} from '@/store';
 import type { UsecaseItem } from '@/types/usecases';
 import { sendStatistics } from '@/helpers/statistics';
-
-// TODO: fix assigning type based on property
-// @ts-ignore ts(2339)
 
 export function goNextPage() {
   const uc: UsecaseItem = get(usecaseSelected);
@@ -14,6 +16,8 @@ export function goNextPage() {
     case pages.USECASE_SELECTION:
       if (uc.chooseModel) {
         currentPage.set(pages.MODEL_SELECTION);
+        if (!uc.maxModelSelection) return;
+        modelsSelectedLimit.set(uc.maxModelSelection);
         return;
       }
       if (uc.notebookPath) {
@@ -33,8 +37,7 @@ export function goNextPage() {
         return;
       }
       if (uc.externalUrl) {
-        sendStatistics();
-        window.open(uc.externalUrl, '_blank');
+        openWebAppWithModel(uc);
         return;
       }
       break;
@@ -68,4 +71,16 @@ export function goBackPage() {
     default:
       break;
   }
+}
+
+function openWebAppWithModel(uc: UsecaseItem) {
+  const model = get(modelsSelected)[0]?.name;
+  const placeholder = uc.externalUrlModelPlaceholder || uc.externalUrl;
+  
+  const fullUrl = placeholder
+    .replace('{URL}', uc.externalUrl)
+    .replace('{MODEL}', model);
+  
+  sendStatistics();
+  window.open(fullUrl, '_blank');
 }

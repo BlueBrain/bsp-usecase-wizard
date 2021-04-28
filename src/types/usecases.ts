@@ -34,6 +34,8 @@ export interface UsecaseItem {
   tutorial?: string | null;
   notebookPath?: string;
   notebookRepoUrl?: string;
+  externalUrlModelPlaceholder?: string;
+  maxModelSelection?: number;
 }
 export interface Contributors {
   name: string;

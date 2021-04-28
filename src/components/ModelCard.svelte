@@ -6,7 +6,7 @@
   import ModelBreadcrumb from './ModelBreadcrumb.svelte'
 
   import type { Model } from '@/types/models';
-  import { modelsSelected } from '@/store';
+  import { modelsSelected, modelsSelectedLimit, errorMessage } from '@/store';
   
   export let modelItem: Model;
   let modelIsSelected: boolean = false;
@@ -17,12 +17,25 @@
     )
   });
 
+  function resetError() {
+    setTimeout(() => { errorMessage.set(''); }, 5000);
+  }
+
   function toggleModel(modelItem: Model) {
     if (modelIsSelected) {
       $modelsSelected = $modelsSelected.filter(
         model => model.name !== modelItem.name
       );
     } else {
+      if ($modelsSelectedLimit === 1) {
+        $modelsSelected = [modelItem];
+        return;
+      }
+      if ($modelsSelectedLimit > 1 && $modelsSelected.length >= $modelsSelectedLimit) {
+        errorMessage.set('Models selected reached limit');
+        resetError();
+        return;
+      }
       $modelsSelected = [...$modelsSelected, modelItem];
     }
   }

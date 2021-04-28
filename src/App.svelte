@@ -6,6 +6,7 @@
   import UsecaseSelection from './components/UsecaseSelection.svelte';
   import CollabSelection from './components/CollabSelection.svelte';
   import ModelSelection from './components/ModelSelection.svelte';
+  import GenericSnackBar from './components/GenericSnackBar.svelte';
   import { currentPage } from '@/store';
   import { pages } from '@/constants';
 
@@ -35,6 +36,9 @@
       <ModelSelection />
     </div>
   {/if}
+
+  <!-- To display messages -->
+  <GenericSnackBar />
 </main>
 
 

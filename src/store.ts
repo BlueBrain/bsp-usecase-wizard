@@ -26,7 +26,11 @@ export const collabIdSelected = writable('');
 // comes from rollup.config.js
 declare var processEnvs: any
 export const appVersion = readable(null, function start(set) {
-  console.log('version from store', processEnvs.appVersion);
+  console.log('Version from Store', processEnvs.appVersion);
   set(processEnvs.appVersion);
 	return function stop() {};
 });
+
+export const modelsSelectedLimit = writable(0);
+
+export const errorMessage = writable('');
