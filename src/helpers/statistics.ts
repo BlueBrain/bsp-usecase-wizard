@@ -10,9 +10,6 @@ import {
 } from '@/store';
 import { usecases } from '@/constants';
 
-// comes from rollup.config.js
-declare const processEnvs: any;
-
 const STATISTICS_FORM_URL = usecases.STATISTIC_URL;
 
 export interface StatisticDataInterface {
@@ -24,11 +21,13 @@ export interface StatisticDataInterface {
 }
 
 export function sendStatistics() {
-  // avoid sending outside production
-  if (processEnvs.baseUrl !== '/static/wizard') {
-    console.log('avoid sending statistics not in production');
-    return;
-  };
+  console.log(get(userInfo));
+  // avoid sending outside production or in test
+  // @ts-ignore // is testing
+  if (typeof jest !== 'undefined') return;
+  // @ts-ignore // comes from rollup.config.js
+  declare const processEnvs: any;
+  if (processEnvs?.baseUrl !== '/static/wizard') return;
   
   const formData = new URLSearchParams();
   const data: StatisticDataInterface = {
