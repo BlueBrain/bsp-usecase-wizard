@@ -2,10 +2,10 @@
   "name": "svelte-app",
   "version": "1.0.8",
   "scripts": {
-    "build": "sh usecases-schema-to-ts.sh && rollup -c",
+    "build": "rollup -c",
     "dev": "sh usecases-schema-to-ts.sh && rollup -c -w",
     "start": "sirv public/build -p 5005",
-    "validate": "sh usecases-schema-to-ts.sh && svelte-check",
+    "validate": "svelte-check",
     "test": "jest"
   },
   "devDependencies": {
