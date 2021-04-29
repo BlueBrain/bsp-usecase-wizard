@@ -87,16 +87,15 @@
   {#if !modelsLoading && fetchedModels.length}
     <div class="top-bar">
       <div class="search-box">
-        <div class="search-label">Search</div>
         <Textfield
-          class="shaped-outlined custom-search"
-          variant="outlined"
           label="Model Name"
           bind:value={searchText}
           on:change={filterModel}
-        />
+        >
+          <Icon class="material-icons" slot="trailingIcon">search</Icon>
+        </Textfield>
         <div class="filtered-length">
-          { filteredModels.length } / { fetchedModels.length }
+          ({ filteredModels.length } / { fetchedModels.length })
         </div>
       </div>
     
@@ -126,23 +125,22 @@
 
 
 <style>
-  .search-box {
-    display: flex;
-    flex-grow: 1;
-    align-items: center;
-  }
-  .search-label {
-    font-size: 20px;
-    margin-right: 20px;
-  }
   .filtered-length {
     margin-left: 20px;
+    display: inline-flex;
+  }
+  .search-box {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
   }
   .top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    max-width: 650px;
+    margin: 0 auto;
   }
   .models-container {
     max-height: 70vh;

@@ -62,19 +62,6 @@ button:focus {
 }
 
 
-/* Search input */
-.custom-search.shaped-outlined input.mdc-text-field__input {
-	padding: 16px 20px;
-}
-
-.custom-search.shaped-outlined .mdc-notched-outline .mdc-notched-outline__leading {
-	border-radius: 28px 0 0 28px;
-	width: 28px;
-}
-.custom-search.shaped-outlined .mdc-notched-outline .mdc-notched-outline__trailing {
-	border-radius: 0 28px 28px 0;
-}
-
 /* Section header with back button */
 .custom-section-header {
 	display: flex;

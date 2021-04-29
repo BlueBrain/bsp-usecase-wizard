@@ -111,14 +111,13 @@
     {#if !collabsLoading && collabs.length}
       <div class="top-bar">
         <div class="search-box">
-          <div class="search-label">Search</div>
           <Textfield
-            class="shaped-outlined custom-search"
-            variant="outlined"
             label="Collab Name"
             bind:value={searchText}
             on:change={filterCollab}
-          />
+          >
+            <Icon class="material-icons" slot="trailingIcon">search</Icon>
+          </Textfield>
         </div>
 
         <div class="processing-container">
@@ -170,23 +169,11 @@
 
 
 <style>
-  .processing-container {
-    max-width: 50%;
-    margin: 20px auto;
-  }
-  .search-box {
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
-  }
-  .search-box .search-label {
-    margin: 0 15px;
-    display: inline-block;
-    font-size: 20px;
-  }
   .top-bar {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    max-width: 650px;
   }
   .collab-list {
     max-width: 650px;
