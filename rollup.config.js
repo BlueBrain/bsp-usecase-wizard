@@ -9,7 +9,8 @@ import typescript from '@rollup/plugin-typescript';
 import postcss from 'rollup-plugin-postcss';
 import json from "@rollup/plugin-json";
 import replace from '@rollup/plugin-replace';
-import copy from 'rollup-plugin-copy'
+import copy from 'rollup-plugin-copy';
+import css from 'rollup-plugin-css-only';
 
 
 const production = !process.env.ROLLUP_WATCH;
@@ -54,15 +55,15 @@ export default {
 	},
 	plugins: [
 		svelte({
-			// enable run-time checks when not in production
-			dev: !production,
-			// we'll extract any component CSS out into
-			// a separate file - better for performance
-			css: css => {
-				css.write('style_bundle.css');
+			compilerOptions: {
+				// enable run-time checks when not in production
+				dev: !production
 			},
 			preprocess: sveltePreprocess(),
 		}),
+		// we'll extract any component CSS out into
+		// a separate file - better for performance
+		css({ output: 'style_bundle.css' }),
 
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
@@ -92,6 +93,7 @@ export default {
 		}),
 		json(),
 		replace({
+			preventAssignment: true,
 			processEnvs: JSON.stringify({
 				baseUrl,
 				appVersion,
