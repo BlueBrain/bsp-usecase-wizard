@@ -1,7 +1,6 @@
 
 <script lang="ts">
   import Paper from '@smui/paper';
-  import { Icon } from '@smui/button';
   import { createEventDispatcher } from 'svelte';
 
   import UsecasePills from './UsecasePills.svelte'
@@ -15,10 +14,6 @@
 
   function ucClick(usecaseItem: UsecaseItem) {
     dispatch('clicked', { usecaseItem, categoryId });
-  }
-  
-  function openTutorial(url: string) {
-    window.open(url, '_blank');
   }
 </script>
 
@@ -51,19 +46,6 @@
 
             <UsecasePills {usecaseItem} />
 
-            {#if usecaseItem.tutorial}
-              <div
-                class="video-tutorial"
-                on:click|stopPropagation={ () => openTutorial(usecaseItem.tutorial) }
-              >
-                <div class="tutorial-icon">
-                  <Icon class="material-icons">tv</Icon>
-                </div>
-                <div class="tutorial-text">
-                  Interactive tutorial
-                </div>
-              </div>
-            {/if}
           </div> <!-- columns-container -->
         </Paper>
       </div> <!-- end card -->
@@ -95,7 +77,8 @@
     vertical-align: top;
   }
   .title {
-    font-size: 1.8em;
+    font-size: 1.4em;
+    font-weight: 500;
   }
   .description {
     font-size: 1.2em;
@@ -110,13 +93,5 @@
   }
   span.contributor-names:before {
     content: " - ";
-  }
-  .video-tutorial {
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
   }
 </style>
