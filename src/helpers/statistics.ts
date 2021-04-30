@@ -21,7 +21,6 @@ export interface StatisticDataInterface {
 }
 
 export function sendStatistics() {
-  console.log(get(userInfo));
   // avoid sending outside production or in test
   // @ts-ignore // is testing
   if (typeof jest !== 'undefined') return;
@@ -33,7 +32,7 @@ export function sendStatistics() {
   const data: StatisticDataInterface = {
     category: get(usecaseCategorySelected),
     usecase: get(usecaseSelected)?.id,
-    userId: get(userInfo)?.profile?.email,
+    userId: get(userInfo)?.profile?.sub,
     models: get(modelsSelected)?.map(m => m.id),
     collabId: get(collabIdSelected),
   }
