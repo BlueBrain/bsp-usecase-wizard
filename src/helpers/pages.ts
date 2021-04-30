@@ -9,6 +9,7 @@ import {
 } from '@/store';
 import type { UsecaseItem } from '@/types/usecases';
 import { sendStatistics } from '@/helpers/statistics';
+import { openWebAppWithModel } from '@/helpers/models';
 
 export function goNextPage() {
   const uc: UsecaseItem = get(usecaseSelected);
@@ -38,6 +39,7 @@ export function goNextPage() {
       }
       if (uc.externalUrl) {
         openWebAppWithModel(uc);
+        sendStatistics();
         return;
       }
       break;
@@ -71,16 +73,4 @@ export function goBackPage() {
     default:
       break;
   }
-}
-
-function openWebAppWithModel(uc: UsecaseItem) {
-  const model = get(modelsSelected)[0]?.name;
-  const placeholder = uc.externalUrlModelPlaceholder || uc.externalUrl;
-  
-  const fullUrl = placeholder
-    .replace('{URL}', uc.externalUrl)
-    .replace('{MODEL}', model);
-  
-  sendStatistics();
-  window.open(fullUrl, '_blank');
 }

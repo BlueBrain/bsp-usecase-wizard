@@ -1,15 +1,15 @@
 
 import axios from 'axios';
-import { usecaseSelected, userInfo } from '@/store';
+import { get } from 'svelte/store';
+import {
+  usecaseSelected, userInfo, errorMessage,
+  modelsSelected, usecaseCategorySelected, collabIdSelected,
+} from '@/store';
 import { modelCatalog } from '@/constants';
 import type { Model, ModelsJson, ModelsJsonInfo } from '@/types/models';
-
-import { modelsSelected, usecaseCategorySelected, collabIdSelected } from '@/store';
-import { get } from 'svelte/store';
 import { getFileFromCollab, uploadString } from '@/helpers/drive';
 import { drive } from '@/constants';
 import type { UsecaseItem } from '@/types/usecases';
-
 
 const axiosInstance = axios.create();
 
@@ -81,6 +81,39 @@ export async function updateOrCreateModelsJson() {
   const modelsInfo = models.map(m => getModelInfo(m));
   const finalModelsJson = appendModels(originalModelsObj, modelsInfo);
   await uploadModel(finalModelsJson);
+}
+
+function fillModelUrl(placeholderUrl: string, uc: UsecaseItem) {
+  if (uc.maxModelSelection !== 1) {
+    alert('Multiple models in URL not supported yet');
+    return null;
+  }
+
+  const modelInfo = get(modelsSelected)[0];
+  const modelName = modelInfo.name;
+  
+  const modelMorphologyUrl = modelInfo?.instances.reduce((prev, instance) => {
+    // this way we obtain the latest morphology available in the instances
+    if (!instance.morphology) return prev;
+    return prev = instance.morphology;
+  }, '');
+
+  if (!modelMorphologyUrl) {
+    errorMessage.set('Model do not have any morphology file associated');
+    return null;
+  }
+
+  return placeholderUrl
+    .replace('{EXTERNAL_URL}', uc.externalUrl)
+    .replace('{MODEL_NAME}', modelName)
+    .replace('{MORPHOLOGY_URL}', modelMorphologyUrl);
+}
+
+export function openWebAppWithModel(uc: UsecaseItem) {
+  const placeholder = uc.externalUrlModelPlaceholder || uc.externalUrl;
+  const fullUrl = fillModelUrl(placeholder, uc);
+  if (!fullUrl) return;
+  window.open(fullUrl, '_blank');
 }
 
 export default {};

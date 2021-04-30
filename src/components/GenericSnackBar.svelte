@@ -11,6 +11,8 @@
 
     message = msg;
     snackbarBind.open();
+
+    setTimeout(() => { errorMessage.set(''); }, 5000);
   });
 </script>
 
