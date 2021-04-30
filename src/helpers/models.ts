@@ -85,7 +85,7 @@ export async function updateOrCreateModelsJson() {
 
 function fillModelUrl(placeholderUrl: string, uc: UsecaseItem) {
   if (uc.maxModelSelection !== 1) {
-    alert('Multiple models in URL not supported yet');
+    errorMessage.set('Multiple models in URL not supported yet');
     return null;
   }
 
@@ -98,7 +98,7 @@ function fillModelUrl(placeholderUrl: string, uc: UsecaseItem) {
     return prev = instance.morphology;
   }, '');
 
-  if (!modelMorphologyUrl) {
+  if (placeholderUrl.includes('MORPHOLOGY_URL') && !modelMorphologyUrl) {
     errorMessage.set('Model do not have any morphology file associated');
     return null;
   }

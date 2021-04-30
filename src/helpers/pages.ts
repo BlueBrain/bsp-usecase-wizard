@@ -64,7 +64,7 @@ export function goBackPage() {
       break;
   
     case pages.MODEL_SELECTION:
-      if (uc.notebookPath) {
+      if (uc.notebookPath || uc.externalUrl) {
         currentPage.set(pages.USECASE_SELECTION);
         return;
       }

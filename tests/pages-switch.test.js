@@ -129,7 +129,7 @@ test('not go back from models', () => {
   currentPage.set(pages.MODEL_SELECTION);
   goBackPage();
   const back = get(currentPage);
-  expect(back).toBe(pages.MODEL_SELECTION);
+  expect(back).toBe(pages.USECASE_SELECTION);
 });
 
 test('not go back from collab', () => {
