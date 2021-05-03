@@ -29,20 +29,6 @@ self.addEventListener('fetch', function (event) {
   if (event.request.method !== 'GET') return;
   if (neverUseSW.some(u => event.request.url.includes(u))) return;
 
-  event.respondWith(
-    caches.open(CACHE_NAME).then(function (cache) {
-      return cache.match(event.request).then(function (response) {
-        return (
-          response ||
-          fetch(event.request).then(function (response) {
-            cache.put(event.request, response.clone());
-            return response;
-          })
-        );
-      });
-    }),
-  );
-
   function updateInBackground() {
     if (!navigator.onLine) return;
     if (!periodicUpdate.some(f => event.request.url.includes(f))) return;
@@ -53,5 +39,20 @@ self.addEventListener('fetch', function (event) {
       });
     });
   }
-  updateInBackground();
+
+  event.respondWith(
+    caches.open(CACHE_NAME).then(function (cache) {
+      return cache.match(event.request).then(function (response) {
+        if (response) {
+          updateInBackground();
+          return response;
+        } else {
+          return fetch(event.request).then(function (response) {
+            cache.put(event.request, response.clone());
+            return response;
+          });
+        }
+      });
+    }),
+  );
 });

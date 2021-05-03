@@ -24,11 +24,6 @@
     load();
   });
 
-  const unsubscribeUser = userInfo.subscribe((newUser: Oidc.User) => {
-    if (!newUser?.access_token) return;
-    load();
-  });
-
   async function load() {
     modelsLoading = true;
     fetchedModels = await getHippocampusModels();
@@ -63,8 +58,6 @@
   function setFilteredModels(models: Array<Model>) {
     filteredModels = models;
   }
-
-	onDestroy(unsubscribeUser);
 </script>
 
 
