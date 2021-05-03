@@ -48,18 +48,10 @@ function init(): Promise<any> {
   return login(authMgr);
 }
 
-async function authCallback() {
-  const authMgr = createAuthManager();
-  const user = await authMgr.signinRedirectCallback().then(() => {
-    const savedUrl = getSavedUrl();
-    window.location.href = savedUrl;
-    }, error => console.error(error)
-  );
-  return user;
-}
-
 async function getUserInfo() {
   const authMgr = createAuthManager();
+  // if it is logged in other tabs
+  await authMgr.signinSilent().catch(() => {});
   const user = await authMgr.getUser();
   return user;
 }
@@ -68,7 +60,6 @@ export default init;
 
 export {
   init,
-  authCallback,
   getUserInfo,
   loginSilent,
 };

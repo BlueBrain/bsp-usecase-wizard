@@ -116,7 +116,7 @@ export default {
 					},
 				},
 				{
-					src: ['public/favicon.ico', 'public/global.css'],
+					src: ['public/favicon.ico', 'public/global.css', 'public/silent-renew.html'],
 					dest: 'public/build',
 				},
 			],
