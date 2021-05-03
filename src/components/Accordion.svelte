@@ -54,6 +54,7 @@
     color: #2c3e50;
     background: white;
     transition: all 0.35s;
+    overflow: hidden;
   }
   .tab .tab-content.expanded {
     max-height: 500vh;
