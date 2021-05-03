@@ -56,7 +56,7 @@ function getRepoName(repoUrl: string) {
   return result;
 }
 
-export function openPuller(collabName: string) {
+export function generatePullerLink(collabName: string) {
   // TODO: fix assigning type based on property
   const uc = get(usecaseSelected);
 
@@ -72,7 +72,6 @@ export function openPuller(collabName: string) {
 
   const pullerLink = `${nbgitpuller.BASE}${repoUrl}${targetPath}${urlPath}`;
   console.debug('PullerLink:', pullerLink);
-  window.open(pullerLink, '_blank');
   return pullerLink;
 }
 

@@ -9,12 +9,12 @@
 
   import { userInfo } from '@/store';
   import { findMyCollabs } from '@/helpers/drive';
-  import { openPuller } from '@/helpers/utils';
+  import { generatePullerLink } from '@/helpers/utils';
   import { fileCreationProcess } from '@/helpers/collab';
   import { goBackPage } from '@/helpers/pages';
   import type { Collab as CollabInterface } from '@/types/interfaces';
   import { saveLastUsedCollab, getLastUsedCollab } from '@/helpers/storage';
-  import PullerSnackBar from './PullerSnackBar.svelte';
+  import PullerDialog from './PullerDialog.svelte';
 
   const limitCollabsToShow = 10;
   let processing = false;
@@ -24,7 +24,7 @@
   let filteredCollabsNames: Array<string> = [];
   let searchText = '';
   let lastUsedCollabName = '';
-  let showSnackbar = false;
+  let showDialog = false;
   let pullerUrl = '';
   
   const unsubscribeUser = userInfo.subscribe((newUser: Oidc.User) => {
@@ -38,8 +38,9 @@
     saveLastUsedCollab(collabSelectedName);
     await fileCreationProcess(collabSelectedName);
 
-    pullerUrl = openPuller(collabSelectedName);
-    showSnackbar = true;
+    pullerUrl = generatePullerLink(collabSelectedName);
+    const wasOpened = window.open(pullerUrl, '_blank');
+    if (!wasOpened) showDialog = true;
 
     processing = false;
     collabSelectedName = '';
@@ -86,8 +87,12 @@
     setFilteredCollabs(filteredCollabsNames);
   }
 
-  onDestroy(unsubscribeUser);
+  function resetDialog() {
+    showDialog = false;
+    pullerUrl = '';
+  }
 
+  onDestroy(unsubscribeUser);
 </script>
 
 
@@ -160,9 +165,10 @@
       </div>
     {/if}
   </div>
-  <PullerSnackBar
-    showSnackbar="{ showSnackbar }"
+  <PullerDialog
     pullerUrl="{ pullerUrl }"
+    showDialog="{ showDialog }"
+    on:reset={resetDialog}
   />
 </section>
 
