@@ -17,8 +17,7 @@ export function goNextPage() {
     case pages.USECASE_SELECTION:
       if (uc.chooseModel) {
         currentPage.set(pages.MODEL_SELECTION);
-        if (!uc.maxModelSelection) return;
-        modelsSelectedLimit.set(uc.maxModelSelection);
+        modelsSelectedLimit.set(uc.maxModelSelection || 0);
         return;
       }
       if (uc.notebookPath) {

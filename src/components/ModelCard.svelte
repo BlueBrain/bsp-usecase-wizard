@@ -10,6 +10,7 @@
   
   export let modelItem: Model;
   let modelIsSelected: boolean = false;
+  const limit = $modelsSelectedLimit;
 
   const unsubscribeModels = modelsSelected.subscribe(() => {
     modelIsSelected = $modelsSelected.some(
@@ -23,11 +24,11 @@
         model => model.name !== modelItem.name
       );
     } else {
-      if ($modelsSelectedLimit === 1) {
+      if (limit === 1) {
         $modelsSelected = [modelItem];
         return;
       }
-      if ($modelsSelectedLimit > 1 && $modelsSelected.length >= $modelsSelectedLimit) {
+      if (limit > 1 && $modelsSelected.length >= limit) {
         errorMessage.set('Models selected reached limit');
         return;
       }
