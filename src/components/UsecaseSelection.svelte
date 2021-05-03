@@ -18,6 +18,11 @@
     usecaseSelected.set(uc);
     usecaseCategorySelected.set(event.detail.categoryId);
     
+    if (uc.externalUrl && !uc.chooseModel) {
+      // avoid auth for only external apps
+      goNextPage();
+      return;
+    }
     if (!$authorized) {
       console.warn('user not registered');
       saveUsecaseAndLogin();
