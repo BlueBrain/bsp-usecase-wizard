@@ -8,7 +8,6 @@ import {
 } from '@/store';	
 import { init, getUserInfo } from '@/helpers/auth';
 import { goNextPage } from '@/helpers/pages';
-import type { UsecaseItem } from '@/types/usecases';
 import {
   saveUsecaseSelected,
   getSavedUsecase,

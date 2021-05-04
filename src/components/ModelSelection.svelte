@@ -3,12 +3,12 @@
   import Button, {Label, Icon} from '@smui/button';
   import Textfield from '@smui/textfield';
   import CircularProgress from '@smui/circular-progress';
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount } from 'svelte';
 
   import ModelCard from './ModelCard.svelte';
   import ModelShowSelectedToggle from './ModelShowSelectedToggle.svelte';
 
-  import { userInfo, modelsSelected } from '@/store';
+  import { modelsSelected } from '@/store';
   import type { Model } from '@/types/models';
   import { getHippocampusModels } from '@/helpers/models';
   import { goNextPage, goBackPage } from '@/helpers/pages';

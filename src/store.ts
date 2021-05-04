@@ -26,7 +26,6 @@ export const collabIdSelected = writable('');
 // comes from rollup.config.js
 declare var processEnvs: any
 export const appVersion = readable(null, function start(set) {
-  console.log('Version from Store', processEnvs.appVersion);
   set(processEnvs.appVersion);
 	return function stop() {};
 });
