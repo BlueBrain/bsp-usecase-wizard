@@ -50,8 +50,6 @@ function init(): Promise<any> {
 
 async function getUserInfo() {
   const authMgr = createAuthManager();
-  // if it is logged in other tabs
-  await authMgr.signinSilent().catch(() => {});
   const user = await authMgr.getUser();
   return user;
 }
