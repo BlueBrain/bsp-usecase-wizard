@@ -33,18 +33,31 @@ function getModelInfo(modelItem: Model): ModelsJsonInfo {
   };
 }
 
+function getModelArray(
+  newModelsInfo: Array<ModelsJsonInfo>,
+  oldSubContent: Array<ModelsJsonInfo>,
+): Array<ModelsJsonInfo> {
+  [ ...oldSubContent , ...newModelsInfo ]
+  const finalModelArray = [];
+  oldSubContent.forEach(oldModel => {
+    // remove duplicate
+    const isPresent = newModelsInfo.some(nm => nm.id === oldModel.id);
+    if (!isPresent) finalModelArray.push(oldModel);
+  });
+  finalModelArray.push(...newModelsInfo);
+  return finalModelArray;
+}
 
 function appendModels(originalObj: ModelsJson, newModelsInfo: Array<ModelsJsonInfo>) {
   const categoryKey = get(usecaseCategorySelected);
   const uc: UsecaseItem = get(usecaseSelected);
   const oldSubContent = originalObj?.[categoryKey]?.[uc.id] || [];
+  const newModelsArray = getModelArray(newModelsInfo, oldSubContent);
   const newModelsObj = Object.assign(
     {},
     originalObj,
     {
-      [categoryKey]: {
-        [uc.id]: [ ...oldSubContent , ...newModelsInfo ],
-      }
+      [categoryKey]: { [uc.id]: newModelsArray }
     },
   );
   return newModelsObj;
