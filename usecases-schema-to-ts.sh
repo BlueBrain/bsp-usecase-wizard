@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # this file is executed while developing to fetch the latest information about the schema.
-# If it changes under the https://github.com/ebrains-cls-interactive/Usecases_Info repo
+# If it changes under the https://github.com/ebrains-cls-interactive/usecases-info repo
 # running this script will allow the typescript to adapt to the new rules.
 
 set -e
