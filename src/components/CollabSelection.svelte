@@ -7,7 +7,7 @@
   import CircularProgress from '@smui/circular-progress';
   import { onDestroy } from 'svelte';
 
-  import { userInfo } from '@/store';
+  import { userInfo, errorMessage } from '@/store';
   import { findMyCollabs } from '@/helpers/drive';
   import { generatePullerLink } from '@/helpers/utils';
   import { fileCreationProcess } from '@/helpers/collab';
@@ -36,7 +36,7 @@
   async function createFiles() {
     processing = true;
     saveLastUsedCollab(collabSelectedName);
-    await fileCreationProcess(collabSelectedName);
+    await fileCreationProcess(collabSelectedName).catch(showError);
 
     pullerUrl = generatePullerLink(collabSelectedName);
     const wasOpened = window.open(pullerUrl, '_blank');
@@ -61,7 +61,7 @@
 
   async function showMyCollabs() {
     collabsLoading = true;
-    collabs = await findMyCollabs();
+    collabs = (await findMyCollabs().catch(showError)) || [];
     collabsLoading = false;
     setFilteredCollabs(collabs, true);
   }
@@ -85,6 +85,10 @@
       collab.name.toLowerCase().includes(searchParam.toLowerCase())
     );
     setFilteredCollabs(filteredCollabsNames);
+  }
+
+  function showError(e: Error) {
+    errorMessage.set(e.message);
   }
 
   function resetDialog() {
