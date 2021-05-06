@@ -7,7 +7,8 @@ import type {
   UploadFromUrl, UploadContent, UploadString,
 } from '@/types/interfaces';
 
-const { DRIVE_API_URL } = drive;
+const PROXY_BASE = drive.BASE_DRIVE_URL ? `${drive.BASE_DRIVE_URL}/` : '';
+const DRIVE_API = `${PROXY_BASE}${drive.DRIVE_API_URL}`;
 
 const axiosInstance = axios.create();
 
@@ -16,7 +17,7 @@ userInfo.subscribe((newUser: Oidc.User) => {
 });
 
 function getAllCollabs(): Promise<Array<Collab>> {
-  const endpoint = `${DRIVE_API_URL}/repos/`;
+  const endpoint = `${DRIVE_API}/repos/`;
   return axiosInstance.get(endpoint).then(r => r.data);
 }
 
@@ -39,7 +40,7 @@ async function findItems(collabId: string, isFolder = false): Promise<Array<stri
     t: isFolder ? 'd' : 'f',
     p: '/'
   };
-  const endpoint = `${DRIVE_API_URL}/repos/${collabId}/dir/`;
+  const endpoint = `${DRIVE_API}/repos/${collabId}/dir/`;
   const response = await axiosInstance.get(endpoint, { params });
   const items = response.data;
   return items.map((item: CollabDirectory) => item.name);
@@ -65,7 +66,7 @@ export async function createFolder(collabId: string, folderName: string) {
   const params = { 'p': folderName };
   // it is not a json payload but application/x-www-form-urlencoded
   const data = "operation=mkdir";
-  const endpoint = `${DRIVE_API_URL}/repos/${collabId}/dir/`;
+  const endpoint = `${DRIVE_API}/repos/${collabId}/dir/`;
 
   return axiosInstance({
     method: 'post',
@@ -77,10 +78,10 @@ export async function createFolder(collabId: string, folderName: string) {
 
 async function getUploadLink(collabId: string) : Promise<string> {
   const params = { 'p': '/' };
-  const endpoint = `${DRIVE_API_URL}/repos/${collabId}/upload-link/`;
+  const endpoint = `${DRIVE_API}/repos/${collabId}/upload-link/`;
   const response = await axiosInstance.get(endpoint, { params });
   const uploadLink: string = response.data;
-  return uploadLink;
+  return `${PROXY_BASE}${uploadLink}`;
 }
 
 export async function getFileContent(fileUrl: string) : Promise<Blob> {
@@ -161,7 +162,7 @@ export async function uploadString(uploadObj: UploadString) {
 
 export async function search(query: string) {
   // not supported yet
-  const endpoint = `${DRIVE_API_URL}/search/`;
+  const endpoint = `${DRIVE_API}/search/`;
   const params = {
     q: 'antonel',
   }
@@ -171,7 +172,7 @@ export async function search(query: string) {
 export async function getFileFromCollab(collabId: string, filePath: string) {
   // make sure it starts with /
   const params = { 'p': filePath.startsWith('/') ? filePath : `/${filePath}` };
-  const endpoint = `${DRIVE_API_URL}/repos/${collabId}/file/`;
+  const endpoint = `${DRIVE_API}/repos/${collabId}/file/`;
   try {
     const response = await axiosInstance.get(endpoint, { params });
     const downloadUrl: string = response.data;

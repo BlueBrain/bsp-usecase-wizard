@@ -15,6 +15,9 @@ var periodicUpdate = [
 const neverUseSW = [
   'https://iam.ebrains.eu/auth/',
   'livereload.js',
+  '/dir/?',
+  '/file/?',
+  '/upload-link/?',
 ];
 
 self.addEventListener('install', (evt) => {

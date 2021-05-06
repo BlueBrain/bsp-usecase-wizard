@@ -13,7 +13,8 @@ export const iam = {
 };
 
 export const drive = {
-  DRIVE_API_URL: 'https://corsproxy-sa.herokuapp.com/https://drive.ebrains.eu/api2',
+  BASE_DRIVE_URL: 'https://corsproxy-sa.herokuapp.com',
+  DRIVE_API_URL: 'https://drive.ebrains.eu/api2',
   DEFAULT_UC_FOLDER_NAME: 'CLS-INTERACTIVE-UC',
   DEFAULT_MODEL_FOLDER_NAME: 'CLS-INTERACTIVE-MODELS',
   DEFAULT_MODEL_FILE_NAME: 'models.json',
