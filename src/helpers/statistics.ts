@@ -30,6 +30,17 @@ async function getAnonymizedIp() {
   return parts.join('.');
 }
 
+async function getUserIdHash() {
+  const userId = get(userInfo)?.profile?.sub;
+  if (!userId) return 'anonymous';
+  // https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest#converting_a_digest_to_a_hex_string
+  const msgUint8 = new TextEncoder().encode(userId);                            // encode as (utf-8) Uint8Array
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);           // hash the message
+  const hashArray = Array.from(new Uint8Array(hashBuffer));                     // convert buffer to byte array
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); // convert bytes to hex string
+  return hashHex;
+}
+
 export async function sendStatistics() {
   // avoid sending outside production or in test
   // @ts-ignore // is testing
@@ -42,7 +53,7 @@ export async function sendStatistics() {
   const data: StatisticDataInterface = {
     category: get(usecaseCategorySelected),
     usecase: get(usecaseSelected)?.id,
-    userId: get(userInfo)?.profile?.sub,
+    userId: await getUserIdHash(),
     models: get(modelsSelected)?.map(m => m.id),
     collabId: get(collabIdSelected),
     ip: await getAnonymizedIp(),
