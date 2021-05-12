@@ -56,46 +56,59 @@
 
 
 <div class="usecase-list-item">
-  {#each usecasesCategories as category}
-    {#if categoryIsNotEmpty(category)}
+  <div class="usecase-list-content">
+    {#each usecasesCategories as category}
+      {#if categoryIsNotEmpty(category)}
 
-      <Accordion>
-        <div slot="header">
-          <span>{ category.title }</span>
-        </div>
+        <Accordion>
+          <div slot="header">
+            <span>{ category.title }</span>
+          </div>
 
-        <div slot="content">
-          <UsecaseCard
-            usecases={ category.usecases }
-            categoryId={ category.id }
-            on:clicked={ ucClick }
-          />
-          {#if category.groups}
-            <UsecaseGroup
-              groups={ category.groups }
+          <div slot="content">
+            <UsecaseCard
+              usecases={ category.usecases }
               categoryId={ category.id }
               on:clicked={ ucClick }
             />
-          {/if}
-        </div>
-      </Accordion>
+            {#if category.groups}
+              <UsecaseGroup
+                groups={ category.groups }
+                categoryId={ category.id }
+                on:clicked={ ucClick }
+              />
+            {/if}
+          </div>
+        </Accordion>
 
-    {/if}
-  {/each} <!-- end category -->
-</div>
+      {/if}
+    {/each} <!-- end category -->
+  </div>
 
-<div class="app-version">
-  v{$appVersion}
+  <div class="app-version">
+    v{$appVersion}
+  </div>
 </div>
 
 
 <style>
-  .app-version {    
+  .usecase-list-item {
+    display: grid;
+    grid-template:
+      ". content ." auto
+      ". version ." auto
+      / 1fr 8fr 1fr;
+  }
+  .usecase-list-item .app-version {    
     background: #2c3e50;
     color: white;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+    grid-area: version;
+  }
+  .usecase-list-item .usecase-list-content {
+    grid-area: content;
   }
 </style>
