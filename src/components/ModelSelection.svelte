@@ -70,49 +70,56 @@
     <h2 class="page-header-title">Please select the model(s)</h2>
   </div>
 
-  {#if modelsLoading}
-    <div class="centered">
-      <div>Fetching latest models from Model Catalog...</div>
-      <CircularProgress class="custom-loading-spin" indeterminate />
-    </div>
-  {/if}
+  <div class="search-container">
+    {#if modelsLoading}
+      <div class="centered">
+        <div>Fetching latest models from Model Catalog...</div>
+        <CircularProgress class="custom-loading-spin" indeterminate />
+      </div>
+    {/if}
 
-  {#if !modelsLoading && fetchedModels.length}
-    <div class="top-bar">
-      <div class="search-box">
-        <Textfield
-          label="Model Name"
-          bind:value={searchText}
-          on:change={filterModel}
-        >
-          <Icon class="material-icons" slot="trailingIcon">search</Icon>
-        </Textfield>
-        <div class="filtered-length">
-          ({ filteredModels.length } / { fetchedModels.length })
+    {#if !modelsLoading && fetchedModels.length}
+      <div class="top-bar">
+        <div class="search-box">
+          <Textfield
+            label="Model Name"
+            bind:value={searchText}
+            on:change={filterModel}
+          >
+            <Icon class="material-icons" slot="trailingIcon">search</Icon>
+          </Textfield>
+          <div class="filtered-length">
+            ({ filteredModels.length } / { fetchedModels.length })
+          </div>
+        </div>
+      
+        <div class="continue-button">
+          <Button
+            on:click={goNextPage}
+            color="secondary"
+            variant="unelevated"
+            disabled={ !$modelsSelected.length }
+          >
+            <Icon class="material-icons">arrow_forward_ios</Icon>
+            <Label>Continue</Label>
+          </Button>
         </div>
       </div>
-    
-      <div class="continue-button">
-        <Button
-          on:click={goNextPage}
-          color="secondary"
-          variant="unelevated"
-          disabled={ !$modelsSelected.length }
-        >
-          <Icon class="material-icons">arrow_forward_ios</Icon>
-          <Label>Continue</Label>
-        </Button>
-      </div>
-    </div>
+    {/if}
+  </div>
 
-    <div class="models-container">
+  <div class="model-list">
+    {#if !modelsLoading && fetchedModels.length}
       {#each filteredModels as modelItem}
         <ModelCard modelItem={modelItem} />
       {/each}
-    </div>
+    {/if}
+  </div>
 
+  <div class="models-selected-info">
     <ModelShowSelectedToggle />
-  {/if}
+  </div>
+
 </section>
 
 
@@ -122,28 +129,53 @@
     margin-left: 20px;
     display: inline-flex;
   }
-  .search-box {
+  .top-bar {
+    display: grid;
+    grid-template:
+      ". search . button" auto
+      / 16px 2fr 1fr 1fr;
+  }
+  .top-bar .search-box {
     display: flex;
     align-items: center;
     flex-grow: 1;
+    grid-area: search;
   }
-  .top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    max-width: 650px;
-    margin: 0 auto;
+  .top-bar .continue-button {
+    grid-area: button;
+    justify-self: center;
+    align-self: center;
   }
-  .models-container {
-    max-height: 70vh;
-    overflow: scroll;
-    padding: 10px;
-  }
+
   .centered {
     display: flex;
     justify-content: center;
     align-items: center;
     align-content: space-between;
+  }
+
+  .model-section-container {
+    display: grid;
+    grid-template:
+      ". title ." auto
+      ". search ." auto
+      ". list ." auto
+      ". selected ." auto
+      / 1fr 8fr 1fr;
+  }
+  .model-section-container .custom-section-header {
+    grid-area: title;
+  }
+  .model-section-container .search-container {
+    grid-area: search;
+  }
+  .model-section-container .model-list {
+    grid-area: list;
+    max-height: 70vh;
+    overflow: scroll;
+    padding: 10px;
+  }
+  .model-section-container .models-selected-info {
+    grid-area: selected;
   }
 </style>
