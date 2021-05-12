@@ -1,15 +1,19 @@
 
 <script lang="ts">
+  import Paper from '@smui/paper';
+
   import { modelsSelected } from '@/store';
 </script>
 
 
 
 <div class="models-selected-container {$modelsSelected.length ? '' : 'hidden-section'}">
-  <span class="title">Models selected ({$modelsSelected.length}):</span>
-  {#each $modelsSelected as modelItem}
-    <span class="model">{ modelItem.name }</span>
-  {/each}
+  <Paper elevation="5">
+    <span class="title">Model(s) selected ({$modelsSelected.length}):</span>
+    {#each $modelsSelected as modelItem}
+      <span class="model">{ modelItem.name }</span>
+    {/each}
+  </Paper>
 </div>
 
 
