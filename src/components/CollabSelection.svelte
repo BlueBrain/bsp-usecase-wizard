@@ -108,15 +108,13 @@
     </div>
     <h2 class="page-header-title">Please select the destination Collab</h2>
   </div>
-  <div class="collab-list">
-    <!-- Select Collab -->
+  <div class="search-container">
     {#if collabsLoading}
       <div class="centered">
         <div>Fetching Collabs...</div>
         <CircularProgress class="custom-loading-spin" indeterminate />
       </div>
     {/if}
-    
     {#if !collabsLoading && collabs.length}
       <div class="top-bar">
         <div class="search-box">
@@ -157,7 +155,10 @@
           </Item>
         {/if}
       </div>
-
+    {/if}
+  </div>
+  <div class="collab-list">
+    {#if !collabsLoading && collabs.length}
       <div class="collab-list-scroll">
         <List>
           {#each filteredCollabsNames as collabName}
@@ -180,14 +181,18 @@
 
 <style>
   .top-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 650px;
+    display: grid;
+    grid-template:
+      ". search . button" auto
+      / 16px 1fr 2fr 1fr;
   }
-  .collab-list {
-    max-width: 650px;
-    margin: 0 auto;
+  .top-bar .search-box {
+    grid-area: search;
+  }
+  .top-bar .processing-container {
+    grid-area: button;
+    justify-self: center;
+    align-self: center;
   }
   .centered {
     display: flex;
@@ -197,6 +202,24 @@
   }
   .collab-list-scroll {
     max-height: 70vh;
-    overflow: scroll;
+    overflow-y: scroll;
+  }
+
+  .collab-section-container {
+    display: grid;
+    grid-template:
+      ". title ." auto
+      ". search ." auto
+      ". list ." auto
+      / 1fr 8fr 1fr;
+  }
+  .collab-section-container .custom-section-header {
+    grid-area: title;
+  }
+  .collab-section-container .search-container {
+    grid-area: search;
+  }
+  .collab-section-container .collab-list {
+    grid-area: list;
   }
 </style>
