@@ -178,4 +178,14 @@
   .model-section-container .models-selected-info {
     grid-area: selected;
   }
+  @media only screen and (max-width: 900px) {
+    .model-section-container {
+      grid-template:
+      "title" auto
+      "search" auto
+      "list" auto
+      "selected" auto
+      / 1fr;
+    }
+  }
 </style>

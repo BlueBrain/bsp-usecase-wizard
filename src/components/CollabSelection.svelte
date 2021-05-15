@@ -222,4 +222,13 @@
   .collab-section-container .collab-list {
     grid-area: list;
   }
+  @media only screen and (max-width: 900px) {
+    .collab-section-container {
+      grid-template:
+      "title" auto
+      "search" auto
+      "list" auto
+      / 1fr;
+    }
+  }
 </style>
