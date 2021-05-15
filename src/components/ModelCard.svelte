@@ -54,12 +54,11 @@
   <div class="card-container { modelIsSelected ? 'is-selected' : '' }">
     <Paper elevation="5" on:click={() => ucClick(modelItem)}>
 
-      <div class="breadcrumbs">
-        <ModelBreadcrumb modelItem={ modelItem } />
-      </div>
-
-
-      <div class="columns-container">
+      <div class="grid-container">
+        <div class="breadcrumbs">
+          <ModelBreadcrumb modelItem={ modelItem } />
+        </div>
+  
         <div class="img-container">
           {#each modelItem.images as image}
             <div class="image">
@@ -84,8 +83,7 @@
             </div>
           {/if}
         </div>
-
-      </div> <!-- columns-container -->
+      </div>
 
     </Paper>
   </div> <!-- end card -->
@@ -95,15 +93,28 @@
 
 <style>
   .models-card-container {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
-  
-  .columns-container {
-    display: flex;
+  .models-card-container .grid-container {
+    display: grid;
+    grid-template:
+      "title title" auto
+      "imgs text" auto
+      / 1fr 1fr;
   }
-
+  .models-card-container .breadcrumbs {
+    grid-area: title;
+  }
+  .models-card-container .text-content {
+    grid-area: text;
+  }
+  .models-card-container .img-container {
+    grid-area: imgs;
+  }
+ 
   .img-container {
     display: flex;
+    align-items: center;
   }
   .image img {
     width: 215px;
@@ -111,17 +122,14 @@
   }
 
   .text-content {
-    width: 70%;
-    flex-grow: 1;
-    display: inline-grid;
-    vertical-align: top;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   .description {
     font-size: 1em;
-    padding-top: 10px;
   }
   .contributors-container {
-    padding-top: 10px;
     font-size: 0.8em;
   }
   .credit-title {
@@ -136,8 +144,15 @@
   }
 
   @media only screen and (max-width: 900px) {
-    .columns-container {
-      flex-direction: column;
+    .models-card-container .grid-container {
+      grid-template:
+        "title" auto
+        "imgs" auto
+        "text" auto
+        / 1fr;
+    }
+    .img-container {
+      justify-content: space-around;
     }
   }
 </style>
