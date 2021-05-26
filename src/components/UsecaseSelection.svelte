@@ -115,9 +115,9 @@
   @media only screen and (max-width: 900px) {
     .usecase-list-item {
       grid-template:
-      "content" auto
-      "version" auto
-      / 1fr;
+        "content" auto
+        "version" auto
+        / 1fr;
     }
   }
 </style>

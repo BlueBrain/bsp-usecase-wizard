@@ -143,3 +143,28 @@ button:focus {
 	height: 32px;
 	width: 32px;
 }
+
+/* it is inside the CLS page*/
+.use-cases .container .usecase-list-item {
+	grid-template:
+		"content" auto
+		"version" auto
+		/ 1fr;
+}
+
+.use-cases .container .model-section-container {
+	grid-template:
+		"title" auto
+		"search" auto
+		"list" auto
+		"selected" auto
+		/ 1fr;
+}
+
+.use-cases .container .collab-section-container {
+	grid-template:
+		". title ." auto
+		". search ." auto
+		". list ." auto
+		/ 2fr 8fr 2fr;
+}

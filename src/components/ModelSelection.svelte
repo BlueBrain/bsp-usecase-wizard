@@ -181,11 +181,11 @@
   @media only screen and (max-width: 900px) {
     .model-section-container {
       grid-template:
-      "title" auto
-      "search" auto
-      "list" auto
-      "selected" auto
-      / 1fr;
+        "title" auto
+        "search" auto
+        "list" auto
+        "selected" auto
+        / 1fr;
     }
   }
 </style>
