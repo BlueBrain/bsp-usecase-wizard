@@ -100,13 +100,14 @@
       / 1fr 8fr 1fr;
   }
   .usecase-list-item .app-version {    
-    background: #2c3e50;
+    background: #113548;
     color: white;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     grid-area: version;
+    font-size: 0.8em;
   }
   .usecase-list-item .usecase-list-content {
     grid-area: content;

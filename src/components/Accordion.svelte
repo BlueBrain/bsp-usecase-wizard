@@ -33,13 +33,13 @@
     display: flex;
     justify-content: space-between;
     padding: 1em;
-    background: #2c3e50;
+    background: #113548;
     font-weight: bold;
     cursor: pointer;
     /* Icon */
   }
   .tab-label:hover {
-    background: #1a252f;
+    background: #0e2a38;
   }
   .tab-label::after {
     content: "\276F";
@@ -51,7 +51,7 @@
   .tab-content {
     max-height: 0;
     padding: 0 1em;
-    color: #2c3e50;
+    color: #113548;
     background: white;
     transition: all 0.35s;
     overflow: hidden;
