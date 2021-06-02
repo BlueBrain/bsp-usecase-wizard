@@ -82,6 +82,8 @@
       <div class="top-bar">
         <div class="search-box">
           <Textfield
+            style="width: 100%;"
+            helperLine$style="width: 100%;"
             label="Model Name"
             bind:value={searchText}
             on:change={filterModel}
@@ -128,18 +130,22 @@
   .filtered-length {
     margin-left: 20px;
     display: inline-flex;
+    white-space: pre;
   }
   .top-bar {
     display: grid;
     grid-template:
-      ". search . button" auto
-      / 16px 2fr 1fr 1fr;
+      "search . button" auto
+      / 4fr 1fr 4fr;
   }
   .top-bar .search-box {
     display: flex;
     align-items: center;
     flex-grow: 1;
     grid-area: search;
+    justify-self: center;
+    width: 100%;
+    margin-left: 22px;
   }
   .top-bar .continue-button {
     grid-area: button;

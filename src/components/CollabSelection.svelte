@@ -119,6 +119,8 @@
       <div class="top-bar">
         <div class="search-box">
           <Textfield
+            style="width: 100%;"
+            helperLine$style="width: 100%;"
             label="Collab Name"
             bind:value={searchText}
             on:change={filterCollab}
@@ -183,11 +185,14 @@
   .top-bar {
     display: grid;
     grid-template:
-      ". search . button" auto
-      / 16px 1fr 2fr 1fr;
+      "search . button" auto
+      / 4fr 1fr 4fr;
   }
   .top-bar .search-box {
     grid-area: search;
+    justify-self: center;
+    width: 100%;
+    margin-left: 22px;
   }
   .top-bar .processing-container {
     grid-area: button;
@@ -211,7 +216,7 @@
       ". title ." auto
       ". search ." auto
       ". list ." auto
-      / 1fr 8fr 1fr;
+      / 4fr 8fr 4fr;
   }
   .collab-section-container .custom-section-header {
     grid-area: title;
