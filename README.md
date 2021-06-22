@@ -35,3 +35,10 @@ For each push to the repo, a Github Action will be launched:
 
 This wizard will be embeded into https://github.com/antonelepfl/ebrains-sim-cl-dev
 And then when we are fine with the changes, we should PR to https://github.com/lbologna/ebrains-sim-cl-dev
+
+
+## Funding & Acknowledgment
+The development of this software was supported by funding to the Blue Brain Project, a research center of the École polytechnique fédérale de Lausanne (EPFL), from the Swiss government’s ETH Board of the Swiss Federal Institutes of Technology.
+
+
+Copyright (c) 2021 Blue Brain Project/EPFL
