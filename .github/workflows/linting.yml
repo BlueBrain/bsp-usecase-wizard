@@ -1,6 +1,9 @@
 name: Integiry Check
 
-on: [pull_request]
+on:
+  pull_request:
+    branches:
+      - collab
 
 jobs:
   lint:
