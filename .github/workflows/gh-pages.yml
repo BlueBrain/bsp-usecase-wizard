@@ -16,7 +16,7 @@ jobs:
           npm run test
       - name: Build Production
         run: |
-          BASE_URL="/ebrains-wizard" npm run build
+          BASE_URL="/bsp-usecase-wizard" npm run build
           cp public/service-worker.js public/build
       - name: Deploy Production
         uses: JamesIves/github-pages-deploy-action@4.0.0
@@ -38,7 +38,7 @@ jobs:
           npm run test
       - name: Build Development
         run: |
-          BASE_URL="/ebrains-wizard/dev" npm run build
+          BASE_URL="/bsp-usecase-wizard/dev" npm run build
           cp public/service-worker.js public/build
       - name: Deploy Development
         uses: JamesIves/github-pages-deploy-action@4.0.0
