@@ -27,14 +27,13 @@ npm run build
 
 For each push to the repo, a Github Action will be launched:
 
-`https://github.com/antonelepfl/ebrains-wizard/blob/main/.github/workflows/gh-pages.yml`
+`https://github.com/BlueBrain/bsp-usecase-wizard/blob/main/.github/workflows/gh-pages.yml`
 
 #### It will deploy the app in gh-pages
-- If the commit is from Main branch (production page) https://antonelepfl.github.io/ebrains-wizard/
-- If the commit is from any other branch (devevelopment page) https://antonelepfl.github.io/ebrains-wizard/dev/
+- If the commit is from Main branch (production page) https://bluebrain.github.io/bsp-usecase-wizard
+- If the commit is from any other branch (devevelopment page) https://bluebrain.github.io/bsp-usecase-wizard/dev
 
-This wizard will be embeded into https://github.com/antonelepfl/ebrains-sim-cl-dev
-And then when we are fine with the changes, we should PR to https://github.com/lbologna/ebrains-sim-cl-dev
+This wizard will be embeded into https://github.com/ebrains-cls-interactive/ebrains-cls-interactive.github.io
 
 
 ## Funding & Acknowledgment

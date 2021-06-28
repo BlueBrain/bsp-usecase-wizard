@@ -1,6 +1,6 @@
 {
   "name": "svelte-app",
-  "version": "1.2.37",
+  "version": "1.2.38",
   "scripts": {
     "build": "rollup -c",
     "dev": "sh usecases-schema-to-ts.sh && rollup -c -w",
