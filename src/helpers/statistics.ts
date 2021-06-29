@@ -8,10 +8,11 @@ import {
   userInfo,
   usecaseSelected,
 } from '@/store';
-import { usecases } from '@/constants';
+import { usecases, drive } from '@/constants';
 
-const STATISTICS_FORM_URL = usecases.STATISTIC_URL;
-const IP_ENDPOINT = 'https://checkip.amazonaws.com';
+const CORS_PROXY = drive.BASE_DRIVE_URL;
+const STATISTICS_FORM_URL = `${CORS_PROXY}/${usecases.STATISTIC_URL}`;
+const IP_ENDPOINT = `${CORS_PROXY}/https://checkip.amazonaws.com`;
 
 export interface StatisticDataInterface {
   category: string;
@@ -47,7 +48,7 @@ export async function sendStatistics() {
   if (typeof jest !== 'undefined') return;
   // @ts-ignore // comes from rollup.config.js
   declare const processEnvs: any;
-  if (processEnvs?.baseUrl !== '/static/wizard') return;
+  if (processEnvs?.baseUrl === '/' || !processEnvs?.baseUrl) return;
 
   const formData = new URLSearchParams();
   const data: StatisticDataInterface = {
