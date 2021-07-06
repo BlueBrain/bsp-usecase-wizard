@@ -41,4 +41,4 @@ This wizard will be embeded into [Cellular Level Simulation](https://github.com/
 - This project/research has received funding from the European Union’s Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreement No. 945539 (Human Brain Project SGA3).
 - This project/research received funding from the European Union’s Horizon 2020 Framework Programme for Research and Innovation under the Framework Partnership Agreement No. 650003 (HBP FPA).
 
-Copyright (c) 2021 - 2021 Blue Brain Project/EPFL
+Copyright (c) 2021 Blue Brain Project/EPFL
