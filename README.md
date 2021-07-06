@@ -56,9 +56,7 @@ All the titles, images, descriptions, files, etc are described in [usecases.json
 
 
 ## Funding & Acknowledgment
-- The development of this software was supported by funding to the Blue Brain Project, a research center of the École polytechnique fédérale de Lausanne (EPFL), from the Swiss government’s ETH Board of the Swiss Federal Institutes of Technology.
-- This project/research was supported by the (select the relevant platform) HBP Neuroinformatics Platform, HBP Brain Simulation Platform, HBP HPAC Platform, HBP Medical Informatics Platform, HBP Neuromorphic Computing platform, HBP Neurorobotics Platform funded from the European Union’s Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreement No. 720270 (Human Brain Project SGA1).
-- This project/research was supported by the (select the relevant platform) HBP Neuroinformatics Platform, HBP Brain Simulation Platform, HBP HPAC Platform, HBP Medical Informatics Platform, HBP Neuromorphic Computing platform, HBP Neurorobotics Platform funded from the European Union’s Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreement No. 785907 (Human Brain Project SGA2).
-- This project/research received funding from the European Union’s Horizon 2020 Framework Programme for Research and Innovation under the Framework Partnership Agreement No. 650003 (HBP FPA).
+- This research was supported by the HBP Brain Simulation Platform, funded from the European Union’s Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreement No. 720270 (Human Brain Project SGA1).
+- This research was supported by the HBP Brain Simulation Platform, funded from the European Union’s Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreement No. 785907 (Human Brain Project SGA2).
 
 Copyright (c) 2017 - 2021 Blue Brain Project/EPFL
