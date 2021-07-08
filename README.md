@@ -27,11 +27,17 @@ npm run build
 
 For each push to the repo, a Github Action will be launched:
 
-`https://github.com/antonelepfl/ebrains-wizard/blob/main/.github/workflows/gh-pages.yml`
+`.github/workflows/gh-pages.yml`
 
 #### It will deploy the app in gh-pages
-- If the commit is from Main branch (production page) https://antonelepfl.github.io/ebrains-wizard/
-- If the commit is from any other branch (devevelopment page) https://antonelepfl.github.io/ebrains-wizard/dev/
+- If the commit is from Main branch (production page) [link](https://bluebrain.github.io/bsp-usecase-wizard/index.html)
+- If the commit is from any other branch (devevelopment page) [link](https://bluebrain.github.io/bsp-usecase-wizard/dev/index.html)
 
-This wizard will be embeded into https://github.com/antonelepfl/ebrains-sim-cl-dev
-And then when we are fine with the changes, we should PR to https://github.com/lbologna/ebrains-sim-cl-dev
+This wizard will be embeded into [Cellular Level Simulation](https://github.com/ebrains-cls-interactive/ebrains-cls-interactive.github.io) page
+
+
+## Funding & Acknowledgment
+- This project/research was supported by funding to the Blue Brain Project, a research center of the École polytechnique fédérale de Lausanne (EPFL), from the Swiss government’s ETH Board of the Swiss Federal Institutes of Technology.
+- This project/research has received funding from the European Union’s Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreement No. 945539 (Human Brain Project SGA3).
+
+Copyright (c) 2021 Blue Brain Project/EPFL
