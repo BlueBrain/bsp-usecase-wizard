@@ -53,3 +53,11 @@ All the titles, images, descriptions, files, etc are described in [usecases.json
 * The usual [path](/documentation/usual_path.md) the user follows
 
 (\*) We are using the Github API and not the raw content because we need the SHA to compare using the [common header](https://github.com/antonelepfl/usecases/blob/dev/production_notebooks/common_header/common_headers.ipynb) snippet
+
+
+## Funding & Acknowledgment
+- This project/research was supported by funding to the Blue Brain Project, a research center of the École polytechnique fédérale de Lausanne (EPFL), from the Swiss government’s ETH Board of the Swiss Federal Institutes of Technology.
+- This research was supported by the HBP Brain Simulation Platform, funded from the European Union’s Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreement No. 720270 (Human Brain Project SGA1).
+- This research was supported by the HBP Brain Simulation Platform, funded from the European Union’s Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreement No. 785907 (Human Brain Project SGA2).
+
+Copyright (c) 2017 - 2021 Blue Brain Project/EPFL
