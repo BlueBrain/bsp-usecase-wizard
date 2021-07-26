@@ -13,15 +13,35 @@ import type { UsecaseItem } from '@/types/usecases';
 
 const axiosInstance = axios.create();
 
+const PYTHON3_COMPATIBLE = 'optimizations_Python3';
+
 userInfo.subscribe((newUser: Oidc.User) => {
   axiosInstance.defaults.headers.Authorization = `Bearer ${newUser?.access_token}`;
 });
+
+function pruneModels(modelList: Array<Model>): Array<Model> {
+  return modelList
+    // remove models with no images
+    .filter(m => m.images.length > 0)
+    // select models python3 compatible
+    .filter(m => {
+      const instances = m.instances;
+      if (!instances || !instances.length) return false;
+      const lastInstance = instances[instances.length -1];
+      const source = lastInstance.source;
+      if (!source) return false;
+      const isPy3Compatible = source.includes(PYTHON3_COMPATIBLE);
+      if (!isPy3Compatible) return false;
+      return true;
+    });
+}
 
 export async function getHippocampusModels() {
   const { URL, HIPPOCAMPUS_QUERY} = modelCatalog;
   const response = await axiosInstance.get(URL + HIPPOCAMPUS_QUERY);
   const models: Array<Model> = response.data;
-  return models;
+  const prunedModels = pruneModels(models);
+  return prunedModels;
 }
 
 function getModelInfo(modelItem: Model): ModelsJsonInfo {
@@ -97,6 +117,7 @@ export async function updateOrCreateModelsJson() {
 }
 
 function fillModelUrl(placeholderUrl: string, uc: UsecaseItem) {
+  const BLUE_NAAS_KEY = 'bluenaas=true';
   if (uc.maxModelSelection !== 1) {
     errorMessage.set('Multiple models in URL not supported yet');
     return null;
@@ -116,9 +137,19 @@ function fillModelUrl(placeholderUrl: string, uc: UsecaseItem) {
     return null;
   }
 
+  const trimmedSourcePath = modelInfo?.instances.reduce((prev, instance) => {
+    // this way we obtain the latest source available in the instances
+    const source = instance?.source;
+    if (!source) return prev;
+    if (!source.includes(BLUE_NAAS_KEY)) return prev;
+    const trimmed = source.replace(/^.+AUTH_.+?\//, '');
+    if (!trimmed) return prev;
+    return prev = trimmed;
+  }, '');
+
   return placeholderUrl
     .replace('{EXTERNAL_URL}', uc.externalUrl)
-    .replace('{MODEL_NAME}', modelName)
+    .replace('{TRIMMED_SOURCE_PATH}', trimmedSourcePath)
     .replace('{MORPHOLOGY_URL}', modelMorphologyUrl);
 }
 
@@ -126,7 +157,8 @@ export function openWebAppWithModel(uc: UsecaseItem) {
   const placeholder = uc.externalUrlModelPlaceholder || uc.externalUrl;
   const fullUrl = fillModelUrl(placeholder, uc);
   if (!fullUrl) return;
-  window.open(fullUrl, '_blank');
+  const wasOpened = window.open(fullUrl, '_blank');
+  if (!wasOpened) errorMessage.set('Popup was blocked');;
 }
 
 export default {};
