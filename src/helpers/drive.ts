@@ -139,7 +139,8 @@ export async function uploadContent(obj: UploadContent) {
   formData.append('name', 'test2.txt');
   formData.append('replace', '1'),
   formData.append('ret-json', '1'),
-  formData.append('parent_dir', obj.parentFolder);
+  formData.append('parent_dir', '/');
+  formData.append('relative_path', obj.parentFolder);
   return axiosInstance.post(obj.uploadLink, formData);
 }
 
