@@ -8,7 +8,7 @@
   import ModelCard from './ModelCard.svelte';
   import ModelShowSelectedToggle from './ModelShowSelectedToggle.svelte';
 
-  import { modelsSelected } from '@/store';
+  import { modelsSelected, errorMessage } from '@/store';
   import type { Model } from '@/types/models';
   import { getHippocampusModels } from '@/helpers/models';
   import { goNextPage, goBackPage } from '@/helpers/pages';
@@ -21,7 +21,9 @@
   let searchText = '';
   
   onMount(() => {
-    load();
+    load()
+      .catch(errorMessage.set)
+      .finally(() => modelsLoading = false);
   });
 
   async function load() {
@@ -29,7 +31,6 @@
     fetchedModels = await getHippocampusModels();
     modelsSelected.set([]);
     setFilteredModels(fetchedModels);
-    modelsLoading = false;
   }
 
   function filterModel() {

@@ -36,14 +36,17 @@
   async function createFiles() {
     processing = true;
     saveLastUsedCollab(collabSelectedName);
-    await fileCreationProcess(collabSelectedName).catch(showError);
-
-    pullerUrl = generatePullerLink(collabSelectedName);
-    const wasOpened = window.open(pullerUrl, '_blank');
-    if (!wasOpened) showDialog = true;
-
-    processing = false;
-    collabSelectedName = '';
+    fileCreationProcess(collabSelectedName)
+      .then(() => {
+        pullerUrl = generatePullerLink(collabSelectedName);
+        const wasOpened = window.open(pullerUrl, '_blank');
+        if (!wasOpened) showDialog = true;
+      })
+      .catch(showError)
+      .finally(() => {
+        processing = false;
+        collabSelectedName = '';
+      });
   }
 
   function setFilteredCollabs(collabs: Array<CollabInterface>, showPagination = false) {
@@ -87,8 +90,9 @@
     setFilteredCollabs(filteredCollabsNames);
   }
 
-  function showError(e: Error) {
-    errorMessage.set(e.message);
+  function showError(e: any) {
+    const message = JSON.stringify(e.response?.data || e.message);
+    errorMessage.set(message);
   }
 
   function resetDialog() {
