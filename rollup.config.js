@@ -19,10 +19,12 @@ const baseUrl = process.env.BASE_URL || '';
 const callbackUrl = process.env.CALLBACK_URL || `${baseUrl}/index.html`;
 const pjson = require('./package.json');
 const appVersion = pjson.version || '';
+const destinationFolder = process.env.DESTINATION || 'public/build';
 
 console.log('BASE_URL:', baseUrl);
 console.log('CALLBACK_URL:', callbackUrl);
 console.log('VERSION', appVersion);
+console.log('DESTINATION', destinationFolder);
 
 function serve() {
 	let server;
@@ -51,7 +53,7 @@ export default {
 		sourcemap: true,
 		format: 'iife',
 		name: 'app',
-		file: 'public/build/bundle.js'
+		file: `${destinationFolder}/bundle.js`,
 	},
 	plugins: [
 		svelte({
@@ -103,21 +105,21 @@ export default {
 			targets: [
 				{
 					src: 'public/index.html',
-					dest: 'public/build',
+					dest: destinationFolder,
 					transform: (contents) => {
 						return contents.toString().replace(/{{BASE_URL}}/g, baseUrl);
 					},
 				},
 				{
 					src: 'public/callback.html',
-					dest: 'public/build',
+					dest: destinationFolder,
 					transform: (contents) => {
 						return contents.toString().replace(/{{CALLBACK_URL}}/g, callbackUrl);
 					},
 				},
 				{
 					src: ['public/favicon.ico', 'public/global.css', 'public/silent-renew.html'],
-					dest: 'public/build',
+					dest: destinationFolder,
 				},
 			],
 		}),

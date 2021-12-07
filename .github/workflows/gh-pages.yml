@@ -1,49 +1,54 @@
 name: Build and Deploy to Github Pages
 
 on: [push]
-
+   
 jobs:
-  prod:
-    if: ${{ github.ref == 'refs/heads/main' }}
+  CI:
     runs-on: ubuntu-latest
+    env:
+      DEV_DESTINATION: public/build/dev
+      PROD_DESTINATION: public/build/prod
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.4
-      - name: Run tests
-        run: |
-          npm install
-          npm run validate
-          npm run test
-      - name: Build Production
-        run: |
-          BASE_URL="/bsp-usecase-wizard" npm run build
-          cp public/service-worker.js public/build
-      - name: Deploy Production
-        uses: JamesIves/github-pages-deploy-action@4.0.0
-        with:
-          branch: gh-pages
-          folder: public/build
 
-  dev:
-    runs-on: ubuntu-latest
-    if: always() # conditional expression so that it always runs after prod have completed, regardless of whether they were successful.
-    needs: prod
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2.3.4
+      - name: Install packages
+        run: |
+          node --version
+          npm --version
+          python --version
+          npm install
+
       - name: Run tests
         run: |
-          npm install
           npm run validate
           npm run test
+
       - name: Build Development
         run: |
-          BASE_URL="/bsp-usecase-wizard/dev" npm run build
-          cp public/service-worker.js public/build
+          BASE_URL="/bsp-usecase-wizard/dev" \
+          DESTINATION=${{ env.DEV_DESTINATION }} \
+          npm run build
+          cp public/service-worker.js ${{ env.DEV_DESTINATION }}
+
       - name: Deploy Development
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
           branch: gh-pages
-          folder: public/build
+          folder: ${{ env.DEV_DESTINATION }}
           target-folder: dev
 
+      - name: Build Production
+        if: ${{ github.ref == 'refs/heads/main' }}
+        run: |
+          BASE_URL="/bsp-usecase-wizard" \
+          DESTINATION=${{ env.PROD_DESTINATION }} \
+          npm run build
+          cp public/service-worker.js ${{ env.PROD_DESTINATION }}
+
+      - name: Deploy Production
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: JamesIves/github-pages-deploy-action@4.0.0
+        with:
+          branch: gh-pages
+          folder: ${{ env.PROD_DESTINATION }}
