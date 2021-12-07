@@ -33,3 +33,5 @@ export const appVersion = readable(null, function start(set) {
 export const modelsSelectedLimit = writable(0);
 
 export const errorMessage = writable('');
+
+export const generalMessage = writable('');

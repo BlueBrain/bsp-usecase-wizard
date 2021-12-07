@@ -1,18 +1,29 @@
 
 <script lang="ts">
+  import type { Writable } from 'svelte/store';
   import Snackbar, { Label } from '@smui/snackbar';
-  import { errorMessage } from '@/store';
+  import { errorMessage, generalMessage } from '@/store';
 
   let message: string;
   let snackbarBind: any;
 
-  errorMessage.subscribe(msg => {
+  function showMessage(
+    msg: string,
+    originator: Writable<string>,
+    prefix: string = ''
+  ) {
     if (msg === '') return;
-
-    message = msg;
+    message = `${prefix} ${msg}`;
     snackbarBind.open();
+    setTimeout(() => { originator.set(''); }, 5000);
+  }
 
-    setTimeout(() => { errorMessage.set(''); }, 5000);
+  errorMessage.subscribe(msg => {
+    showMessage(msg, errorMessage, 'Error:');
+  });
+
+  generalMessage.subscribe(msg => {
+    showMessage(msg, generalMessage);
   });
 </script>
 

@@ -1,12 +1,23 @@
 
 <script lang="ts">
+  import { Icon } from '@smui/button';
   import UsecaseCard from './UsecaseCard.svelte';
   import UsecaseGroup from './UsecaseGroup.svelte';
   import Accordion from './Accordion.svelte';
   import { onMount } from 'svelte';
 
-  import type { UsecasesFileInterface, UsecaseItem, UsecaseCategory } from '@/types/usecases';
-  import { authorized, usecaseSelected, usecaseCategorySelected, appVersion } from '@/store';
+  import type {
+    UsecasesFileInterface,
+    UsecaseItem,
+    UsecaseCategory,
+  } from '@/types/usecases';
+  import {
+    authorized,
+    usecaseSelected,
+    usecaseCategorySelected,
+    appVersion,
+    generalMessage,
+  } from '@/store';
   import { saveUsecaseAndLogin } from '@/helpers/utils';
   import { goNextPage } from '@/helpers/pages';
   import { usecases as usecasesConstants } from '@/constants';
@@ -50,6 +61,24 @@
       });
   }
 
+  function showExpanded(categoryTitle: string) {
+    const categoryAnchor = pruneTitleToAnchor(categoryTitle);
+    return categoryAnchor === window.location.hash.replace(/^#/, '');
+  }
+
+  function pruneTitleToAnchor(categoryTitle: string) {
+    return categoryTitle
+      .replaceAll('-', '_')
+      .replaceAll(' ', '_')
+      .toLowerCase();
+  }
+
+  function anchorClicked(event: Event) {
+    event.stopPropagation();
+    generalMessage.set('Link copied');
+    navigator.clipboard.writeText(window.location.href);
+  }
+
   onMount(fetchUsecasesInfoFile);
 </script>
 
@@ -60,9 +89,18 @@
     {#each usecasesCategories as category}
       {#if categoryIsNotEmpty(category)}
 
-        <Accordion>
+        <Accordion isExpanded={ showExpanded(category.title) }>
           <div slot="header">
             <span>{ category.title }</span>
+            <a
+              id={ pruneTitleToAnchor(category.title) }
+              title="Copy link to this category"
+              class="category-anchor"
+              href={ `#${pruneTitleToAnchor(category.title)}` }
+              on:click={ anchorClicked }
+            >
+              <Icon class="material-icons">link</Icon>
+            </a>
           </div>
 
           <div slot="content">
@@ -111,6 +149,10 @@
   }
   .usecase-list-item .usecase-list-content {
     grid-area: content;
+  }
+  :global(.usecase-list-item .category-anchor i) {
+    font-size: 18px;
+    vertical-align: middle;
   }
 
   @media only screen and (max-width: 900px) {
