@@ -1,20 +1,16 @@
 
 import axios from 'axios';
-import { userInfo } from '@/store';
 import { drive } from '@/constants';
 import type {
   CollabItems, Collab, CollabDirectory,
   UploadFromUrl, UploadContent, UploadString,
 } from '@/types/interfaces';
+import { getAxiosInstance } from '@/helpers/http';
 
 const PROXY_BASE = drive.BASE_DRIVE_URL ? `${drive.BASE_DRIVE_URL}/` : '';
 const DRIVE_API = `${PROXY_BASE}${drive.DRIVE_API_URL}`;
 
-const axiosInstance = axios.create();
-
-userInfo.subscribe((newUser: Oidc.User) => {
-  axiosInstance.defaults.headers.Authorization = `Bearer ${newUser?.access_token}`;
-});
+const axiosInstance = getAxiosInstance();
 
 function getAllCollabs(): Promise<Array<Collab>> {
   const endpoint = `${DRIVE_API}/repos/`;
@@ -85,7 +81,7 @@ async function getUploadLink(collabId: string) : Promise<string> {
 }
 
 export async function getFileContent(fileUrl: string) : Promise<Blob> {
-  return axios({
+  return axiosInstance({
     method: 'get',
     url: fileUrl,
     responseType: 'blob'

@@ -1,23 +1,19 @@
 
-import axios from 'axios';
 import { get } from 'svelte/store';
 import {
-  usecaseSelected, userInfo, errorMessage,
-  modelsSelected, usecaseCategorySelected, collabIdSelected,
+  usecaseSelected, errorMessage, modelsSelected,
+  usecaseCategorySelected, collabIdSelected,
 } from '@/store';
 import { modelCatalog } from '@/constants';
 import type { Model, ModelsJson, ModelsJsonInfo } from '@/types/models';
 import { getFileFromCollab, uploadString } from '@/helpers/drive';
 import { drive } from '@/constants';
 import type { UsecaseItem } from '@/types/usecases';
-
-const axiosInstance = axios.create();
+import { getAxiosInstance } from '@/helpers/http';
 
 const PYTHON3_COMPATIBLE = 'optimizations_Python3';
 
-userInfo.subscribe((newUser: Oidc.User) => {
-  axiosInstance.defaults.headers.Authorization = `Bearer ${newUser?.access_token}`;
-});
+const axiosInstance = getAxiosInstance();
 
 function pruneModels(modelList: Array<Model>): Array<Model> {
   return modelList
