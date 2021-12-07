@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Waiting...</title>
+  </head>
+
+  <body>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/oidc-client/1.11.5/oidc-client.min.js'></script>
+    <script>
+      console.debug('entering callback.html');
+      var mgr = new Oidc.UserManager({userStore: new Oidc.WebStorageStateStore({ store: window.localStorage })});
+      
+      mgr.signinRedirectCallback().then(function (user) {
+        console.debug('user fetched', user);
+        window.location.href = '/bsp-usecase-wizard/dev/index.html';
+      }).catch(function (err) {
+        console.error(err);
+      });
+    </script>
+  </body>
+
+</html>
