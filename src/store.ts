@@ -35,3 +35,8 @@ export const modelsSelectedLimit = writable(0);
 export const errorMessage = writable('');
 
 export const generalMessage = writable('');
+
+export const scrollOffset = readable(null, function start(set) {
+  set(processEnvs.isProduction ? 90 : 14);
+	return function stop() {};
+});

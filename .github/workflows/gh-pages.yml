@@ -43,6 +43,7 @@ jobs:
         run: |
           BASE_URL="/bsp-usecase-wizard" \
           DESTINATION=${{ env.PROD_DESTINATION }} \
+          USE_PROD_OFFSET='True' \
           npm run build
           cp public/service-worker.js ${{ env.PROD_DESTINATION }}
 

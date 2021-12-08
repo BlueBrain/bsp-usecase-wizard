@@ -5,6 +5,7 @@
   import UsecaseGroup from './UsecaseGroup.svelte';
   import Accordion from './Accordion.svelte';
   import { onMount } from 'svelte';
+  import { get } from 'svelte/store';
 
   import type {
     UsecasesFileInterface,
@@ -17,12 +18,15 @@
     usecaseCategorySelected,
     appVersion,
     generalMessage,
+    scrollOffset,
   } from '@/store';
   import { saveUsecaseAndLogin } from '@/helpers/utils';
   import { goNextPage } from '@/helpers/pages';
   import { usecases as usecasesConstants } from '@/constants';
 
   let usecasesCategories: UsecasesFileInterface = [];
+  let scrollOffsetValue = get(scrollOffset);
+  let scrollDelay: number = 500;
 
   function ucClick(event: any) {
     const uc: UsecaseItem = event.detail.usecaseItem;
@@ -56,7 +60,9 @@
   function showExpanded(categoryTitle: string) {
     // if has anchor, expand this category
     const categoryAnchor = pruneTitleToAnchor(categoryTitle);
-    return categoryAnchor === window.location.hash.replace(/^#/, '');
+    const isExpanded = categoryAnchor === window.location.hash.replace(/^#\//, '');
+    if (isExpanded) scroll(categoryAnchor);
+    return isExpanded;
   }
 
   function pruneTitleToAnchor(categoryTitle: string) {
@@ -80,10 +86,30 @@
   }
 
   function anchorClicked(event: Event, category: UsecaseCategory) {
+    // do not collapse accordion if expanded
     if (category.isExpanded) event.stopPropagation();
 
     generalMessage.set('Link copied');
     navigator.clipboard.writeText(window.location.href);
+    scroll(category.anchor);
+  }
+
+  function scroll(anchorId: string) {
+    setTimeout(() => {
+      const element = document.getElementById(anchorId);
+      if (!element) return;
+
+      const offset: number = scrollOffsetValue;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }, scrollDelay);
   }
 
   onMount(fetchUsecasesInfoFile);
@@ -103,9 +129,10 @@
               id={ category.anchor }
               title="Copy link to this category"
               class="category-anchor inline"
-              href={ `#${category.anchor}` }
+              href={ `#/${category.anchor}` }
               on:click={ (event) => anchorClicked(event, category) }
             >
+              <!-- a with #/ to avoid jumping -->
               <Icon class="material-icons">link</Icon>
             </a>
           </div>

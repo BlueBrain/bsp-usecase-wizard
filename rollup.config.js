@@ -20,11 +20,13 @@ const callbackUrl = process.env.CALLBACK_URL || `${baseUrl}/index.html`;
 const pjson = require('./package.json');
 const appVersion = pjson.version || '';
 const destinationFolder = process.env.DESTINATION || 'public/build';
+const useProdOffset = process.env.USE_PROD_OFFSET || false;
 
 console.log('BASE_URL:', baseUrl);
 console.log('CALLBACK_URL:', callbackUrl);
 console.log('VERSION', appVersion);
 console.log('DESTINATION', destinationFolder);
+console.log('USE_PROD_OFFSET', useProdOffset);
 
 function serve() {
 	let server;
@@ -98,6 +100,7 @@ export default {
 			processEnvs: JSON.stringify({
 				baseUrl,
 				appVersion,
+				isProduction: useProdOffset,
 			}),
 		}),
 		copy({
