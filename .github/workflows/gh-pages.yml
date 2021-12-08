@@ -24,20 +24,6 @@ jobs:
           npm run validate
           npm run test
 
-      - name: Build Development
-        run: |
-          BASE_URL="/bsp-usecase-wizard/dev" \
-          DESTINATION=${{ env.DEV_DESTINATION }} \
-          npm run build
-          cp public/service-worker.js ${{ env.DEV_DESTINATION }}
-
-      - name: Deploy Development
-        uses: JamesIves/github-pages-deploy-action@4.0.0
-        with:
-          branch: gh-pages
-          folder: ${{ env.DEV_DESTINATION }}
-          target-folder: dev
-
       - name: Build Production
         if: ${{ github.ref == 'refs/heads/main' }}
         run: |
@@ -53,3 +39,18 @@ jobs:
         with:
           branch: gh-pages
           folder: ${{ env.PROD_DESTINATION }}
+
+      # build this after to avoid overwritting
+      - name: Build Development
+        run: |
+          BASE_URL="/bsp-usecase-wizard/dev" \
+          DESTINATION=${{ env.DEV_DESTINATION }} \
+          npm run build
+          cp public/service-worker.js ${{ env.DEV_DESTINATION }}
+
+      - name: Deploy Development
+        uses: JamesIves/github-pages-deploy-action@4.0.0
+        with:
+          branch: gh-pages
+          folder: ${{ env.DEV_DESTINATION }}
+          target-folder: dev
