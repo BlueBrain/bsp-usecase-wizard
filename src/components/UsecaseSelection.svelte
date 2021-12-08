@@ -53,15 +53,8 @@
     return category.usecases.some(ucInfo => !ucInfo.disabled);
   }
 
-  function fetchUsecasesInfoFile() {
-    fetch(usecasesConstants.INFO_FILE_URL)
-      .then(response => response.json())
-      .then(info => {
-        usecasesCategories = info;
-      });
-  }
-
   function showExpanded(categoryTitle: string) {
+    // if has anchor, expand this category
     const categoryAnchor = pruneTitleToAnchor(categoryTitle);
     return categoryAnchor === window.location.hash.replace(/^#/, '');
   }
@@ -73,8 +66,22 @@
       .toLowerCase();
   }
 
-  function anchorClicked(event: Event) {
-    event.stopPropagation();
+  function fetchUsecasesInfoFile() {
+    fetch(usecasesConstants.INFO_FILE_URL)
+      .then(response => response.json())
+      .then(info => {
+        usecasesCategories = info.map((category: UsecaseCategory) => ({
+          ...category,
+          anchor: pruneTitleToAnchor(category.title),
+          hasItems: categoryIsNotEmpty(category),
+          isExpanded: showExpanded(category.title),
+        }));
+      });
+  }
+
+  function anchorClicked(event: Event, category: UsecaseCategory) {
+    if (category.isExpanded) event.stopPropagation();
+
     generalMessage.set('Link copied');
     navigator.clipboard.writeText(window.location.href);
   }
@@ -87,17 +94,17 @@
 <div class="usecase-list-item">
   <div class="usecase-list-content">
     {#each usecasesCategories as category}
-      {#if categoryIsNotEmpty(category)}
+      {#if category.hasItems}
 
-        <Accordion isExpanded={ showExpanded(category.title) }>
-          <div slot="header">
-            <span>{ category.title }</span>
+        <Accordion bind:isExpanded={ category.isExpanded }>
+          <div slot="header" class="custom-accordion-item">
+            <div class="inline">{ category.title }</div>
             <a
-              id={ pruneTitleToAnchor(category.title) }
+              id={ category.anchor }
               title="Copy link to this category"
-              class="category-anchor"
-              href={ `#${pruneTitleToAnchor(category.title)}` }
-              on:click={ anchorClicked }
+              class="category-anchor inline"
+              href={ `#${category.anchor}` }
+              on:click={ (event) => anchorClicked(event, category) }
             >
               <Icon class="material-icons">link</Icon>
             </a>
@@ -153,6 +160,10 @@
   :global(.usecase-list-item .category-anchor i) {
     font-size: 18px;
     vertical-align: middle;
+    margin-left: 10px;
+  }
+  .usecase-list-item .custom-accordion-item .inline {
+    display: inline-block;
   }
 
   @media only screen and (max-width: 900px) {
