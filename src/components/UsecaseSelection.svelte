@@ -124,11 +124,11 @@
 
         <Accordion bind:isExpanded={ category.isExpanded }>
           <div slot="header" class="custom-accordion-item">
-            <div class="inline">{ category.title }</div>
+            <div class="grow">{ category.title }</div>
             <a
               id={ category.anchor }
               title="Copy link to this category"
-              class="category-anchor inline"
+              class="category-anchor"
               href={ `#/${category.anchor}` }
               on:click={ (event) => anchorClicked(event, category) }
             >
@@ -186,11 +186,14 @@
   }
   :global(.usecase-list-item .category-anchor i) {
     font-size: 18px;
-    vertical-align: middle;
-    margin-left: 10px;
+    margin-right: 10px;
   }
-  .usecase-list-item .custom-accordion-item .inline {
-    display: inline-block;
+  .usecase-list-item .custom-accordion-item {
+    display: flex;
+    width: 100%;
+  }
+  .usecase-list-item .custom-accordion-item .grow {
+    flex-grow: 1;
   }
 
   @media only screen and (max-width: 900px) {
