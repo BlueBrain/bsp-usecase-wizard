@@ -89,8 +89,9 @@
     // do not collapse accordion if expanded
     if (category.isExpanded) event.stopPropagation();
 
-    generalMessage.set('Link copied');
+    window.location.hash = `#/${category.anchor}`;
     navigator.clipboard.writeText(window.location.href);
+    generalMessage.set('Link copied');
     scroll(category.anchor);
   }
 
