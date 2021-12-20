@@ -13,6 +13,9 @@ export interface UsecaseCategory {
   id: string;
   usecases: UsecaseItem[];
   groups?: UsecaseGroup[];
+  anchor?: string;
+  hasItems?: boolean;
+  isExpanded?: boolean;
 }
 export interface UsecaseItem {
   id: string;

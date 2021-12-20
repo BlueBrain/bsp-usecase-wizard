@@ -24,6 +24,23 @@ jobs:
           npm run validate
           npm run test
 
+      - name: Build Production
+        if: ${{ github.ref == 'refs/heads/main' }}
+        run: |
+          BASE_URL="/bsp-usecase-wizard" \
+          DESTINATION=${{ env.PROD_DESTINATION }} \
+          USE_PROD_OFFSET='True' \
+          npm run build
+          cp public/service-worker.js ${{ env.PROD_DESTINATION }}
+
+      - name: Deploy Production
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: JamesIves/github-pages-deploy-action@4.0.0
+        with:
+          branch: gh-pages
+          folder: ${{ env.PROD_DESTINATION }}
+
+      # build this after to avoid overwritting
       - name: Build Development
         run: |
           BASE_URL="/bsp-usecase-wizard/dev" \
@@ -37,18 +54,3 @@ jobs:
           branch: gh-pages
           folder: ${{ env.DEV_DESTINATION }}
           target-folder: dev
-
-      - name: Build Production
-        if: ${{ github.ref == 'refs/heads/main' }}
-        run: |
-          BASE_URL="/bsp-usecase-wizard" \
-          DESTINATION=${{ env.PROD_DESTINATION }} \
-          npm run build
-          cp public/service-worker.js ${{ env.PROD_DESTINATION }}
-
-      - name: Deploy Production
-        if: ${{ github.ref == 'refs/heads/main' }}
-        uses: JamesIves/github-pages-deploy-action@4.0.0
-        with:
-          branch: gh-pages
-          folder: ${{ env.PROD_DESTINATION }}

@@ -1,6 +1,6 @@
 
 <script lang="ts">
-  let isExpanded = false;
+  export let isExpanded: boolean = false;
 </script>
 
 
