@@ -43,9 +43,11 @@ export const model = {
 };
 
 // fetch different usecases-info based on isProduction
-const usecaseInfoBaseUrl = 'https://raw.githubusercontent.com/ebrains-cls-interactive/usecases-info'
-declare var processEnvs: any // comes from rollup.config.js
-const usecaseInfoBranch = processEnvs.isProduction ? 'main' : 'develop';
+const usecaseInfoBaseUrl = 'https://raw.githubusercontent.com/ebrains-cls-interactive/usecases-info';
+declare const processEnvs: any; // comes from rollup.config.js
+declare const jest: any;
+const isProduction = (typeof jest !== 'undefined') ? false : processEnvs.isProduction;
+const usecaseInfoBranch = isProduction ? 'main' : 'develop';
 
 export const usecases = {
   INFO_FILE_URL: `${usecaseInfoBaseUrl}/${usecaseInfoBranch}/usecases-info.json`,
