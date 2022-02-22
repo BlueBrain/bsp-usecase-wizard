@@ -30,8 +30,9 @@ For each push to the repo, a Github Action will be launched:
 `.github/workflows/gh-pages.yml`
 
 #### It will deploy the app in gh-pages
-- If the commit is from Main branch (production page) [link](https://bluebrain.github.io/bsp-usecase-wizard/index.html)
-- If the commit is from any other branch (devevelopment page) [link](https://bluebrain.github.io/bsp-usecase-wizard/dev/index.html)
+- If the commit is from Main branch (production page) [link](https://bluebrain.github.io/bsp-usecase-wizard/index.html). The usecase info is fetched from `main` branch [link](https://github.com/ebrains-cls-interactive/usecases-info/blob/main/usecases-info.json)
+
+- If the commit is from any other branch (devevelopment page) [link](https://bluebrain.github.io/bsp-usecase-wizard/dev/index.html) The usecase info is fetched from `develop` branch [link](https://github.com/ebrains-cls-interactive/usecases-info/blob/develop/usecases-info.json)
 
 This wizard will be embeded into [Cellular Level Simulation](https://github.com/ebrains-cls-interactive/ebrains-cls-interactive.github.io) page
 
