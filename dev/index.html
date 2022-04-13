@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset='utf-8'>
+		<meta name='viewport' content='width=device-width,initial-scale=1'>
+
+		<title>Ebrains Wizard</title>
+		<!-- variables will be replaced and put it in the build folder -->
+
+		<link rel='icon' type='image/png' href='/bsp-usecase-wizard/dev/favicon.ico'>
+		<link rel='stylesheet' href='/bsp-usecase-wizard/dev/global.css'>
+		<link rel='stylesheet' href='/bsp-usecase-wizard/dev/style_bundle.css'>
+
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/svelte-material-ui@4.0.0/bare.min.css">
+		<script defer src='/bsp-usecase-wizard/dev/bundle.js'></script>
+		<script>
+		if ('serviceWorker' in navigator) {
+			window.addEventListener('load', () => {
+			navigator.serviceWorker.register('service-worker.js')
+				.then(reg => console.log('Service worker registered!'))
+				.catch(e => console.error(e));
+			});
+		}
+		</script>
+	</head>
+
+	<body>
+		<div id="onlineUsecasesAppContainer"></div>
+	</body>
+</html>
