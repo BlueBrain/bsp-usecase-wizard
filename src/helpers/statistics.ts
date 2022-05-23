@@ -10,9 +10,8 @@ import {
 } from '@/store';
 import { usecases, drive } from '@/constants';
 
-const CORS_PROXY = drive.BASE_DRIVE_URL;
-const STATISTICS_FORM_URL = `${CORS_PROXY}/${usecases.STATISTIC_URL}`;
-const IP_ENDPOINT = `${CORS_PROXY}/https://checkip.amazonaws.com`;
+const STATISTICS_FORM_URL = `${drive.CORS_PROXY}/${usecases.STATISTIC_URL}`;
+const IP_ENDPOINT = `${drive.CORS_PROXY}/https://checkip.amazonaws.com`;
 
 export interface StatisticDataInterface {
   category: string;
