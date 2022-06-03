@@ -1,10 +1,10 @@
 
 import Oidc from 'oidc-client';
-import { saveUrl, getSavedUrl } from '@/helpers/storage';
+import { saveUrl } from '@/helpers/storage';
 import { iam } from '@/constants';
 
 // comes from rollup.config.js
-declare var processEnvs: any
+declare var processEnvs: any;
 
 function createAuthConfig() {
   const redirectBase = `${window.location.origin}/${processEnvs.baseUrl}`;
@@ -40,6 +40,9 @@ async function loginSilent() {
 function createAuthManager() {
   const oidcConfig = createAuthConfig();
   const authMgr = new Oidc.UserManager(oidcConfig);
+  authMgr.events.addSilentRenewError(() => {
+    return login(authMgr);
+  });
   return authMgr;
 }
 
