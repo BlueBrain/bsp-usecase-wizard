@@ -1,3 +1,11 @@
+# Blue Brain Project - Usecase Wizard
+
+This repo contains the logic to build the web application that displays the scientific use cases to be run in [Ebrains](https://ebrains.hbp.eu/). It fetches the information from [usecases-info](https://github.com/ebrains-cls-interactive/usecases-info) repo.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/4954312/173317350-e85cc01a-0bcc-4ec8-a192-7d956a059374.gif">
+</p>
+
 
 ## Get started
 
@@ -14,14 +22,6 @@ npm run dev
 ```
 
 Navigate to [localhost:5005](http://localhost:5005).
-
-## Building and running in production mode
-
-To create an optimised version of the app:
-
-```bash
-npm run build
-```
 
 ## Deploying to the web
 
