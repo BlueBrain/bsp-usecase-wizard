@@ -55,3 +55,5 @@ export const usecases = {
   JSON_SCHEMA_URL: `${usecaseInfoBaseUrl}/${usecaseInfoBranch}/usecases-info.schema.json`,
   STATISTIC_URL: 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSeLKkgcY1yDb9gHjmFY-Ys8YH65wVhubdGfXUgudrRVIDtlqQ/formResponse',
 };
+
+export const defaultElevationObj = { elevation: 5 };

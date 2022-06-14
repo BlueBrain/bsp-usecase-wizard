@@ -6,6 +6,7 @@
   import UsecasePills from './UsecasePills.svelte'
 
   import type { UsecaseItem } from '@/types/usecases';
+  import { defaultElevationObj } from '@/constants';
   
   export let usecases: Array<UsecaseItem>;
   export let categoryId: string;
@@ -23,7 +24,7 @@
   {#each usecases as usecaseItem}
     {#if !usecaseItem.disabled}
       <div class="card-container">
-        <Paper elevation="5" on:click={() => ucClick(usecaseItem)}>
+        <Paper {...defaultElevationObj} on:click={() => ucClick(usecaseItem)}>
           <div class="columns-container">
             <div class="image">
               <img src={ usecaseItem.picture.src } alt="">

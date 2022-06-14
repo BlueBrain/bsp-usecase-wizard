@@ -156,7 +156,7 @@
 
       <div class="last-used-collab">
         {#if lastUsedCollabName}
-          <Item on:click={collabSelected(lastUsedCollabName)}>
+          <Item on:click={() => collabSelected(lastUsedCollabName)}>
             <Text><strong>Last used: </strong>{lastUsedCollabName}</Text>
           </Item>
         {/if}
@@ -168,7 +168,7 @@
       <div class="collab-list-scroll">
         <List>
           {#each filteredCollabsNames as collabName}
-            <Item on:click={collabSelected(collabName)}>
+            <Item on:click={() => collabSelected(collabName)}>
               <Text>{collabName}</Text>
             </Item>
           {/each}

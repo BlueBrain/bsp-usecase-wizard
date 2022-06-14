@@ -7,6 +7,7 @@
 
   import type { Model } from '@/types/models';
   import { modelsSelected, modelsSelectedLimit, errorMessage } from '@/store';
+  import { defaultElevationObj } from '@/constants';
   
   export let modelItem: Model;
   let modelIsSelected: boolean = false;
@@ -52,7 +53,7 @@
 <div class="models-card-container">
     
   <div class="card-container { modelIsSelected ? 'is-selected' : '' }">
-    <Paper elevation="5" on:click={() => ucClick(modelItem)}>
+    <Paper {...defaultElevationObj} on:click={() => ucClick(modelItem)}>
 
       <div class="grid-container">
         <div class="breadcrumbs">
