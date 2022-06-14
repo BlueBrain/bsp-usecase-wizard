@@ -47,7 +47,7 @@ export async function sendStatistics() {
   if (typeof jest !== 'undefined') return;
   // @ts-ignore // comes from rollup.config.js
   declare const processEnvs: any;
-  if (processEnvs?.baseUrl === '/' || !processEnvs?.baseUrl) return;
+  if (processEnvs['baseUrl'] === '/' || !processEnvs['baseUrl']) return;
 
   const formData = new URLSearchParams();
   const data: StatisticDataInterface = {

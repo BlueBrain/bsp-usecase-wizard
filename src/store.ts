@@ -26,7 +26,7 @@ export const collabIdSelected = writable('');
 // comes from rollup.config.js
 declare var processEnvs: any
 export const appVersion = readable(null, function start(set) {
-  set(processEnvs.appVersion);
+  set(processEnvs['appVersion']);
 	return function stop() {};
 });
 
@@ -37,6 +37,6 @@ export const errorMessage = writable('');
 export const generalMessage = writable('');
 
 export const scrollOffset = readable(null, function start(set) {
-  set(processEnvs.isProduction ? 90 : 14);
+  set(processEnvs['isProduction'] ? 90 : 14);
 	return function stop() {};
 });
