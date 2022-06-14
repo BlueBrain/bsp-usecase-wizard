@@ -87,7 +87,7 @@
             helperLine$style="width: 100%;"
             label="Model Name"
             bind:value={searchText}
-            on:change={filterModel}
+            on:input={filterModel}
           >
             <Icon class="material-icons" slot="trailingIcon">search</Icon>
           </Textfield>
@@ -179,7 +179,7 @@
   .model-section-container .model-list {
     grid-area: list;
     max-height: 70vh;
-    overflow: scroll;
+    overflow-y: scroll;
     padding: 10px;
   }
   .model-section-container .models-selected-info {

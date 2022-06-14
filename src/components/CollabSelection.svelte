@@ -127,7 +127,7 @@
             helperLine$style="width: 100%;"
             label="Collab Name"
             bind:value={searchText}
-            on:change={filterCollab}
+            on:input={filterCollab}
           >
             <Icon class="material-icons" slot="trailingIcon">search</Icon>
           </Textfield>
