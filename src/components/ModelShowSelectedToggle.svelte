@@ -3,12 +3,14 @@
   import Paper from '@smui/paper';
 
   import { modelsSelected } from '@/store';
+
+  import { defaultElevationObj } from '@/constants';
 </script>
 
 
 
 <div class="models-selected-container {$modelsSelected.length ? '' : 'hidden-section'}">
-  <Paper elevation="5">
+  <Paper {...defaultElevationObj}>
     <span class="title">Model(s) selected ({$modelsSelected.length}):</span>
     {#each $modelsSelected as modelItem}
       <span class="model">{ modelItem.name }</span>

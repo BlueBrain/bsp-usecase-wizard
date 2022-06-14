@@ -7,7 +7,7 @@ import { iam } from '@/constants';
 declare var processEnvs: any;
 
 function createAuthConfig() {
-  const redirectBase = `${window.location.origin}/${processEnvs.baseUrl}`;
+  const redirectBase = `${window.location.origin}/${processEnvs['baseUrl']}`;
   const oidcConfig = {
     authority: iam.LOGIN_URL,
     client_id: 'ebrains-wizard-2',

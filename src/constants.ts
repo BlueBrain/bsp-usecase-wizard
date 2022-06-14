@@ -46,7 +46,8 @@ export const model = {
 const usecaseInfoBaseUrl = 'https://raw.githubusercontent.com/ebrains-cls-interactive/usecases-info';
 declare const processEnvs: any; // comes from rollup.config.js
 declare const jest: any;
-const isProduction = (typeof jest !== 'undefined') ? false : processEnvs.isProduction;
+// using [''] notation instead of dot notation because of delimiter avoid replacement
+const isProduction = (typeof jest !== 'undefined') ? false : processEnvs['isProduction'];
 const usecaseInfoBranch = isProduction ? 'main' : 'develop';
 
 export const usecases = {
@@ -54,3 +55,5 @@ export const usecases = {
   JSON_SCHEMA_URL: `${usecaseInfoBaseUrl}/${usecaseInfoBranch}/usecases-info.schema.json`,
   STATISTIC_URL: 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSeLKkgcY1yDb9gHjmFY-Ys8YH65wVhubdGfXUgudrRVIDtlqQ/formResponse',
 };
+
+export const defaultElevationObj = { elevation: 5 };
