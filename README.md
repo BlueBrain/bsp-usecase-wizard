@@ -6,6 +6,11 @@ This repo contains the logic to build the web application that displays the scie
   <img src="https://user-images.githubusercontent.com/4954312/173317350-e85cc01a-0bcc-4ec8-a192-7d956a059374.gif">
 </p>
 
+## Documentation
+
+A full guide can be found at:
+
+### [workflows-and-use-case-organization](https://ebrains-cls-interactive.github.io/docs/getting_started/getting_started.html#workflows-and-use-case-organization)
 
 ## Get started
 
