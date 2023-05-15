@@ -1,0 +1,170 @@
+html, body {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	color: #333;
+	margin: 0;
+	padding: 8px;
+	box-sizing: border-box;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+a {
+	color: rgb(0,100,200);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:visited {
+	color: rgb(0,80,160);
+}
+
+label {
+	display: block;
+}
+
+input, button, select, textarea {
+	font-family: inherit;
+	font-size: inherit;
+	-webkit-padding: 0.4em 0;
+	padding: 0.4em;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+}
+
+input:disabled {
+	color: #ccc;
+}
+
+button {
+	color: #333;
+	background-color: #f4f4f4;
+	outline: none;
+}
+
+button:disabled {
+	color: #999;
+}
+
+button:not(:disabled):active {
+	background-color: #ddd;
+}
+
+button:focus {
+	border-color: #666;
+}
+
+
+/* Section header with back button */
+.custom-section-header {
+	display: flex;
+}
+.custom-section-header .go-back-btn {
+	align-self: center;
+	cursor: pointer;
+}
+.custom-section-header .go-back-btn i {
+	font-size: 30px;
+}
+.custom-section-header .page-header-title {
+	flex-grow: 1;
+	text-align: center;
+}
+
+/* tooltip */
+[data-tooltip] {
+  position: relative;
+  z-index: 20;
+  display: block;
+}
+[data-tooltip]:before,
+[data-tooltip]:after {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+	transition: .2s ease-out;
+	transform: translate(-50%, 5px)
+}
+[data-tooltip]:before {
+	white-space: break-spaces;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-bottom: 5px;
+  padding: 7px;
+	width: 100%;
+  min-width: 100px;
+	max-width: 250px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #000;
+  background-color: hsla(0, 0%, 20%, 0.9);
+  color: #fff;
+  content: attr(data-tooltip);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.2;
+	transition: .2s ease-out
+}
+[data-tooltip]:after {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  width: 0;
+  border-top: 5px solid #000;
+  border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  content: " ";
+  font-size: 0;
+  line-height: 0;
+}
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+  visibility: visible;
+  opacity: 1;
+	transform: translate(-50%, 0)
+}
+[data-tooltip=false]:hover:before,
+[data-tooltip=false]:hover:after {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.custom-loading-spin {
+	height: 32px;
+	width: 32px;
+}
+
+/* it is inside the CLS page*/
+.use-cases .container .usecase-list-item {
+	grid-template:
+		"content" auto
+		"version" auto
+		/ 1fr;
+}
+
+.use-cases .container .model-section-container {
+	grid-template:
+		"title" auto
+		"search" auto
+		"list" auto
+		"selected" auto
+		/ 1fr;
+}
+
+.use-cases .container .collab-section-container {
+	grid-template:
+		". title ." auto
+		". search ." auto
+		". list ." auto
+		/ 2fr 8fr 2fr;
+}
