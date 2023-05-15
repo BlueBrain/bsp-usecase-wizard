@@ -115,6 +115,7 @@
   .img-container {
     display: flex;
     align-items: center;
+    justify-content: space-around;
   }
   .image img {
     width: 215px;
@@ -150,9 +151,6 @@
         "imgs" auto
         "text" auto
         / 1fr;
-    }
-    .img-container {
-      justify-content: space-around;
     }
   }
 </style>

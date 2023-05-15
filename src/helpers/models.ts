@@ -13,12 +13,22 @@ import { getAxiosInstance } from '@/helpers/http';
 
 const PYTHON3_COMPATIBLE = 'optimizations_Python3';
 
+const IMAGE_PLACEHOLDER = {
+  url: 'https://placeholder.pics/svg/215x215/DEDEDE/555555/placeholder',
+  caption: 'image placeholder'
+}
+
 const axiosInstance = getAxiosInstance();
 
 function pruneModels(modelList: Array<Model>): Array<Model> {
   return modelList
-    // remove models with no images
-    .filter(m => m.images.length > 0)
+    // show placeholder if model has no images
+    .map(m => {
+      if (!m.images?.length) {
+        m.images = [IMAGE_PLACEHOLDER, IMAGE_PLACEHOLDER];
+      }
+      return m;
+    })
     // select models python3 compatible
     .filter(m => {
       const instances = m.instances;

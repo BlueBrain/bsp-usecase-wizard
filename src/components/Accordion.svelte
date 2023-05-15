@@ -7,12 +7,12 @@
 
 <div class="accordion-container">
   <div class="tab">
-    <div
-      class="tab-label { isExpanded ? 'expanded' : '' }"
+    <button
+      class="expandable-item tab-label { isExpanded ? 'expanded' : '' }"
       on:click={ () => isExpanded = !isExpanded }
     >
       <slot name="header"></slot>
-    </div>
+    </button>
 
     <div class="tab-content { isExpanded ? 'expanded' : '' }">
       <slot name="content"></slot>
@@ -65,5 +65,12 @@
   }
   .tab .tab-label.expanded::after {
     transform: rotate(90deg);
+  }
+  .expandable-item {
+    color: white;
+    width: 100%;
+    text-align: start;
+    border: 0;
+    border-radius: 0;
   }
 </style>

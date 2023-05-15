@@ -73,7 +73,7 @@
       </div>
     {/if}
     {#if usecaseItem.tutorial}
-      <div
+      <button
         class="video-tutorial"
         data-tooltip="See interactive tutorial"
         on:click|stopPropagation={ () => openTutorial(usecaseItem.tutorial) }
@@ -81,7 +81,7 @@
         <div class="tutorial-icon">
           <Icon class="material-icons">tv</Icon>
         </div>
-      </div>
+      </button>
     {/if}
   </div>
 </div>
@@ -126,6 +126,9 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    background-color: transparent;
+    border: none;
+    padding: 0;
   }
   .column {
     display: inline-flex;
