@@ -123,7 +123,6 @@ export async function updateOrCreateModelsJson() {
 }
 
 function fillModelUrl(placeholderUrl: string, uc: UsecaseItem) {
-  const BLUE_NAAS_KEY = 'bluenaas=true';
   if (uc.maxModelSelection !== 1) {
     errorMessage.set('Multiple models in URL not supported yet');
     return null;
@@ -147,7 +146,6 @@ function fillModelUrl(placeholderUrl: string, uc: UsecaseItem) {
     // this way we obtain the latest source available in the instances
     const source = instance?.source;
     if (!source) return prev;
-    if (!source.includes(BLUE_NAAS_KEY)) return prev;
     const trimmed = source.replace(/^.+AUTH_.+?\//, '');
     if (!trimmed) return prev;
     return prev = trimmed;

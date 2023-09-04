@@ -179,7 +179,7 @@
   .model-section-container .model-list {
     grid-area: list;
     max-height: 70vh;
-    overflow: scroll;
+    overflow: auto;
     padding: 10px;
   }
   .model-section-container .models-selected-info {
