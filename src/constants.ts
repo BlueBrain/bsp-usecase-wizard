@@ -34,7 +34,7 @@ export const pages = {
 };
 
 export const modelCatalog = {
-  URL: 'https://validation.brainsimulation.eu/models/',
+  URL: 'https://model-validation-api.apps.ebrains.eu/models/',
   HIPPOCAMPUS_QUERY: '?model_scope=single%20cell&species=Rattus%20norvegicus&format=bluepyopt&size=300',
 };
 
