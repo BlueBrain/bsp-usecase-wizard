@@ -13,7 +13,7 @@ export const iam = {
 };
 
 export const drive = {
-  CORS_PROXY: 'https://corsproxy.apps.tc.humanbrainproject.eu/',
+  CORS_PROXY: 'https://corsproxy.apps.tc.humanbrainproject.eu',
   DRIVE_API_URL: 'https://drive.ebrains.eu/api2',
   DEFAULT_UC_FOLDER_NAME: 'CLS-INTERACTIVE-UC',
   DEFAULT_MODEL_FOLDER_NAME: 'CLS-INTERACTIVE-MODELS',
