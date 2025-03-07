@@ -7,7 +7,7 @@ import type {
 } from '@/types/interfaces';
 import { getAxiosInstance } from '@/helpers/http';
 
-const PROXY_BASE = drive.CORS_PROXY ? `${drive.CORS_PROXY}/` : '';
+const PROXY_BASE = drive.CORS_PROXY ? `${drive.CORS_PROXY}` : '';
 const DRIVE_API = `${PROXY_BASE}${drive.DRIVE_API_URL}`;
 
 const axiosInstance = getAxiosInstance();
