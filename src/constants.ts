@@ -13,7 +13,7 @@ export const iam = {
 };
 
 export const drive = {
-  CORS_PROXY: 'https://corsproxy.hbpneuromorphic.eu',
+  CORS_PROXY: 'https://corsproxy.apps.tc.humanbrainproject.eu',
   DRIVE_API_URL: 'https://drive.ebrains.eu/api2',
   DEFAULT_UC_FOLDER_NAME: 'CLS-INTERACTIVE-UC',
   DEFAULT_MODEL_FOLDER_NAME: 'CLS-INTERACTIVE-MODELS',
@@ -34,7 +34,7 @@ export const pages = {
 };
 
 export const modelCatalog = {
-  URL: 'https://validation.brainsimulation.eu/models/',
+  URL: 'https://model-validation-api.apps.ebrains.eu/models/',
   HIPPOCAMPUS_QUERY: '?model_scope=single%20cell&species=Rattus%20norvegicus&format=bluepyopt&size=300',
 };
 
@@ -54,3 +54,4 @@ export const usecases = {
   JSON_SCHEMA_URL: `${usecaseInfoBaseUrl}/${usecaseInfoBranch}/usecases-info.schema.json`,
   STATISTIC_URL: 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSeLKkgcY1yDb9gHjmFY-Ys8YH65wVhubdGfXUgudrRVIDtlqQ/formResponse',
 };
+
