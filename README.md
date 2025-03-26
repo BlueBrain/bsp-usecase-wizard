@@ -1,3 +1,7 @@
+> [!WARNING]
+> The Blue Brain Project concluded in December 2024, so development has ceased under the BlueBrain GitHub organization.
+> Future development will take place at: https://github.com/openbraininstitute/bsp-usecase-wizard
+
 # Blue Brain Project - Usecase Wizard
 
 This repo contains the logic to build the web application that displays the scientific use cases to be run in [Ebrains](https://ebrains.hbp.eu/). It fetches the information from [usecases-info](https://github.com/ebrains-cls-interactive/usecases-info) repo.
